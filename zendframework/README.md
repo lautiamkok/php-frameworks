@@ -13,16 +13,16 @@
 
 3. Update the app and install Zend into the app.
 
-    ```
+    ~~~~
     composer self-update
     composer install
-    ```
+    ~~~~
 
 4. Run the app
 
 4.1 Using the Apache Web Server
 
-    ```
+    ~~~~
      <VirtualHost *:80>
          ServerName zf2-tutorial.localhost
          DocumentRoot /path/to/zf2-tutorial/public
@@ -34,7 +34,7 @@
              Allow from all
          </Directory>
      </VirtualHost>
-     ```
+     ~~~~
 
      Then access the app via,
 
