@@ -1,2 +1,2 @@
 vendor/
-database.config.php
+local/database.config.php
