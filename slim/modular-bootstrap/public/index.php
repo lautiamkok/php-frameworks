@@ -19,27 +19,11 @@ $app->config(array(
     'application' => require '../config/application.config.php'
 ));
 
-// Hope page.
-$app->get('/', function () use ($app) {
-    echo "Hello World!";
-});
-
 // Fetch the routes.
-$RouteFetcher = new RouteFetcher($app);
+$RouteFetcher = new Barium\RouteFetcher($app);
 
 // Include routes.
-$RouteFetcher->fetch([
-    // '404' => [
-    //     'path' => [
-    //         'direction' => 'local/',
-    //         'module' => '404/'
-    //     ]
-    // ],
-    '404/',
-    'Book/',
-    'Admin/Article/',
-    'Admin/Book/'
-]);
+$RouteFetcher->fetch();
 
 // Run the application!
 $app->run();

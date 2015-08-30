@@ -1,5 +1,7 @@
 <?php
 
+namespace Barium;
+
 class RouteFetcher
 {
     private $slim;
@@ -9,16 +11,33 @@ class RouteFetcher
         $this->slim = $slim;
     }
 
-    public function fetch($directories)
+    public function fetch()
     {
-        $app = $this->slim;
+        // Set an empty file array.
         $files = [];
 
+        // Pass the Slim object into the local scope.
+        $app = $this->slim;
+
+        // Get the application configuration.
+        $applicationConfig = $app->config('application');
+
+        // Get the global & local configurations.
+        $globalConfig = require $applicationConfig['settings']['global'];
+        $localConfig = require $applicationConfig['settings']['local'];
+
+        // Get the global & local modules.
+        $modulesGlobal = isset($globalConfig['modules']) ? $globalConfig['modules'] : array();
+        $modulesLocal = isset($localConfig['modules']) ? $localConfig['modules'] : array();
+
+        // Merge the configurations.
+        $modules = array_merge($modulesGlobal, $modulesLocal);
+
         // Loop the merge array and include the classes in them.
-        foreach($directories as $directory)
+        foreach($modules as $module)
         {
             // List all the php files inside the folder.
-            $files[] = APPLICATION_ROOT . 'module/' . $directory . 'config/route.config.php';
+            $files[] = APPLICATION_ROOT . 'module/' . $module['path']['direction'] . $module['path']['directory'] . 'config/route.config.php';
         }
 
         // Loop and include the files.

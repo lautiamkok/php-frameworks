@@ -9,6 +9,3 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 // Set application root - which is outside the public directory.
 define ('APPLICATION_ROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
-
-// Temp...
-require_once __DIR__ . '/source/core/RouteFetcher.php';

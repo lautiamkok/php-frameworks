@@ -7,11 +7,11 @@
         "psr-4": {
             "Barium\\": [
                 "source/core/",
-                "module/Article/source/"
+                "module/core/Article/source/"
             ],
             "YourCustomNamespace\\": [
                 "source/local/",
-                "module/local/*/source/"
+                "module/local/Article/source/"
             ],
             "Dice\\": "library/dice/"
         },
