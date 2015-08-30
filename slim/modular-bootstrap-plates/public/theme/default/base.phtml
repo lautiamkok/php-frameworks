@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title><?=$this->e($title)?></title>
+</head>
+<body>
+
+    <div id="sidebar">
+        <?=$this->section('sidebar', $this->fetch('theme/sidebar::sidebar.phtml', ['title' => $this->e($title)]))?>
+    </div>
+
+    <?=$this->section('content')?>
+
+</body>
+</html>

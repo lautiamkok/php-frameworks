@@ -1,5 +1,7 @@
 <?php
 
+use League\Plates\Engine as Plates;
+
 // Get book with ID
 $app->get('/books/:id', function ($id) use ($app) {
     // Update book identified by $id.
@@ -17,44 +19,27 @@ $app->get('/books/:id', function ($id) use ($app) {
     // Merge the configurations.
     $modules = array_merge($modulesGlobal, $modulesLocal);
 
-    // Set the module template path to the existing.
-    // The problem with this option is you cannot separate module template from the base's.
-    // With Twig, the base template can be extended into the module's. Thus, you don't need
-    // the Slim default if you use Twig.
-    // $view = $app->view();
-    // $view->setTemplatesDirectory(APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view/');
+    // Create new Plates instance.
+    $templates = new Plates(APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view');
 
-    // Get an instance of the Twig Environment.
-    $twig = $app->view->getInstance();
+    // Add folders.
+    $templates->addFolder('theme/default', APPLICATION_ROOT . 'public/theme/default/');
+    $templates->addFolder('theme/sidebar', APPLICATION_ROOT . 'public/theme/default/');
 
-    // From that get the Twig Loader instance (file loader in this case).
-    $loader = $twig->getLoader();
+    // Sets the default file extension to ".phtml" after engine instantiation.
+    //$templates->setFileExtension('phtml');
 
-    // Add the module template and additional paths to the existing.
-    $loader->addPath(APPLICATION_ROOT . 'public/template/default/');
-    $loader->addPath(APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view/');
+    // Disable automatic file extensions
+    $templates->setFileExtension(null);
 
-    // Render the view with the data.
-    $app->render('index.phtml', array(
+    // Render a template
+    echo $templates->render('index.phtml', array(
         'base_url' => BASE_URL,
         'id' => $id,
         'title' => $title,
         'content' => $content
     ));
 
-    // Or:
-    // $loader = new Twig_Loader_Filesystem(array(
-    //     APPLICATION_ROOT . 'public/template/default/',
-    //     APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view/'
-    // ));
-    // $twig = new Twig_Environment($loader);
-
-    // echo $twig->render('index.phtml', array(
-    //     'base_url' => APPLICATION_ROOT . 'public\\',
-    //     'id' => $id,
-    //     'title' => $title,
-    //     'content' => $content
-    // ));
 });
 
 // Use multipart/form-data for testing.
