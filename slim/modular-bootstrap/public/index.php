@@ -19,10 +19,10 @@ $app->config(array(
     'application' => require '../config/application.config.php'
 ));
 
-// Fetch the routes.
+// Get an instance of RouteFetcher.
 $RouteFetcher = new Barium\RouteFetcher($app);
 
-// Include routes.
+// Fetch the routes.
 $RouteFetcher->fetch();
 
 // Run the application!
