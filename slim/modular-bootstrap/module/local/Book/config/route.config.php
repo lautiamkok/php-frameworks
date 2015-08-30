@@ -15,13 +15,9 @@ $app->get('/books/:id', function ($id) use ($app) {
     // Get the application configuration.
     $applicationConfig = $app->config('application');
 
-    // Get the global & local configurations.
-    $globalConfig = require $applicationConfig['settings']['global'];
-    $localConfig = require $applicationConfig['settings']['local'];
-
-    // Get the global & local modules.
-    $modulesGlobal = isset($globalConfig['modules']) ? $globalConfig['modules'] : array();
-    $modulesLocal = isset($localConfig['modules']) ? $localConfig['modules'] : array();
+    // Get the global & local modules configurations.
+    $modulesGlobal = require $applicationConfig['modules']['global'];
+    $modulesLocal = require $applicationConfig['modules']['local'];
 
     // Merge the configurations.
     $modules = array_merge($modulesGlobal, $modulesLocal);
@@ -52,13 +48,9 @@ $app->put('/books/:id', function ($id) use ($app) {
     // Get the application configuration.
     $applicationConfig = $app->config('application');
 
-    // Get the global & local configurations.
-    $globalConfig = require $applicationConfig['settings']['global'];
-    $localConfig = require $applicationConfig['settings']['local'];
-
-    // Get the global & local modules.
-    $modulesGlobal = isset($globalConfig['modules']) ? $globalConfig['modules'] : array();
-    $modulesLocal = isset($localConfig['modules']) ? $localConfig['modules'] : array();
+    // Get the global & local modules configurations.
+    $modulesGlobal = require $applicationConfig['modules']['global'];
+    $modulesLocal = require $applicationConfig['modules']['local'];
 
     // Merge the configurations.
     $modules = array_merge($modulesGlobal, $modulesLocal);
