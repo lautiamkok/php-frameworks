@@ -62,9 +62,27 @@ $article = $ArticleModel->toArray();
 var_dump($article);
 
 // Render the data.
-$view = $app->view();
-$view->setTemplatesDirectory(APPLICATION_ROOT . 'module/core/Article/view/');
+// $view = $app->view();
+// $view->setTemplatesDirectory(APPLICATION_ROOT . 'module/core/Article/view/');
+// $app->render('index.phtml', array(
+//     'id' => $article['articleId'],
+//     'title' => $article['title'],
+//     'content' => $article['content']
+// ));
+
+// Get an instance of the Twig Environment.
+$twig = $app->view->getInstance();
+
+// From that get the Twig Loader instance (file loader in this case).
+$loader = $twig->getLoader();
+
+// Add the module template and additional paths to the existing.
+$loader->addPath(APPLICATION_ROOT . 'public/template/default/');
+$loader->addPath(APPLICATION_ROOT . 'module/core/Article/view/');
+
+// Render the view with the data.
 $app->render('index.phtml', array(
+    'base_url' => BASE_URL,
     'id' => $article['articleId'],
     'title' => $article['title'],
     'content' => $article['content']

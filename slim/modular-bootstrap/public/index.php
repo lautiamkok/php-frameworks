@@ -8,6 +8,7 @@ define ('WEBSITE_DOCROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
 
 // Import classes.
 use Slim\Slim;
+use Slim\Views\Twig;
 use Barium\RouteFetcher;
 
 // Get an instance of Slim.
@@ -19,8 +20,15 @@ $app->config(array(
     'templates.path' => '../public/template/',
 
     // Application configuration.
-    'application' => require '../config/application.config.php'
+    'application' => require '../config/application.config.php',
+
+    // Prepare view with Twig.
+    'view' => new Twig
 ));
+
+// Or:
+// Prepare view with Twig.
+//$app->view(new Twig());
 
 // Get an instance of RouteFetcher.
 $RouteFetcher = new RouteFetcher($app);

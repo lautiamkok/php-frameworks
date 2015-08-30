@@ -1,3 +1,19 @@
-<p><?php echo $id; ?></p>
-<p><?php echo $title; ?></p>
-<p><?php echo $content; ?></p>
+{% extends 'base.phtml' %}
+
+{% block title %}Index{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <style type="text/css">
+        .important { color: #336699; }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Index</h1>
+    <p class="important">Welcome to my awesome homepage.</p>
+    <p>{{ id }}</p>
+    <p>{{ title }}</p>
+    <p>{{ content }}</p>
+    <p>{{ base_url }}</p>
+{% endblock %}
