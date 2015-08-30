@@ -18,12 +18,19 @@ use Barium\Article\Model\ArticleModel;
 // Component.
 use Barium\Article\Component\ArticleContentComponent;
 
+// Get the application configuration.
 $applicationConfig = $app->config('application');
 
+// Get the global & local configurations.
 $globalConfig = require $applicationConfig['settings']['global'];
 $localConfig = require $applicationConfig['settings']['local'];
 
-$databaseConfig = array_merge($globalConfig['database'], $localConfig['database']);
+// Get the global & local database configurations.
+$databaseGlobal = isset($globalConfig['database']) ? $globalConfig['database'] : array();
+$databaseLocal = isset($localConfig['database']) ? $localConfig['database'] : array();
+
+// Merge the configurations.
+$databaseConfig = array_merge($databaseGlobal, $databaseLocal);
 
 var_dump($databaseConfig);
 
