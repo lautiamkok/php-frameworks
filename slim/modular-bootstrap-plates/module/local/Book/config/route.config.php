@@ -1,7 +1,5 @@
 <?php
 
-use League\Plates\Engine as Plates;
-
 // Get book with ID
 $app->get('/books/:id', function ($id) use ($app) {
     // Update book identified by $id.
@@ -20,11 +18,10 @@ $app->get('/books/:id', function ($id) use ($app) {
     $modules = array_merge($modulesGlobal, $modulesLocal);
 
     // Create new Plates instance.
-    $templates = new Plates(APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view');
+    $templates = new League\Plates\Engine(APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view/');
 
     // Add folders.
-    $templates->addFolder('theme/default', APPLICATION_ROOT . 'public/theme/default/');
-    $templates->addFolder('theme/sidebar', APPLICATION_ROOT . 'public/theme/default/');
+    $templates->addFolder('theme-default', APPLICATION_ROOT . 'public/theme/default/');
 
     // Sets the default file extension to ".phtml" after engine instantiation.
     //$templates->setFileExtension('phtml');

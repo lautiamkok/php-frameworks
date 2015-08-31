@@ -18,6 +18,9 @@ use Barium\Article\Model\ArticleModel;
 // Component.
 use Barium\Article\Component\ArticleContentComponent;
 
+// Template.
+use League\Plates\Engine as Plates;
+
 // Get the application configuration.
 $applicationConfig = $app->config('application');
 
@@ -27,8 +30,6 @@ $databaseLocal = require $applicationConfig['database']['local'];
 
 // Merge the configurations.
 $databaseConfig = array_merge($databaseGlobal, $databaseLocal);
-
-var_dump($databaseConfig);
 
 // Instance of PdoAdapter.
 $PdoAdapter = new PdoAdapter($databaseConfig['dsn'], $databaseConfig['username'], $databaseConfig['password']);
@@ -59,31 +60,22 @@ $ArticleController->setService($ArticleService)->fetchRow([
 // Get the array format of the data.
 $article = $ArticleModel->toArray();
 
-var_dump($article);
+// Create new Plates instance.
+$templates = new Plates(APPLICATION_ROOT . 'module/core/Article/view/');
 
-// Render the data.
-// $view = $app->view();
-// $view->setTemplatesDirectory(APPLICATION_ROOT . 'module/core/Article/view/');
-// $app->render('index.phtml', array(
-//     'id' => $article['articleId'],
-//     'title' => $article['title'],
-//     'content' => $article['content']
-// ));
+// Add folders.
+$templates->addFolder('theme-default', APPLICATION_ROOT . 'public/theme/default/');
 
-// Get an instance of the Twig Environment.
-$twig = $app->view->getInstance();
+// Sets the default file extension to ".phtml" after engine instantiation.
+//$templates->setFileExtension('phtml');
 
-// From that get the Twig Loader instance (file loader in this case).
-$loader = $twig->getLoader();
+// Disable automatic file extensions
+$templates->setFileExtension(null);
 
-// Add the module template and additional paths to the existing.
-$loader->addPath(APPLICATION_ROOT . 'public/template/default/');
-$loader->addPath(APPLICATION_ROOT . 'module/core/Article/view/');
-
-// Render the view with the data.
-$app->render('index.phtml', array(
+// Render a template
+echo $templates->render('index.phtml', [
     'base_url' => BASE_URL,
-    'id' => $article['articleId'],
+    'articleId' => $article['articleId'],
     'title' => $article['title'],
     'content' => $article['content']
-));
+]);

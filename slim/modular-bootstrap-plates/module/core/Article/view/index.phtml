@@ -1,19 +1,20 @@
-{% extends 'base.phtml' %}
+<?php $this->layout('theme-default::base.phtml', ['title' => $title]); ?>
 
-{% block title %}Index{% endblock %}
+<!--
+Make a welcome block:
 
-{% block head %}
-    {{ parent() }}
-    <style type="text/css">
-        .important { color: #336699; }
-    </style>
-{% endblock %}
+$this->start('block name')
+// block content.
+$this->stop()
+-->
+<?php $this->start('welcome') ?>
+    <h1>Welcome!</h1>
+    <p>Hello <?php echo $title; ?></p>
+<?php $this->stop() ?>
 
-{% block content %}
-    <h1>Index</h1>
-    <p class="important">Welcome to my awesome homepage.</p>
-    <p>{{ id }}</p>
-    <p>{{ title }}</p>
-    {{ content | raw }}
-    <p>{{ base_url }}</p>
-{% endblock %}
+<!--
+Default content block.
+-->
+<p><?php echo $articleId; ?></p>
+<p><?php echo $title; ?></p>
+<?php echo $content; ?>

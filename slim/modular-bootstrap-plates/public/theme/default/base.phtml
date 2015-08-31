@@ -1,14 +1,24 @@
 <html>
 <head>
-    <title><?=$this->e($title)?></title>
+    <title><?php echo $this->e($title); ?></title>
 </head>
 <body>
 
-    <div id="sidebar">
-        <?=$this->section('sidebar', $this->fetch('theme/sidebar::sidebar.phtml', ['title' => $this->e($title)]))?>
-    </div>
+    <!-- Print the blocks from the child whoever calls this parent -->
+    <?php echo $this->section('welcome'); ?>
+    <?php echo $this->section('content'); ?>
 
-    <?=$this->section('content')?>
+    <!-- Or get the blocks from the folder you store them -->
+    <!-- Use insert() -->
+    <?php //echo $this->insert('theme-default::welcome.phtml', ['name' => $this->e($title)]); ?>
+
+    <!-- Use fetch() -->
+    <?php //echo $this->fetch('theme-default::welcome.phtml', ['name' => $this->e($title)]); ?>
+
+    <!-- Example: Use fetch() to get the sidebar.phtml  -->
+    <div id="sidebar">
+        <?php //echo $this->fetch('theme-default::sidebar.phtml', ['title' => $this->e($title)]); ?>
+    </div>
 
 </body>
 </html>
