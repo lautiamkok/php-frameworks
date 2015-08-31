@@ -1,6 +1,6 @@
 {% extends 'base.phtml' %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Welcome!{% endblock %}
 
 {% block head %}
     {{ parent() }}
@@ -10,10 +10,13 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Index</h1>
+    <h1>Welcome!</h1>
     <p class="important">Welcome to my awesome homepage.</p>
     <p>{{ id }}</p>
     <p>{{ title }}</p>
     <p>{{ content }}</p>
-    <p>{{ base_url }}</p>
+{% endblock %}
+
+{% block footer %}
+    <p>&copy; Copyright 2015 by <a href="http://domain.invalid/">you</a></p>
 {% endblock %}

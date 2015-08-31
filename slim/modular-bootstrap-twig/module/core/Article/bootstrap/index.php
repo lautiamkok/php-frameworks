@@ -28,8 +28,6 @@ $databaseLocal = require $applicationConfig['database']['local'];
 // Merge the configurations.
 $databaseConfig = array_merge($databaseGlobal, $databaseLocal);
 
-var_dump($databaseConfig);
-
 // Instance of PdoAdapter.
 $PdoAdapter = new PdoAdapter($databaseConfig['dsn'], $databaseConfig['username'], $databaseConfig['password']);
 
@@ -58,8 +56,6 @@ $ArticleController->setService($ArticleService)->fetchRow([
 
 // Get the array format of the data.
 $article = $ArticleModel->toArray();
-
-var_dump($article);
 
 // Render the data.
 // $view = $app->view();
