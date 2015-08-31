@@ -1,0 +1,24 @@
+cache:
+  connections:
+    default:
+      driver: redis
+      options:
+        socket: /tmp/redis.sock
+
+doctrine_dbal:
+  database:
+    driver: pdo_sqlite
+    path: %app.root_dir%/sqlite.db
+
+log:
+  channels:
+    default:
+      handler: stream
+      level:   100
+      options:
+        file: %app.log_dir%/dev.log
+
+security:
+  firewall: /messages
+  authenticator:
+    type: closure

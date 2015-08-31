@@ -1,0 +1,18 @@
+{
+    "require": {
+        "nice/framework": "~1.0",
+        "nice/doctrine-key-value": "~1.0",
+        "doctrine/key-value-store": "dev-master",
+        "nice/twig": "~1.0",
+        "nice/doctrine-dbal": "~1.0",
+        "nice/doctrine-cache": "~1.0",
+        "nice/security": "~1.0",
+        "monolog/monolog": "~1.11",
+        "symfony/yaml": "~2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Example\\": "src/"
+        }
+    }
+}
