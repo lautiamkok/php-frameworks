@@ -31,7 +31,7 @@ $app->get('/books/:id', function ($id) use ($app) {
     $loader = $twig->getLoader();
 
     // Add the module template and additional paths to the existing.
-    $loader->addPath(APPLICATION_ROOT . 'public/template/default/');
+    $loader->addPath(APPLICATION_ROOT . 'public/theme/default/');
     $loader->addPath(APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view/');
 
     // Render the view with the data.
