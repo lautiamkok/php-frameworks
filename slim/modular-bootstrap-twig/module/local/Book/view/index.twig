@@ -1,4 +1,4 @@
-{% extends 'base.phtml' %}
+{% extends 'base.twig' %}
 
 {% block title %}Welcome!{% endblock %}
 
@@ -10,11 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Welcome!</h1>
-    <p class="important">Welcome to my awesome homepage.</p>
-    <p>{{ id }}</p>
-    <p>{{ title }}</p>
-    <p>{{ content }}</p>
+    {% include 'content.twig' %}
 {% endblock %}
 
 {% block footer %}

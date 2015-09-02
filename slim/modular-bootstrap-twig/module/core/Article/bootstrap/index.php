@@ -77,7 +77,7 @@ $loader->addPath(APPLICATION_ROOT . 'public/theme/default/');
 $loader->addPath(APPLICATION_ROOT . 'module/core/Article/view/');
 
 // Render the view with the data.
-$app->render('index.phtml', array(
+$app->render('index.twig', array(
     'base_url' => BASE_URL,
     'id' => $article['articleId'],
     'title' => $article['title'],

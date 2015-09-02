@@ -35,7 +35,7 @@ $app->get('/books/:id', function ($id) use ($app) {
     $loader->addPath(APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view/');
 
     // Render the view with the data.
-    $app->render('index.phtml', array(
+    $app->render('index.twig', array(
         'base_url' => BASE_URL,
         'id' => $id,
         'title' => $title,
@@ -49,7 +49,7 @@ $app->get('/books/:id', function ($id) use ($app) {
     // ));
     // $twig = new Twig_Environment($loader);
 
-    // echo $twig->render('index.phtml', array(
+    // echo $twig->render('index.twig', array(
     //     'base_url' => APPLICATION_ROOT . 'public\\',
     //     'id' => $id,
     //     'title' => $title,
@@ -83,7 +83,7 @@ $app->put('/books/:id', function ($id) use ($app) {
     // Render the view with the data.
     $view = $app->view();
     $view->setTemplatesDirectory(APPLICATION_ROOT . 'module/' . $modules['Book']['path']['direction'] . $modules['Book']['path']['directory'] . 'view/');
-    $app->render('index.phtml', array(
+    $app->render('index.twig', array(
         'id' => $id,
         'title' => $title,
         'content' => $content
