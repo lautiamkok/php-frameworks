@@ -61,8 +61,7 @@ $ArticleController->setService($ArticleService)->fetchRow([
     "url"   =>  $url
 ]);
 
-// Prepare view.
-// Pass in the writer into view to determine what content type to be displayed - html, json, or xml.
+// Prepare view and pass the model into it.
 $ArticleView = new ArticleView($ArticleModel);
 //echo $ArticleView->render();
 
