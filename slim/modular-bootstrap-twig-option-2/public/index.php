@@ -17,7 +17,7 @@ $app = new Slim();
 // Configure the application.
 $app->config(array(
     // Global template path
-    'templates.path' => '../public/theme/',
+    'templates.path' => '../public/theme/default/',
 
     // Application configuration.
     'application' => require '../config/application.config.php',

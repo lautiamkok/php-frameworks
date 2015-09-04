@@ -82,6 +82,7 @@ $app->put('/books/:id', function ($id) use ($app) {
 
     // Render the view with the data.
     $view = $app->view();
+
     $view->setTemplatesDirectory(APPLICATION_ROOT . 'public/theme/default/' . $modules['Book']['path']['directory']);
     $app->render('index.twig', array(
         'id' => $id,
