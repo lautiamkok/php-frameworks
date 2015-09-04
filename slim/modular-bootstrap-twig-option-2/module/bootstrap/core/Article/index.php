@@ -85,7 +85,7 @@ $loader = $twig->getLoader();
 
 // Add the module template and additional paths to the existing.
 $loader->addPath(APPLICATION_ROOT . 'public/theme/default/');
-$loader->addPath(APPLICATION_ROOT . 'module/core/Article/view/');
+$loader->addPath(APPLICATION_ROOT . 'public/theme/default/Article/');
 
 // Render the view with the data.
 $app->render('index.twig', array(
