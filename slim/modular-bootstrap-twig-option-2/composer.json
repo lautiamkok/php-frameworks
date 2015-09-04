@@ -1,0 +1,23 @@
+{
+    "require": {
+        "slim/slim": "~2.0",
+        "slim/views": "0.1.*",
+        "twig/twig": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Barium\\": [
+                "source/core/",
+                "module/source/core/",
+                "module/source/local/"
+            ],
+            "YourCustomNamespace\\": [
+                "source/local/",
+                "module/source/local/"
+            ]
+        },
+        "psr-0": {
+            "": "library/"
+        }
+    }
+}
