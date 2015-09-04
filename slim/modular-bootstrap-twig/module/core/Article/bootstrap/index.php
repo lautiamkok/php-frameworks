@@ -18,6 +18,9 @@ use Barium\Article\Model\ArticleModel;
 // Component.
 use Barium\Article\Component\ArticleContentComponent;
 
+// View.
+use Barium\Article\View\ArticleView;
+
 // Get the application configuration.
 $applicationConfig = $app->config('application');
 
@@ -30,6 +33,10 @@ $databaseConfig = array_merge($databaseGlobal, $databaseLocal);
 
 // Instance of PdoAdapter.
 $PdoAdapter = new PdoAdapter($databaseConfig['dsn'], $databaseConfig['username'], $databaseConfig['password']);
+
+// Initiate the triad.
+// It is important that the controller and the view
+// share the model.
 
 // Article.
 $ArticleService = new ArticleService();
@@ -53,6 +60,11 @@ $ArticleService->setMapper($ArticleMapper)->setModel($ArticleModel);
 $ArticleController->setService($ArticleService)->fetchRow([
     "url"   =>  $url
 ]);
+
+// Prepare view.
+// Pass in the writer into view to determine what content type to be displayed - html, json, or xml.
+$ArticleView = new ArticleView($ArticleModel);
+//echo $ArticleView->render();
 
 // Get the array format of the data.
 $article = $ArticleModel->toArray();
