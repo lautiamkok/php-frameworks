@@ -3,9 +3,10 @@
 return array(
     'Book' => array(
         'name' => 'Book',
-        'path' => array(
-            'direction' => 'local/',
-            'directory' => 'Book/'
+        'directories' => array(
+            'route.config'  => 'local/Book/',
+            'bootstrap'  => 'local/Book/',
+            'source'  => 'local/Book/'
         ),
     ),
 );

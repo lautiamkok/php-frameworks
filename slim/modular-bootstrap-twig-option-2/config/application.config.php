@@ -1,9 +1,13 @@
 <?php
 
 return array(
-    'settings' => array(
-        'global' => '../config/settings/global.config.php',
-        'local' => '../config/settings/local.config.php'
+
+    // The home page can be set to any module,
+    // for example:'local/Home/index.php','core/Article/index.php'
+    // Otherwise it will fall back to the default message: 'Hello World!'
+    // when no bootstrap is provided.
+    'home_page' => array(
+        'bootstrap' => 'core/Home/index.php'
     ),
 
     'database' => array(

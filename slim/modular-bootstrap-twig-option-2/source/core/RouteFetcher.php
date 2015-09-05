@@ -33,7 +33,7 @@ class RouteFetcher
         foreach($modules as $module)
         {
             // List all the php files inside the folder.
-            $files[] = APPLICATION_ROOT . 'module/config/' . $module['path']['direction'] . $module['path']['directory'] . 'route.config.php';
+            $files[] = APPLICATION_ROOT . 'module/config/' . $module['directories']['route.config'] . 'route.config.php';
         }
 
         // Loop and include the files.
