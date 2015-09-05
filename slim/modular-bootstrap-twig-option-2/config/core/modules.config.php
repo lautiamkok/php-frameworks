@@ -6,7 +6,9 @@ return array(
         'directories' => array(
             'route.config'  => 'core/PageNotFound/',
             'bootstrap'  => 'core/PageNotFound/',
-            'source'  => 'core/PageNotFound/'
+            'source'  => 'core/PageNotFound/',
+            'theme'  => 'default/',
+            'template'  => 'PageNotFound/'
         ),
     ),
 
@@ -15,7 +17,9 @@ return array(
         'directories' => array(
             'route.config'  => 'core/Home/',
             'bootstrap'  => 'core/Home/',
-            'source'  => 'core/Home/'
+            'source'  => 'core/Home/',
+            'theme'  => 'default/',
+            'template'  => 'Home/'
         ),
     ),
 
@@ -24,7 +28,9 @@ return array(
         'directories' => array(
             'route.config'  => 'core/Article/',
             'bootstrap'  => 'core/Article/',
-            'source'  => 'core/Article/'
+            'source'  => 'core/Article/',
+            'theme'  => 'default/',
+            'template'  => 'Article/'
         ),
     ),
 
@@ -33,7 +39,9 @@ return array(
         'directories' => array(
             'route.config'  => 'core/Admin/Article/',
             'bootstrap'  => 'core/Admin/Article/',
-            'source'  => 'core/Admin/Article/'
+            'source'  => 'core/Admin/Article/',
+            'theme'  => 'default/',
+            'template'  => 'Admin/Article/'
         ),
     ),
 );
