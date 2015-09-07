@@ -148,5 +148,6 @@ class ArticleMapper implements MapperStrategy, CompositeStrategy, ComposableStra
         $ModelStrategy->articleId = $item['article_id'];
         $ModelStrategy->title = $item['title'];
         $ModelStrategy->content = $item['content'];
+        $ModelStrategy->template = $item['template']['path'];
     }
 }

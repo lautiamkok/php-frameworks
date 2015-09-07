@@ -13,6 +13,7 @@ class ArticleModel implements ModelStrategy
     public $articleId;
     public $title;
     public $content;
+    public $template;
 
     public function toArray()
     {

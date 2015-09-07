@@ -17,6 +17,7 @@ use Barium\Article\Model\ArticleModel;
 
 // Component.
 use Barium\Article\Component\ArticleContentComponent;
+use Barium\Article\Component\ArticleTemplateComponent;
 
 // View.
 use Barium\Article\View\ArticleView;
@@ -51,9 +52,11 @@ $ArticleMapper = new ArticleMapper($PdoAdapter);
 
 // Prepare components.
 $ArticleContentComponent = new ArticleContentComponent($PdoAdapter);
+$ArticleTemplateComponent = new ArticleTemplateComponent($PdoAdapter);
 
 // Inject components.
 $ArticleMapper->addComponent($ArticleContentComponent);
+$ArticleMapper->addComponent($ArticleTemplateComponent);
 
 // Controll the article.
 $ArticleService->setMapper($ArticleMapper)->setModel($ArticleModel);
@@ -67,6 +70,16 @@ $ArticleView = new ArticleView($ArticleModel);
 
 // Get the array format of the data.
 $article = $ArticleModel->toArray();
+
+// Get format in the query string.
+$format = $app->request()->get('format');
+
+// Encode the data to json - if the json is requested.
+if ($format === 'json') {
+    header('Content-Type: application/json');
+    echo json_encode($article);
+    die;
+}
 
 // Render the data.
 // $view = $app->view();
@@ -89,8 +102,8 @@ $loader->addPath(APPLICATION_ROOT . 'public/theme/default/Article/');
 
 // Render the view with the data.
 $app->render('index.twig', array(
-    'base_url' => BASE_URL,
-    'id' => $article['articleId'],
+    'baseUrl' => BASE_URL,
+    'articleId' => $article['articleId'],
     'title' => $article['title'],
     'content' => $article['content']
 ));

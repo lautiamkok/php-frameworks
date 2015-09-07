@@ -38,21 +38,21 @@ $( document ).ready(function() {
 
     $(".rest-get").click(function(){
 
-        var data = {"name":"John", "age": 34}
+        var data = {"format":"json","name":"John", "age": 34}
 
         $.ajax({
             type: 'GET',
             //contentType: "application/x-www-form-urlencoded; charset=UTF-8", // this is the default value, so it's optional
             contentType: "application/json; charset=utf-8",
             data: data,
-            url: '../js/src/posts.php', // should use the route (base_url + articles/<article-url>) in here.
+            url: '../articles/home', // should use the route (base_url + articles/<article-url>) in here.
             dataType: "json", // data type of response
             success: function(data){
 
                 if (typeof template.id === 'undefined') {
                     template = twig({
                         id: "posts",
-                        href: "../theme/default/content.twig", // should pass the theme url (base_url + the theme directory) in here.
+                        href: "../theme/default/Article/partials/content.twig", // should pass the theme url (base_url + the theme directory) in here.
                         // for this example we'll block until the template is loaded
                         async: false
 
@@ -66,10 +66,10 @@ $( document ).ready(function() {
                 // data from somewhere like an AJAX callback.
                 //posts = {"posts": data};
                 //posts = {"posts": [{"title":"a","body":"aa"},{"title":"b","body":"bb"},{"title":"c","body":"cc"}]};
-                post = {"id":"123","title":"Hello World!","content":"<p>bla bla bla</p>"};
+                //post = {"id":"123","title":"Hello World!","content":"<p>bla bla bla</p>"};
 
                 // render the template
-                var postsHTML = twig({ ref: "posts" }).render(post);
+                var postsHTML = twig({ ref: "posts" }).render(data);
                 //console.log(postsHTML);
 
                 // Display the rendered template
