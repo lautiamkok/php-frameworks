@@ -76,9 +76,8 @@ $format = $app->request()->get('format');
 
 // Encode the data to json - if the json is requested.
 if ($format === 'json') {
-    header('Content-Type: application/json');
-    echo json_encode($article);
-    die;
+    $app->response->headers->set('Content-Type', 'application/json');
+    return $app->response->body(json_encode($article));
 }
 
 // Render the data.
