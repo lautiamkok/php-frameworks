@@ -11,17 +11,17 @@ return array(
     ),
 
     'database' => array(
-        'global' => '../config/core/database.config.php',
-        'local' => '../config/local/database.config.php'
+        'global' => 'config/core/database.config.php',
+        'local' => 'config/local/database.config.php'
     ),
 
     'modules' => array(
-        'global' => '../config/core/modules.config.php',
-        'local' => '../config/local/modules.config.php'
+        'global' => 'config/core/modules.config.php',
+        'local' => 'config/local/modules.config.php'
     ),
 
     'directories' => array(
-        'global' => '../config/core/directories.config.php',
-        'local' => '../config/local/directories.config.php'
+        'global' => 'config/core/directories.config.php',
+        'local' => 'config/local/directories.config.php'
     )
 );

@@ -17,4 +17,4 @@ $scheme = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 define('BASE_URL', $scheme . 'localhost/php-frameworks/slim/modular-bootstrap-twig-option-2/public/');
 
 // Set application root - which is outside the public directory.
-define ('APPLICATION_ROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
+define('APPLICATION_ROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
