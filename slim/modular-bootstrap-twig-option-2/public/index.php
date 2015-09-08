@@ -1,5 +1,10 @@
 <?php
 
+// Import classes.
+use Slim\Slim;
+use Slim\Views\Twig;
+use Barium\RouteFetcher;
+
 // Include application bootstrap.
 chdir(dirname(__DIR__));
 require 'bootstrap.php';
@@ -12,11 +17,6 @@ require 'bootstrap.php';
 
 // Set website public documentroot.
 define ('WEBSITE_DOCROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
-
-// Import classes.
-use Slim\Slim;
-use Slim\Views\Twig;
-use Barium\RouteFetcher;
 
 // Get an instance of Slim.
 $app = new Slim();
