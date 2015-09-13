@@ -40,3 +40,22 @@ http://silex.sensiolabs.org/doc/middlewares.html
 The purpose of middleware is to inspect, analyze, or modify the application environment, request, and response before and/or after the Slim application is invoked.
 
 http://docs.slimframework.com/middleware/overview/
+
+# HTTP Headers
+
+Whether you're a programmer or not, you have seen it everywhere on the web. At this moment your browsers address bar shows something that starts with "http://". Even your first Hello World script sent HTTP headers without you realizing it. In this article we are going to learn about the basics of HTTP headers and how we can use them in our web applications.
+
+The HTTP response that a server sends back to a client contains headers that identify the type of content in the body of the response, the server that sent the response, how many bytes are in the body, when the response was sent, etc. PHP and Apache normally take care of the headers for you, **identifying the document as HTML**, calculating the length of the HTML page, and so on. Most web applications never need to set headers themselves. However, if you want to send back something that's not HTML, set the expiration time for a page, redirect the client's browser, or generate a specific HTTP error, you'll need to use the header( ) function.
+
+## How to See HTTP Headers
+
+* Firebug extensions to analyze HTTP headers.
+
+    1. Turn in Firebug
+    2. Click Net
+    3. Click Headers
+
+## ref:
+
+    * http://docstore.mik.ua/orelly/webprog/php/ch07_05.htm
+    * http://code.tutsplus.com/tutorials/http-headers-for-dummies--net-8039
