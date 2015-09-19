@@ -26,7 +26,6 @@ $app->put('/books/:id', function ($id) use ($app) {
     print_r($allPutVars);
     print_r($title);
     print_r($content);
-
 });
 
 // Use application/x-www-form-urlencoded for testing.
@@ -40,7 +39,6 @@ $app->post('/book', function () use ($app) {
     print_r($allPostVars);
     print_r($title);
     print_r($content);
-
 });
 
 // Use application/x-www-form-urlencoded for testing.

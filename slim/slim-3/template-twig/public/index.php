@@ -19,13 +19,22 @@ $container['view'] = function ($c) {
     return $view;
 };
 
+// //Override the default Not Found Handler
+// $container['notFoundHandler'] = function ($c) {
+//     return function ($request, $response) use ($c) {
+//         return $c['response']
+//             ->withStatus(404)
+//             ->withHeader('Content-Type', 'text/html')
+//             ->write('Page not found');
+//     };
+// };
+
 //Override the default Not Found Handler
 $container['notFoundHandler'] = function ($c) {
     return function ($request, $response) use ($c) {
-        return $c['response']
-            ->withStatus(404)
-            ->withHeader('Content-Type', 'text/html')
-            ->write('Page not found');
+        return $c['view']->render($response, '404.html', [
+            "myMagic" => "Let's roll"
+        ])->withStatus(404);
     };
 };
 
