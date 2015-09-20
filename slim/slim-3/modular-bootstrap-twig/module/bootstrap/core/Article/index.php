@@ -22,12 +22,15 @@ use Barium\Article\Component\ArticleTemplateComponent;
 // View.
 use Barium\Article\View\ArticleView;
 
-// Get the application configuration.
-$applicationConfig = $app->config('application');
+// Get the container that stored in Slim\App.
+$container = $this->getContainer();
+
+// Get the application settings.
+$settings = $container->get('settings');
 
 // Get the global & local database configurations.
-$databaseGlobal = require $applicationConfig['database']['global'];
-$databaseLocal = require $applicationConfig['database']['local'];
+$databaseGlobal = require $settings['database']['global'];
+$databaseLocal = require $settings['database']['local'];
 
 // Merge the configurations.
 $databaseConfig = array_merge($databaseGlobal, $databaseLocal);
@@ -61,7 +64,7 @@ $ArticleMapper->addComponent($ArticleTemplateComponent);
 // Controll the article.
 $ArticleService->setMapper($ArticleMapper)->setModel($ArticleModel);
 $ArticleController->setService($ArticleService)->fetchRow([
-    "url"   =>  $url
+    "url"   =>  $args['url']
 ]);
 
 // Prepare view and pass the model into it.
@@ -72,25 +75,17 @@ $ArticleView = new ArticleView($ArticleModel);
 $article = $ArticleModel->toArray();
 
 // Get format in the query string.
-$format = $app->request()->get('format');
+$allGetVars = $request->getQueryParams();
+$format = isset($allGetVars['format']) ? $allGetVars['format'] : null;
 
 // Encode the data to json - if the json is requested.
 if ($format === 'json') {
-    $app->response->headers->set('Content-Type', 'application/json');
-    return $app->response->body(json_encode($article));
+    $response->getBody()->write(json_encode($article));
+    return $response->withHeader('Content-type', 'application/json');
 }
 
-// Render the data.
-// $view = $app->view();
-// $view->setTemplatesDirectory(APPLICATION_ROOT . 'module/core/Article/view/');
-// $app->render('index.phtml', array(
-//     'id' => $article['articleId'],
-//     'title' => $article['title'],
-//     'content' => $article['content']
-// ));
-
 // Get an instance of the Twig Environment.
-$twig = $app->view->getInstance();
+$twig = $this->view;
 
 // From that get the Twig Loader instance (file loader in this case).
 $loader = $twig->getLoader();
@@ -100,7 +95,7 @@ $loader->addPath(APPLICATION_ROOT . 'public/theme/default/');
 $loader->addPath(APPLICATION_ROOT . 'public/theme/default/Article/');
 
 // Render the view with the data.
-$app->render('index.twig', array(
+return $this->view->render($response, 'index.twig', array(
     'baseUrl' => BASE_URL,
     'articleId' => $article['articleId'],
     'title' => $article['title'],

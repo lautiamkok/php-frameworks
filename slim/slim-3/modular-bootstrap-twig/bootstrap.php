@@ -14,7 +14,7 @@ $scheme = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 //define('BASE_URL', $scheme . $_SERVER['SERVER_NAME'].'/');
 
 // Developer server.
-define('BASE_URL', $scheme . 'localhost/php-frameworks/slim/modular-bootstrap-twig-option-2/public/');
+define('BASE_URL', $scheme . 'localhost/php-frameworks/slim/slim-3/modular-bootstrap-twig/public/');
 
 // Set application root - which is outside the public directory.
 define('APPLICATION_ROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');

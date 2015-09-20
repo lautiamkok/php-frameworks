@@ -1,27 +1,59 @@
 <?php
 
-return array(
+// use Slim\Views\Twig;
 
-    // The home page can be set to any module,
-    // for example:'local/Home/index.php','core/Article/index.php'
-    // Otherwise it will fall back to the default message: 'Hello World!'
-    // when no bootstrap is provided.
-    'home_page' => array(
-        'bootstrap' => 'core/Home/index.php'
-    ),
+return [
+    // Application configuration.
+    'settings' => [
+        // The home page can be set to any module,
+        // for example:'local/Home/index.php','core/Article/index.php'
+        // Otherwise it will fall back to the default message: 'Hello World!'
+        // when no bootstrap is provided.
+        'home_page' => [
+            'bootstrap' => 'core/Home/index.php'
+        ],
 
-    'database' => array(
-        'global' => 'config/core/database.config.php',
-        'local' => 'config/local/database.config.php'
-    ),
+        'database' => [
+            'global' => 'config/core/database.config.php',
+            'local' => 'config/local/database.config.php'
+        ],
 
-    'modules' => array(
-        'global' => 'config/core/modules.config.php',
-        'local' => 'config/local/modules.config.php'
-    ),
+        'modules' => [
+            'global' => 'config/core/modules.config.php',
+            'local' => 'config/local/modules.config.php'
+        ],
 
-    'directories' => array(
-        'global' => 'config/core/directories.config.php',
-        'local' => 'config/local/directories.config.php'
-    )
-);
+        'directories' => [
+            'global' => 'config/core/directories.config.php',
+            'local' => 'config/local/directories.config.php'
+        ],
+
+        // View settings.
+        // Prepare view for Twig.
+        'view' => [
+            'template_path' => 'public/theme/default/',
+            'twig' => [
+                'cache' => 'cache/twig/',
+                'debug' => true,
+                'auto_reload' => true,
+            ],
+        ],
+    ],
+
+    // Or:
+    // // View settings.
+    // // Prepare view with Twig.
+    // 'view' => new Twig('public/theme/default/', [
+    //     //'cache' => 'cache/twig/',
+    //     'debug' => true,
+    //     'auto_reload' => true,
+    // ]),
+
+    'notFoundHandler' => function ($container) {
+        return function ($request, $response) use ($container) {
+            return $container['view']->render($response, 'PageNotFound/index.html', [
+                "myMagic" => "Let's roll"
+            ])->withStatus(404);
+        };
+    }
+];

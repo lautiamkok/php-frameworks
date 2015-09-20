@@ -1,4 +1,4 @@
 <?php
 
-$response->getBody()->write('Hello World!');
+$response->getBody()->write('Hello, ' . $name);
 return $response->withHeader('Content-type', 'application/json');

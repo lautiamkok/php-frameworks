@@ -1,7 +1,8 @@
 <?php
 
 // Import classes.
-use Slim\Slim;
+use Slim\App as Slim;
+use Slim\Container;
 use Slim\Views\Twig;
 use Barium\RouteFetcher;
 
@@ -18,24 +19,36 @@ require 'bootstrap.php';
 // Set website public documentroot.
 define ('WEBSITE_DOCROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
 
-// Get an instance of Slim.
-$app = new Slim();
+// $config = [
+//     // Application settings.
+//     'settings' => require 'config/settings.php',
 
-// Configure the application.
-$app->config(array(
-    // Global template path
-    'templates.path' => 'public/theme/default/',
+//     // View settings.
+//     // Prepare view with Twig.
+//     'view' => new Twig('public/theme/default/', [
+//         //'cache' => 'cache/twig/',
+//         'debug' => true,
+//         'auto_reload' => true,
+//     ]),
 
-    // Application configuration.
-    'application' => require 'config/application.config.php',
-
-    // Prepare view with Twig.
-    'view' => new Twig
-));
+//     'notFoundHandler' => function ($container) {
+//         return function ($request, $response) use ($container) {
+//             return $container['view']->render($response, 'PageNotFound/index.html', [
+//                 "myMagic" => "Let's roll"
+//             ])->withStatus(404);
+//         };
+//     }
+// ];
 
 // Or:
-// Prepare view with Twig.
-//$app->view(new Twig());
+// Get the application settings file.
+$settings = require 'config/application.config.php';
+
+// Get an instance of Slim.
+$app = new Slim($settings);
+
+// Set up dependencies.
+require 'config/dependencies.config.php';
 
 // Get an instance of RouteFetcher.
 $RouteFetcher = new RouteFetcher($app);

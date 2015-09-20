@@ -1,16 +1,16 @@
 <?php
 
 return array(
-    'PageNotFound' => array(
-        'name' => 'PageNotFound',
-        'directories' => array(
-            'route.config'  => 'core/PageNotFound/',
-            'bootstrap'  => 'core/PageNotFound/',
-            'source'  => 'core/PageNotFound/',
-            'theme'  => 'default/',
-            'template'  => 'PageNotFound/'
-        ),
-    ),
+    // 'PageNotFound' => array(
+    //     'name' => 'PageNotFound',
+    //     'directories' => array(
+    //         'route.config'  => 'core/PageNotFound/',
+    //         'bootstrap'  => 'core/PageNotFound/',
+    //         'source'  => 'core/PageNotFound/',
+    //         'theme'  => 'default/',
+    //         'template'  => 'PageNotFound/'
+    //     ),
+    // ),
 
     'Home' => array(
         'name' => 'Home',

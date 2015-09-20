@@ -18,8 +18,8 @@ final class HomeAction
     public function dispatch($request, $response, $args)
     {
         $this->logger->info("Home page action dispatched");
-        
+
         $this->view->render($response, 'home.twig');
-        return $response;
+        return $response->withHeader('Content-type', 'application/json');
     }
 }

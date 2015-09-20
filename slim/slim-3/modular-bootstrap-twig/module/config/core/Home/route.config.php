@@ -1,15 +1,19 @@
 <?php
 
 // Hope page.
-$app->get('/', function () use ($app) {
+$app->get('/', function ($request, $response, $args) {
 
-    // Get the application configuration.
-    $applicationConfig = $app->config('application');
+    // Get the container that stored in Slim\App.
+    $container = $this->getContainer();
+
+    // Get the application settings.
+    $settings = $container->get('settings');
 
     // Check if the home page bootstrap file is provided.
-    if ($applicationConfig['home_page']['bootstrap']) {
-        require_once APPLICATION_ROOT . 'module/bootstrap/' . $applicationConfig['home_page']['bootstrap'];
+    if ($settings['home_page']['bootstrap']) {
+        return require_once APPLICATION_ROOT . 'module/bootstrap/' . $settings['home_page']['bootstrap'];
     } else {
-        echo "Hello World!";
+        $response->getBody()->write('Hello World!');
+        return $response->withHeader('Content-type', 'application/json');
     }
 });

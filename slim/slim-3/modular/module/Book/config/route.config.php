@@ -15,6 +15,8 @@ $app->get('/books/{id}', function ($request, $response, $args) {
     print_r($allGetVars);
     print_r($title);
     print_r($content);
+
+    return $response->withHeader('Content-type', 'application/json');
 });
 
 // Use application/x-www-form-urlencoded for testing.
