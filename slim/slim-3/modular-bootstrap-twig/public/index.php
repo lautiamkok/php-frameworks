@@ -2,8 +2,7 @@
 
 // Import classes.
 use Slim\App as Slim;
-use Slim\Container;
-use Slim\Views\Twig;
+// use Slim\Views\Twig;
 use Barium\RouteFetcher;
 
 // Include application bootstrap.
@@ -19,9 +18,9 @@ require 'bootstrap.php';
 // Set website public documentroot.
 define ('WEBSITE_DOCROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
 
-// $config = [
+// $settings = [
 //     // Application settings.
-//     'settings' => require 'config/settings.php',
+//     'settings' => require 'config/application.config.php',
 
 //     // View settings.
 //     // Prepare view with Twig.
