@@ -49,11 +49,14 @@ return [
     //     'auto_reload' => true,
     // ]),
 
-    'notFoundHandler' => function ($container) {
-        return function ($request, $response) use ($container) {
-            return $container['view']->render($response, 'PageNotFound/index.html', [
-                "myMagic" => "Let's roll"
-            ])->withStatus(404);
-        };
-    }
+    // Custom 404 page.
+    // Ref: http://help.slimframework.com/discussions/problems/10851-how-to-add-404-template-in-slim-3
+    // Or:
+    // 'notFoundHandler' => function ($container) {
+    //     return function ($request, $response) use ($container) {
+    //         return $container['view']->render($response, 'PageNotFound/index.html', [
+    //             "myMagic" => "Let's roll"
+    //         ])->withStatus(404);
+    //     };
+    // }
 ];
