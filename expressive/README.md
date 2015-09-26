@@ -23,6 +23,12 @@
 
 3. Start a web server
 
+    Change the path to public/,
+
+    'cd public/'
+
+    then,
+
     `php -S 0.0.0.0:8080 -t .`
 
 4. Browse to localhost:8080, and you should see it running!

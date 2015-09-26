@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ceb830482b6507bb2443f6f29ca5a2d6",
+    "hash": "c0e212534c3f2ad69bc2e396a3b47a92",
     "packages": [
         {
             "name": "aura/router",
@@ -138,16 +138,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.21.1",
+            "version": "v1.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "ca8d3aa90b6a01c82e07909fe815d6b443e75a23"
+                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/ca8d3aa90b6a01c82e07909fe815d6b443e75a23",
-                "reference": "ca8d3aa90b6a01c82e07909fe815d6b443e75a23",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
+                "reference": "79249fc8c9ff62e41e217e0c630e2e00bcadda6a",
                 "shasum": ""
             },
             "require": {
@@ -160,7 +160,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.21-dev"
+                    "dev-master": "1.22-dev"
                 }
             },
             "autoload": {
@@ -195,7 +195,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-08-26 08:58:31"
+            "time": "2015-09-22 13:59:32"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -293,16 +293,16 @@
         },
         {
             "name": "zendframework/zend-expressive",
-            "version": "0.2.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-expressive.git",
-                "reference": "38124a7834e2200f725c158605763f3d99bc33aa"
+                "reference": "e8a14fafadd7f6a1a71f79a273aa7f31757d798c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-expressive/zipball/38124a7834e2200f725c158605763f3d99bc33aa",
-                "reference": "38124a7834e2200f725c158605763f3d99bc33aa",
+                "url": "https://api.github.com/repos/zendframework/zend-expressive/zipball/e8a14fafadd7f6a1a71f79a273aa7f31757d798c",
+                "reference": "e8a14fafadd7f6a1a71f79a273aa7f31757d798c",
                 "shasum": ""
             },
             "require": {
@@ -355,7 +355,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2015-09-03 22:44:39"
+            "time": "2015-09-10 18:59:47"
         },
         {
             "name": "zendframework/zend-servicemanager",

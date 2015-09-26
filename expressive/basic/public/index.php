@@ -1,26 +1,36 @@
 <?php
 
+use FastRoute;
+use FastRoute\Dispatcher\GroupPosBased as FastRouteDispatcher;
+use FastRoute\RouteCollector;
+use FastRoute\RouteGenerator;
+use FastRoute\RouteParser\Std as RouteParser;
 use Zend\Expressive\AppFactory;
+use Zend\Expressive\Router\FastRouteRouter as FastRouteBridge;
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
 
-//require_once __DIR__ . '/vendor/autoload.php';
+$fastRoute = new RouteCollector(
+    new RouteParser(),
+    new RouteGenerator()
+);
+$getDispatcher = function ($data) {
+    return new FastRouteDispatcher($data);
+};
 
-$app = AppFactory::create();
+$router = new FastRouteBridge($fastRoute, $getDispatcher);
+
+$app = AppFactory::create(null, $router);
 
 $app->route('/', function ($request, $response, $next) {
     $response->getBody()->write('Hello, world!');
     return $response;
 });
 
-$app->route('/books/{id}', function ($request, $response, $next) {
-    // fetch the id attribute to discover what was matched:
-    $id = $request->getAttribute('id');
-    $response->getBody()->write('Book ID: ' . $id);
-    return $response;
-})->setOptions([
-    'tokens' => [ 'id' => '\d+' ],
-]);
+$app->post('/post', function ($req, $res, $next) {
+    $res->write('IN POST!');
+    return $res;
+});
 
 $app->run();
