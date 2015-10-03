@@ -64,7 +64,7 @@ If you want to overwrite the output instead to appending to it you will have to 
 
 In Slim 3.x, your callback is really supposed to write output through the response object and return it instead. It still supports the echo method from previous versions through some ob_start() trickery, but you really should stop doing that and write better code like so:
 
-<?php
+```
 require 'vendor/autoload.php';
 
 $app = new \Slim\App();
@@ -75,7 +75,7 @@ $app->get('/', function(Slim\Http\Request $request, Slim\Http\Response $response
 });
 
 $app->run();
-?>
+```
 
 ## Ref:
 
