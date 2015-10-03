@@ -1,0 +1,21 @@
+{
+    "require": {
+        "silex/silex": "~1.3",
+        "symfony/twig-bridge": "^2.7",
+        "symfony/psr-http-message-bridge": "^0.2.0",
+        "zendframework/zend-diactoros": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Barium\\": [
+                "source/core/",
+                "module/source/core/",
+                "module/source/local/"
+            ],
+            "YourCustomNamespace\\": [
+                "source/local/",
+                "module/source/local/"
+            ]
+        }
+    }
+}

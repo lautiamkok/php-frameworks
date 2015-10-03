@@ -28,3 +28,16 @@
 ## Ref:
 
     * http://silex.sensiolabs.org/download
+
+# PSR-7
+
+1. Install zend diactoros and symfony bridge
+
+    `composer require zendframework/zend-diactoros`
+    `composer symfony/psr-http-message-bridge`
+
+## Ref:
+
+    * http://symfony.com/doc/current/cookbook/psr7.html
+    * http://symfony.com/blog/psr-7-support-in-symfony-is-here
+    * http://zend-diactoros.readthedocs.org/en/stable/
