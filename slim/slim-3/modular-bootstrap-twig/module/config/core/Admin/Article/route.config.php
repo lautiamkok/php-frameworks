@@ -1,35 +1,27 @@
 <?php
 
+use Slim\Http\Request;
+use Slim\Http\Response;
+
 // API group
-$app->group('/api', function () use ($app) {
+$app->group('/api', function () {
 
     // Admin group
-    $app->group('/admin', function () use ($app) {
+    $this->group('/admin', function () {
 
         // Get article with ID
-        $app->get('/articles/:id', function ($id) use ($app) {
+        $this->get('/articles/{id}', function (Request $request, Response $response, array $args) {
             // Update book identified by $id.
-            $allPutVars = $app->request->get();
-            $title = $app->request->get('title');
-            $content = $app->request->get('content');
+            $id = $request->getAttribute('id');
             print_r($id);
-            print_r($allPutVars);
-            print_r($title);
-            print_r($content);
         });
 
         // Update article with ID
-        $app->put('/articles/:id', function ($id) use ($app) {
+        $this->put('/articles/{id}', function (Request $request, Response $response, array $args) {
             // Update book identified by $id.
-            $allPutVars = $app->request->put();
-            $title = $app->request->put('title');
-            $content = $app->request->put('content');
+            $id = $request->getAttribute('id');
             print_r($id);
-            print_r($allPutVars);
-            print_r($title);
-            print_r($content);
         });
-
     });
-
 });
+

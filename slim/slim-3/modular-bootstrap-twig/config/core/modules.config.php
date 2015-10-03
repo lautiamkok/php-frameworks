@@ -44,4 +44,15 @@ return array(
             'template'  => 'Admin/Article/'
         ),
     ),
+
+    'Admin\Book' => array(
+        'name' => 'Admin\Book',
+        'directories' => array(
+            'route.config'  => 'core/Admin/Book/',
+            'bootstrap'  => 'core/Admin/Book/',
+            'source'  => 'core/Admin/Book/',
+            'theme'  => 'default/',
+            'template'  => 'Admin/Book/'
+        ),
+    ),
 );

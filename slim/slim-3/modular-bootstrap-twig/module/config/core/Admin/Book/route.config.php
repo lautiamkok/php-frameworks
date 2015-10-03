@@ -1,45 +1,32 @@
 <?php
 
-// API group
-$app->group('/api', function () use ($app) {
+use Slim\Http\Request;
+use Slim\Http\Response;
 
-    // Admin group
-    $app->group('/admin', function () use ($app) {
+// API group
+$app->group('/api', function () {
+
+    $this->group('/admin', function () {
 
         // Get book with ID
-        $app->get('/books/:id', function ($id) use ($app) {
-            // Update book identified by $id.
-            $allPutVars = $app->request->get();
-            $title = $app->request->get('title');
-            $content = $app->request->get('content');
+        $this->get('/books/{id}', function (Request $request, Response $response, array $args) {
+            // Get book identified by $id.
+            $id = $request->getAttribute('id');
             print_r($id);
-            print_r($allPutVars);
-            print_r($title);
-            print_r($content);
         });
 
         // Update book with ID
-        $app->put('/books/:id', function ($id) use ($app) {
+        $this->put('/books/{id}', function (Request $request, Response $response, array $args) {
             // Update book identified by $id.
-            $allPutVars = $app->request->put();
-            $title = $app->request->put('title');
-            $content = $app->request->put('content');
+            $id = $request->getAttribute('id');
             print_r($id);
-            print_r($allPutVars);
-            print_r($title);
-            print_r($content);
         });
 
         // Delete book with ID
-        $app->delete('/books/:id', function ($id) use ($app) {
-            // Update book identified by $id.
-            $allPutVars = $app->request->put();
-            $title = $app->request->put('title');
-            $content = $app->request->put('content');
+        $this->delete('/books/{id}', function (Request $request, Response $response, array $args) {
+            // Delete book identified by $id.
+            $id = $request->getAttribute('id');
             print_r($id);
-            print_r($allPutVars);
-            print_r($title);
-            print_r($content);
         });
 
     });

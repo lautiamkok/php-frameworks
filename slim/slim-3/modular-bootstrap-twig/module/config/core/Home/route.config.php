@@ -1,7 +1,10 @@
 <?php
 
+use Slim\Http\Request;
+use Slim\Http\Response;
+
 // Hope page.
-$app->get('/', function ($request, $response, $args) {
+$app->get('/', function (Request $request, Response $response, array $args) {
 
     // Get the container that stored in Slim\App.
     $container = $this->getContainer();

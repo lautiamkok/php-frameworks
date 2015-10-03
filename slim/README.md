@@ -9,7 +9,9 @@
     * http://www.slimframework.com/
     * http://docs.slimframework.com/
 
-# HTTP Response VS Echo
+# HTTP Response VS Echo (Slim 2 Vs Slim 3)
+
+## Slim 2
 
 The HTTP response returned to the client will have a body. The HTTP body is the actual content of the HTTP response delivered to the client. You can use the Slim application’s response object to set the HTTP response’s body:
 
@@ -52,10 +54,33 @@ Both give you,
 
 If you want to overwrite the output instead to appending to it you will have to use the $response object.
 
+
 ## Ref:
 
     * http://docs.slimframework.com/response/body/
     * http://stackoverflow.com/questions/32535374/slim-framework-differences-between-returning-http-response-and-echo-output
+
+## Slim 3
+
+In Slim 3.x, your callback is really supposed to write output through the response object and return it instead. It still supports the echo method from previous versions through some ob_start() trickery, but you really should stop doing that and write better code like so:
+
+<?php
+require 'vendor/autoload.php';
+
+$app = new \Slim\App();
+
+$app->get('/', function(Slim\Http\Request $request, Slim\Http\Response $response, array $args) {
+    $response->write('Hello, world!');
+    return $response;
+});
+
+$app->run();
+?>
+
+## Ref:
+
+    * http://ryanszrama.com/blog/06-18-2015/hello-world-slim-framework-3x
+    * http://ryanszrama.com/blog/06-28-2015/hello-you-slim-framework-3x
 
 # A Slim3 Skeleton
 
