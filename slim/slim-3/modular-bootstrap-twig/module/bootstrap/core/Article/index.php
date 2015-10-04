@@ -22,15 +22,19 @@ use Barium\Article\Component\ArticleTemplateComponent;
 // View.
 use Barium\Article\View\ArticleView;
 
-// Get the container that stored in Slim\App.
-$container = $this->getContainer();
+// // Get the container that stored in Slim\App.
+// $container = $this->getContainer();
 
-// Get the application settings.
-$settings = $container->get('settings');
+// // Get the application settings.
+// $settings = $container->get('settings');
+
+// // Get the global & local database configurations.
+// $databaseGlobal = require $settings['database']['global'];
+// $databaseLocal = require $settings['database']['local'];
 
 // Get the global & local database configurations.
-$databaseGlobal = require $settings['database']['global'];
-$databaseLocal = require $settings['database']['local'];
+$databaseGlobal = require $this->settings['database']['global'];
+$databaseLocal = require $this->settings['database']['local'];
 
 // Merge the configurations.
 $databaseConfig = array_merge($databaseGlobal, $databaseLocal);

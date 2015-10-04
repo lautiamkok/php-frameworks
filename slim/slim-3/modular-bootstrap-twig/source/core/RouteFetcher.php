@@ -19,15 +19,19 @@ class RouteFetcher
         // Pass the Slim object into the local scope.
         $app = $this->slim;
 
-        // Get the container that stored in Slim\App.
-        $container = $app->getContainer();
+        // // Get the container that stored in Slim\App.
+        // $container = $app->getContainer();
 
-        // Get the application settings.
-        $settings = $container->get('settings');
+        // // Get the application settings.
+        // $settings = $container->get('settings');
+
+        // // Get the global & local modules configurations.
+        // $modulesGlobal = require $settings['modules']['global'];
+        // $modulesLocal = require $settings['modules']['local'];
 
         // Get the global & local modules configurations.
-        $modulesGlobal = require $settings['modules']['global'];
-        $modulesLocal = require $settings['modules']['local'];
+        $modulesGlobal = require $app->settings['modules']['global'];
+        $modulesLocal = require $app->settings['modules']['local'];
 
         // Merge the configurations.
         $modules = array_merge($modulesGlobal, $modulesLocal);
