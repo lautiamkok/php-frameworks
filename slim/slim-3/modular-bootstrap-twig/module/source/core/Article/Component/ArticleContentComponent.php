@@ -14,16 +14,16 @@ class ArticleContentComponent implements CompositeStrategy
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      * Construct dependency.
-     */	
+     */
     public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
     {
         // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
     }
-    
+
     /*
      *  Implement the method in CompositeStrategy.
      */
@@ -49,7 +49,7 @@ class ArticleContentComponent implements CompositeStrategy
         foreach($items_content as $index => $item)
         {
             // Always make the first item as 'content'.
-            if($index === 0) 
+            if($index === 0)
             {
                 $content['content'] = $item['value'];
             }
@@ -60,7 +60,7 @@ class ArticleContentComponent implements CompositeStrategy
         // Return the result.
         return $content;
     }
-    
+
     protected function getCotents($options = [])
     {
         // Set vars.
@@ -73,7 +73,7 @@ class ArticleContentComponent implements CompositeStrategy
 
         $sql= "
             SELECT*
-            FROM 
+            FROM
             (
                 SELECT *
                 FROM category AS a
@@ -91,7 +91,7 @@ class ArticleContentComponent implements CompositeStrategy
          ) b
             ON b.category_id = a.category_id
         ";
-        
+
         $this->items = $this->PdoAdapter->fetchRows($sql, array(
             $setting->article_id
      ));
