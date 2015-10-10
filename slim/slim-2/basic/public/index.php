@@ -1,13 +1,13 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $app = new \Slim\Slim();
 
 // Config.
 // @ ref: http://docs.slimframework.com/configuration/settings/
 $app->config(array(
-    'templates.path' => './public/template/',
+    'templates.path' => 'template/',
 ));
 
 // Routes:
