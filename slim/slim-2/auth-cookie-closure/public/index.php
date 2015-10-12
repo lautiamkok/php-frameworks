@@ -40,6 +40,8 @@ $authAdmin = function  ( $role = 'member') {
 
         $app = \Slim\Slim::getInstance();
 
+        $app->request->headers->set('X-User', 'xxxx');
+
         // Check for password in the cookie
         if ($app->getEncryptedCookie('my_cookie', false) != 'demo') {
             $app->redirect('login');
@@ -59,6 +61,9 @@ $app->get('/', function () {
 });
 
 $app->get('/admin', $authAdmin('admin'), function () use ($app) {
+    // Get request headers.
+    $headers = $app->request->headers;
+    var_dump($headers);
     echo "Hello Admin ";
 })->name('admin');
 
