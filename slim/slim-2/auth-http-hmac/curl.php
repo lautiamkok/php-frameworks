@@ -13,7 +13,7 @@ $headers = array(
     'X-Hash: '.$hash
 );
 
-$ch = curl_init('http://localhost/php-frameworks/slim/slim-2/auth-header-hmac/public/');
+$ch = curl_init('http://localhost/php-frameworks/slim/slim-2/auth-http-hmac/public/');
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $content);
