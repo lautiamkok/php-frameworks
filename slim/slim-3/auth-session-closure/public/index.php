@@ -77,7 +77,7 @@ $app->post('/login', function (Request $request, Response $response, array $args
     // $postParam = $allPostPutVars['postParam'];
 
     // Test for Post & make a cheap security check, to get avoid from bots
-    if (sizeof($allPostPutVars) >= 2) {
+    if ($request->isPost() && sizeof($allPostPutVars) >= 2) {
 
         // Don't forget to set the correct attributes in your form (name="username" + name="password")
         $post = (object)$allPostPutVars;
