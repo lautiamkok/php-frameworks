@@ -8,7 +8,6 @@ $app->group('/api', function () {
 
     // Admin group
     $this->group('/admin', function () {
-
         // Get article with ID
         $this->get('/articles/{id}', function (Request $request, Response $response, array $args) {
             // Update book identified by $id.
@@ -23,5 +22,5 @@ $app->group('/api', function () {
             print_r($id);
         });
     });
-});
 
+});
