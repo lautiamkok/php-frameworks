@@ -21,7 +21,7 @@ class AuthMiddleware
         if (!isset($_SESSION['user'])) {
             // In Slim 3 you have to use the Response object for redirects.
             // @ ref: https://help.slimframework.com/discussions/questions/7639-slim3-how-to-redirect-to-route
-            // return $response->withRedirect('/api/admin/login');
+            return $response->withRedirect('../../../login');
         }
 
         $response->getBody()->write('BEFORE');

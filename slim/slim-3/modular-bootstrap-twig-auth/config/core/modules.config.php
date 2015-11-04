@@ -34,6 +34,17 @@ return array(
         ),
     ),
 
+    'Login' => array(
+        'name' => 'Login',
+        'directories' => array(
+            'route.config'  => 'core/Login/',
+            'bootstrap'  => 'core/Login/',
+            'source'  => 'core/Login/',
+            'theme'  => 'default/',
+            'template'  => 'Login/'
+        ),
+    ),
+
     'Admin\Article' => array(
         'name' => 'Admin\Article',
         'directories' => array(

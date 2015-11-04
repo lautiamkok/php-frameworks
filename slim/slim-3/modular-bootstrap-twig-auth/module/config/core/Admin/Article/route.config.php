@@ -10,6 +10,12 @@ $app->group('/api', function () {
     // Admin group
     $this->group('/admin', function () {
         // Get article with ID
+        $this->get('/articles', function (Request $request, Response $response, array $args) {
+            $response->getBody()->write('Hello Admin');
+            return $response;
+        });
+
+        // Get article with ID
         $this->get('/articles/{id}', function (Request $request, Response $response, array $args) {
             // Update book identified by $id.
             $id = $request->getAttribute('id');
@@ -21,27 +27,6 @@ $app->group('/api', function () {
             // Update book identified by $id.
             $id = $request->getAttribute('id');
             print_r($id);
-        });
-
-        // Get the login form.
-        $this->get('/login', function (Request $request, Response $response, array $args) {
-            // Get an instance of the Twig Environment.
-            $twig = $this->view;
-
-            // From that get the Twig Loader instance (file loader in this case).
-            $loader = $twig->getLoader();
-
-            // Add the module template and additional paths to the existing.
-            $loader->addPath(APPLICATION_ROOT . 'public/theme/default/');
-            $loader->addPath(APPLICATION_ROOT . 'public/theme/default/Login/');
-
-            // Load the template through the Twig service in the DIC.
-            $template = $twig->loadTemplate('index.twig');
-            // or:
-            // $template = $this->getContainer()->get('view')->loadTemplate('Login/index.twig');
-
-            // Render the template using a simple content variable.
-            return $response->write($template->render([]));
         });
     });
 
