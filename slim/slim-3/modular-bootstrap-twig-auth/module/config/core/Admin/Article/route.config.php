@@ -9,20 +9,20 @@ $app->group('/api', function () {
 
     // Admin group
     $this->group('/admin', function () {
-        // Get article with ID
+        // Get all articles.
         $this->get('/articles', function (Request $request, Response $response, array $args) {
             $response->getBody()->write('Hello Admin');
             return $response;
         });
 
-        // Get article with ID
+        // Get article with ID.
         $this->get('/articles/{id}', function (Request $request, Response $response, array $args) {
             // Update book identified by $id.
             $id = $request->getAttribute('id');
             print_r($id);
         });
 
-        // Update article with ID
+        // Update article with ID.
         $this->put('/articles/{id}', function (Request $request, Response $response, array $args) {
             // Update book identified by $id.
             $id = $request->getAttribute('id');

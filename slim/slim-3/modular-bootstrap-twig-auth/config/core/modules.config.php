@@ -45,6 +45,17 @@ return array(
         ),
     ),
 
+    'Admin' => array(
+        'name' => 'Admin\Article',
+        'directories' => array(
+            'route.config'  => 'core/Admin/',
+            'bootstrap'  => 'core/Admin/',
+            'source'  => 'core/Admin/',
+            'theme'  => 'default/',
+            'template'  => 'Admin/'
+        ),
+    ),
+
     'Admin\Article' => array(
         'name' => 'Admin\Article',
         'directories' => array(

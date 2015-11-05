@@ -42,7 +42,7 @@ $app->post('/login', function (Request $request, Response $response, array $args
         // Validate the username and password against the row in the db.
         if(isset($post->username) && isset ($post->password) && ($post->username === 'demo' && $post->password === 'demo')) {
             $_SESSION['user'] = 'xxxx';
-            return $response->withRedirect('api/admin/articles');
+            return $response->withRedirect('api/admin');
         } else {
             return $response->withRedirect('login');
         }
