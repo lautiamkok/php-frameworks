@@ -96,4 +96,37 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
     require __DIR__.'/../app/Http/routes.php';
 });
 
+// HTTP Routing
+// @ref: http://lumen.laravel.com/docs/routing
+
+// You will define most of the routes for your application in the
+// app/Http/routes.php file, which is loaded by the bootstrap/app.php file. The
+// most basic Lumen routes simply accept a URI and a Closure:
+
+// Basic Routing.
+$app->get('/', function () {
+    return 'Hello World';
+});
+
+$app->post('foo/bar', function () {
+    return 'Hello World';
+});
+
+$app->put('foo/bar', function () {
+    //
+});
+
+$app->delete('foo/bar', function () {
+    //
+});
+
+// Route Parameters.
+$app->get('user/{id}', function ($id) {
+    return 'User '.$id;
+});
+
+$app->get('posts/{post}/comments/{comment}', function ($postId, $commentId) {
+    //
+});
+
 return $app;
