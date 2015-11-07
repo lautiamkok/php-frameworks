@@ -1,5 +1,5 @@
 {
     "require": {
-        "laravel/lumen-installer": "~1.0"
+        "laravel/lumen-framework": "5.1.*"
     }
 }
