@@ -1,0 +1,6 @@
+{
+    "require": {
+        "laravel/lumen-framework": "5.1.*",
+        "twig/twig": "~1.0"
+    }
+}
