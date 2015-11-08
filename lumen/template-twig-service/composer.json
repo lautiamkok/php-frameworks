@@ -2,7 +2,8 @@
     "require": {
         "laravel/lumen-framework": "5.1.*",
         "twig/twig": "~1.15",
-        "vlucas/phpdotenv": "~1.0"
+        "vlucas/phpdotenv": "~1.0",
+        "laut/twig-lumen": "^1.0"
     },
     "autoload": {
         "psr-4": {

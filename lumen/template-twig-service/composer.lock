@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8c2ee43a97e37a7ffb51274570073584",
-    "content-hash": "d6b8bf62d9d05a2e98f5587c1710d706",
+    "hash": "b32e16ed0f28a6f0b013be08d9bf52c8",
+    "content-hash": "f270fa6c9e92d6bd9273edc4b11afb53",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -1321,6 +1321,58 @@
             "time": "2015-10-28 22:19:15"
         },
         {
+            "name": "laut/twig-lumen",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lauthiamkok/twig-lumen.git",
+                "reference": "2016b9242e1bbb57db2cc1387da088a5f366bcd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lauthiamkok/twig-lumen/zipball/2016b9242e1bbb57db2cc1387da088a5f366bcd0",
+                "reference": "2016b9242e1bbb57db2cc1387da088a5f366bcd0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "twig/twig": "~1.15"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LumenTwig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lau Thiam Kok",
+                    "email": "lau.thiamkok@yahoo.co.uk",
+                    "homepage": "http://lauthiamkok.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Adds the power of Twig to Lumen",
+            "homepage": "https://github.com/lauthiamkok/twig-lumen",
+            "keywords": [
+                "lumen",
+                "twig"
+            ],
+            "time": "2015-11-08 04:44:21"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.17.2",
             "source": {
@@ -1489,6 +1541,50 @@
             "time": "2015-11-04 20:07:17"
         },
         {
+            "name": "nice/twig",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nice-php/twig.git",
+                "reference": "9ee2644ac20bd03d64c28027dcb9ae33cda5e99d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nice-php/twig/zipball/9ee2644ac20bd03d64c28027dcb9ae33cda5e99d",
+                "reference": "9ee2644ac20bd03d64c28027dcb9ae33cda5e99d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "symfony/config": "~2.3",
+                "symfony/dependency-injection": "~2.3",
+                "twig/twig": "~1.15"
+            },
+            "require-dev": {
+                "nice/framework": "1.0.x-dev",
+                "phpunit/phpunit": "~3.7",
+                "symfony/http-kernel": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nice\\Tests\\": "tests/",
+                    "Nice\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Integrates Twig with Nice PHP framework",
+            "time": "2015-01-05 15:06:09"
+        },
+        {
             "name": "nikic/fast-route",
             "version": "v0.4.0",
             "source": {
@@ -1615,46 +1711,32 @@
             "time": "2012-12-21 11:40:51"
         },
         {
-            "name": "rcrowe/twigbridge",
-            "version": "v0.8.2",
+            "name": "symfony/config",
+            "version": "v2.7.6",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rcrowe/TwigBridge.git",
-                "reference": "ef9ba9aadf63f48fd20d9b57a352a124d4320e4f"
+                "url": "https://github.com/symfony/config.git",
+                "reference": "831f88908b51b9ce945f5e6f402931d1ac544423"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rcrowe/TwigBridge/zipball/ef9ba9aadf63f48fd20d9b57a352a124d4320e4f",
-                "reference": "ef9ba9aadf63f48fd20d9b57a352a124d4320e4f",
+                "url": "https://api.github.com/repos/symfony/config/zipball/831f88908b51b9ce945f5e6f402931d1ac544423",
+                "reference": "831f88908b51b9ce945f5e6f402931d1ac544423",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.0.*|5.1.*",
-                "illuminate/view": "5.0.*|5.1.*",
-                "php": ">=5.4.0",
-                "twig/twig": "~1.15|~2.0"
-            },
-            "require-dev": {
-                "laravel/framework": "5.0.*",
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "~4.0",
-                "satooshi/php-coveralls": "~0.6",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "suggest": {
-                "laravelcollective/html": "For bringing back html/form in Laravel 5.x",
-                "twig/extensions": "~1.0"
+                "php": ">=5.3.9",
+                "symfony/filesystem": "~2.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.8-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "TwigBridge\\": "src",
-                    "TwigBridge\\Tests\\": "tests"
+                    "Symfony\\Component\\Config\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1663,20 +1745,17 @@
             ],
             "authors": [
                 {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 },
                 {
-                    "name": "Rob Crowe",
-                    "email": "hello@vivalacrowe.com"
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "Adds the power of Twig to Laravel",
-            "keywords": [
-                "laravel",
-                "twig"
-            ],
-            "time": "2015-10-19 09:52:54"
+            "description": "Symfony Config Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-10-11 09:39:48"
         },
         {
             "name": "symfony/console",
@@ -1789,6 +1868,65 @@
             "time": "2015-10-11 09:39:48"
         },
         {
+            "name": "symfony/dependency-injection",
+            "version": "v2.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dependency-injection.git",
+                "reference": "af284e795ec8a08c80d1fc47518fd23004b89847"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/af284e795ec8a08c80d1fc47518fd23004b89847",
+                "reference": "af284e795ec8a08c80d1fc47518fd23004b89847",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "conflict": {
+                "symfony/expression-language": "<2.6"
+            },
+            "require-dev": {
+                "symfony/config": "~2.2",
+                "symfony/expression-language": "~2.6",
+                "symfony/yaml": "~2.1"
+            },
+            "suggest": {
+                "symfony/config": "",
+                "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
+                "symfony/yaml": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DependencyInjection\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony DependencyInjection Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-10-27 15:38:06"
+        },
+        {
             "name": "symfony/dom-crawler",
             "version": "v2.7.6",
             "source": {
@@ -1896,6 +2034,52 @@
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
             "time": "2015-10-11 09:39:48"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v2.7.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "56fd6df73be859323ff97418d97edc1d756df6df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/56fd6df73be859323ff97418d97edc1d756df6df",
+                "reference": "56fd6df73be859323ff97418d97edc1d756df6df",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-10-18 20:23:18"
         },
         {
             "name": "symfony/finder",
