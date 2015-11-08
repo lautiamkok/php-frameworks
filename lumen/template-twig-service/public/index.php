@@ -15,7 +15,6 @@ $app->register('LumenTwig\TwigServiceProvider');
 
 // Accessing Configuration Values.
 $settings = config('options.settings');
-$twigbridge = config('twigbridge.twig');
 
 $environment = app()->environment();
 
