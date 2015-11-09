@@ -10,6 +10,10 @@ $app->get('/', function () {
     return 'Hello World';
 });
 
+$app->get('/lumen', function () use ($app) {
+    return $app->welcome();
+});
+
 $app->post('foo/bar', function () {
     return 'Hello World';
 });
