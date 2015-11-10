@@ -4,6 +4,10 @@
 
     `composer require zendframework/zend-expressive aura/router zendframework/zend-servicemanager`
 
+    or skeleton:
+
+    `composer create-project zendframework/zend-expressive-skeleton expressive`
+
 2. Create the hello world index at public/index.php
 
     ```

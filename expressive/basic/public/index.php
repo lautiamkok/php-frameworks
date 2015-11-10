@@ -2,7 +2,6 @@
 
 // Very basic!
 use Zend\Expressive\AppFactory;
-use Zend\Expressive\Router\FastRouteRouter as FastRouteBridge;
 
 chdir(dirname(__DIR__));
 require 'vendor/autoload.php';
