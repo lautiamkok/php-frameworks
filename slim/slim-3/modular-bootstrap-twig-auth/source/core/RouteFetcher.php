@@ -25,22 +25,22 @@ class RouteFetcher
         // // Get the application settings.
         // $settings = $container->get('settings');
 
-        // // Get the global & local modules configurations.
-        // $modulesGlobal = require $settings['modules']['global'];
+        // // Get the core & local modules configurations.
+        // $modulesCore = require $settings['modules']['core'];
         // $modulesLocal = require $settings['modules']['local'];
 
-        // Get the global & local modules configurations.
-        $modulesGlobal = require $app->settings['modules']['global'];
+        // Get the core & local modules configurations.
+        $modulesCore = require $app->settings['modules']['core'];
         $modulesLocal = require $app->settings['modules']['local'];
 
         // Merge the configurations.
-        $modules = array_merge($modulesGlobal, $modulesLocal);
+        $modules = array_merge($modulesCore, $modulesLocal);
 
         // Loop the merge array and include the classes in them.
         foreach($modules as $module)
         {
             // List all the php files inside the folder.
-            $files[] = APPLICATION_ROOT . 'module/config/' . $module['directories']['route.config'] . 'route.config.php';
+            $files[] = APPLICATION_ROOT . 'module/config/' . $module['directories']['route.config'] . 'route.php';
         }
 
         // Loop and include the files.

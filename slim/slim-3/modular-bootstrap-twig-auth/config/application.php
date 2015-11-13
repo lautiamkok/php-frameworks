@@ -14,18 +14,18 @@ return [
         ],
 
         'database' => [
-            'global' => 'config/core/database.config.php',
-            'local' => 'config/local/database.config.php'
+            'core' => 'config/core/database.php',
+            'local' => 'config/local/database.php'
         ],
 
         'modules' => [
-            'global' => 'config/core/modules.config.php',
-            'local' => 'config/local/modules.config.php'
+            'core' => 'config/core/modules.php',
+            'local' => 'config/local/modules.php'
         ],
 
         'directories' => [
-            'global' => 'config/core/directories.config.php',
-            'local' => 'config/local/directories.config.php'
+            'core' => 'config/core/directories.php',
+            'local' => 'config/local/directories.php'
         ],
 
         // View settings.

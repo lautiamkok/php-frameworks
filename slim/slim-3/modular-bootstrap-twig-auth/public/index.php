@@ -13,14 +13,14 @@ require 'bootstrap.php';
 // require_once __DIR__ . '/../bootstrap.php';
 // With this option, you must have ../ in all your paths, for instance:
 // 'templates.path' => '../public/theme/default/',
-// 'application' => require '../config/application.config.php',
+// 'application' => require '../config/application.php',
 
 // Set website public documentroot.
 define ('WEBSITE_DOCROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
 
 // $settings = [
 //     // Application settings.
-//     'settings' => require 'config/application.config.php',
+//     'settings' => require 'config/application.php',
 
 //     // View settings.
 //     // Prepare view with Twig.
@@ -41,13 +41,13 @@ define ('WEBSITE_DOCROOT', str_replace('\\', '/', dirname(__FILE__)) .'/');
 
 // Or:
 // Get the application settings file.
-$settings = require 'config/application.config.php';
+$settings = require 'config/application.php';
 
 // Get an instance of Slim.
 $app = new Slim($settings);
 
 // Set up dependencies.
-require 'config/dependencies.config.php';
+require 'config/dependencies.php';
 
 // Get an instance of RouteFetcher.
 $RouteFetcher = new RouteFetcher($app);

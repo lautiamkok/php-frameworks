@@ -28,16 +28,16 @@ use Barium\Article\View\ArticleView;
 // // Get the application settings.
 // $settings = $container->get('settings');
 
-// // Get the global & local database configurations.
-// $databaseGlobal = require $settings['database']['global'];
+// // Get the core & local database configurations.
+// $databaseCore = require $settings['database']['core'];
 // $databaseLocal = require $settings['database']['local'];
 
-// Get the global & local database configurations.
-$databaseGlobal = require $this->settings['database']['global'];
+// Get the core & local database configurations.
+$databaseCore = require $this->settings['database']['core'];
 $databaseLocal = require $this->settings['database']['local'];
 
 // Merge the configurations.
-$databaseConfig = array_merge($databaseGlobal, $databaseLocal);
+$databaseConfig = array_merge($databaseCore, $databaseLocal);
 
 // Instance of PdoAdapter.
 $PdoAdapter = new PdoAdapter($databaseConfig['dsn'], $databaseConfig['username'], $databaseConfig['password']);
