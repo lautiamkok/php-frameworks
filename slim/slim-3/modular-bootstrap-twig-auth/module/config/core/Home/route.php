@@ -12,9 +12,9 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     // Get the application settings.
     $settings = $container->get('settings');
 
-    // Check if the home page bootstrap file is provided.
-    if ($settings['home_page']['bootstrap']) {
-        return require_once APPLICATION_ROOT . 'module/bootstrap/' . $settings['home_page']['bootstrap'];
+    // Check if the home page result file is provided.
+    if ($settings['home_page']['result']) {
+        return require_once APPLICATION_ROOT . 'module/result/' . $settings['home_page']['result'];
     } else {
         $response->getBody()->write('Hello World!');
         return $response->withHeader('Content-type', 'application/json');

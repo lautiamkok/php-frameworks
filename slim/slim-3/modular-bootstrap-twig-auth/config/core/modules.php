@@ -4,8 +4,8 @@ return array(
     // 'PageNotFound' => array(
     //     'name' => 'PageNotFound',
     //     'directories' => array(
-    //         'route.config'  => 'core/PageNotFound/',
-    //         'bootstrap'  => 'core/PageNotFound/',
+    //         'route'  => 'core/PageNotFound/',
+    //         'result'  => 'core/PageNotFound/',
     //         'source'  => 'core/PageNotFound/',
     //         'theme'  => 'default/',
     //         'template'  => 'PageNotFound/'
@@ -15,8 +15,8 @@ return array(
     'Home' => array(
         'name' => 'Home',
         'directories' => array(
-            'route.config'  => 'core/Home/',
-            'bootstrap'  => 'core/Home/',
+            'route'  => 'core/Home/',
+            'result'  => 'core/Home/',
             'source'  => 'core/Home/',
             'theme'  => 'default/',
             'template'  => 'Home/'
@@ -26,8 +26,8 @@ return array(
     'Article' => array(
         'name' => 'Article',
         'directories' => array(
-            'route.config'  => 'core/Article/',
-            'bootstrap'  => 'core/Article/',
+            'route'  => 'core/Article/',
+            'result'  => 'core/Article/',
             'source'  => 'core/Article/',
             'theme'  => 'default/',
             'template'  => 'Article/'
@@ -37,8 +37,8 @@ return array(
     'Login' => array(
         'name' => 'Login',
         'directories' => array(
-            'route.config'  => 'core/Login/',
-            'bootstrap'  => 'core/Login/',
+            'route'  => 'core/Login/',
+            'result'  => 'core/Login/',
             'source'  => 'core/Login/',
             'theme'  => 'default/',
             'template'  => 'Login/'
@@ -48,8 +48,8 @@ return array(
     'Admin' => array(
         'name' => 'Admin\Article',
         'directories' => array(
-            'route.config'  => 'core/Admin/',
-            'bootstrap'  => 'core/Admin/',
+            'route'  => 'core/Admin/',
+            'result'  => 'core/Admin/',
             'source'  => 'core/Admin/',
             'theme'  => 'default/',
             'template'  => 'Admin/'
@@ -59,8 +59,8 @@ return array(
     'Admin\Article' => array(
         'name' => 'Admin\Article',
         'directories' => array(
-            'route.config'  => 'core/Admin/Article/',
-            'bootstrap'  => 'core/Admin/Article/',
+            'route'  => 'core/Admin/Article/',
+            'result'  => 'core/Admin/Article/',
             'source'  => 'core/Admin/Article/',
             'theme'  => 'default/',
             'template'  => 'Admin/Article/'
@@ -70,8 +70,8 @@ return array(
     'Admin\Book' => array(
         'name' => 'Admin\Book',
         'directories' => array(
-            'route.config'  => 'core/Admin/Book/',
-            'bootstrap'  => 'core/Admin/Book/',
+            'route'  => 'core/Admin/Book/',
+            'result'  => 'core/Admin/Book/',
             'source'  => 'core/Admin/Book/',
             'theme'  => 'default/',
             'template'  => 'Admin/Book/'

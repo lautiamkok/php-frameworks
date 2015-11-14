@@ -8,9 +8,9 @@ return [
         // The home page can be set to any module,
         // for example:'local/Home/index.php','core/Article/index.php'
         // Otherwise it will fall back to the default message: 'Hello World!'
-        // when no bootstrap is provided.
+        // when no result is provided.
         'home_page' => [
-            'bootstrap' => 'core/Home/index.php'
+            'result' => 'core/Home/index.php'
         ],
 
         'database' => [

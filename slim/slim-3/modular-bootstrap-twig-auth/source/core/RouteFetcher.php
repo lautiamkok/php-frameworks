@@ -37,15 +37,13 @@ class RouteFetcher
         $modules = array_merge($modulesCore, $modulesLocal);
 
         // Loop the merge array and include the classes in them.
-        foreach($modules as $module)
-        {
+        foreach($modules as $module) {
             // List all the php files inside the folder.
-            $files[] = APPLICATION_ROOT . 'module/config/' . $module['directories']['route.config'] . 'route.php';
+            $files[] = APPLICATION_ROOT . 'module/config/' . $module['directories']['route'] . 'route.php';
         }
 
         // Loop and include the files.
-        foreach($files as $file)
-        {
+        foreach($files as $file) {
             require $file;
         }
 
