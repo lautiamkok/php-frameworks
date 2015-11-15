@@ -14,16 +14,16 @@ class ArticleTemplateComponent implements CompositeStrategy
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      * Construct dependency.
-     */	
+     */
     public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
     {
         // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
     }
-    
+
     /*
      *  Implement the method in CompositeStrategy.
      */
@@ -43,13 +43,13 @@ class ArticleTemplateComponent implements CompositeStrategy
         // Fetching the row that associates with the article.
         $template['template'] = $this->getTemplate(array(
             "template_id" => $settings->template_id
-     ))->removeNumbericKeys()->getItem();
+        ));
 
         // Return the result.
         return $template;
     }
-    
-    private function getTemplate($options = []) 
+
+    private function getTemplate($options = [])
     {
         // Set defaults.
         $defaults = [
@@ -67,9 +67,6 @@ class ArticleTemplateComponent implements CompositeStrategy
         ";
 
         // Fetch the item.
-        $this->item = $this->PdoAdapter->fetchRow($sql, $settings->template_id);
-
-        // Return $this object for chaining.
-        return $this;
+        return $this->PdoAdapter->fetchRow($sql, $settings->template_id);
     }
 }

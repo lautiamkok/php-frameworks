@@ -6,6 +6,9 @@ use Barium\Adapter\PdoAdapter;
 // Mapper.
 use Barium\Article\Mapper\ArticleMapper;
 
+// Gateway.
+use Barium\Article\Gateway\ArticleGateway;
+
 // Service.
 use Barium\Article\Service\ArticleService;
 
@@ -55,7 +58,7 @@ $PdoAdapter->connect();
 
 // Prepare Article model.
 $ArticleModel = new ArticleModel();
-$ArticleMapper = new ArticleMapper($PdoAdapter);
+$ArticleMapper = new ArticleMapper(new ArticleGateway($PdoAdapter));
 
 // Prepare components.
 $ArticleContentComponent = new ArticleContentComponent($PdoAdapter);
@@ -65,7 +68,7 @@ $ArticleTemplateComponent = new ArticleTemplateComponent($PdoAdapter);
 $ArticleMapper->addComponent($ArticleContentComponent);
 $ArticleMapper->addComponent($ArticleTemplateComponent);
 
-// Controll the article.
+// Control the article.
 $ArticleService->setMapper($ArticleMapper)->setModel($ArticleModel);
 $ArticleController->setService($ArticleService)->fetchRow([
     "url"   =>  $args['url']
@@ -76,7 +79,7 @@ $ArticleView = new ArticleView($ArticleModel);
 //echo $ArticleView->render();
 
 // Get the array format of the data.
-$article = $ArticleModel->toArray();
+// $article = $ArticleModel->toArray();
 
 // Get format in the query string.
 $allGetVars = $request->getQueryParams();
@@ -104,9 +107,9 @@ $template = $twig->loadTemplate('index.twig');
 // Render the template using a simple content variable.
 return $response->write($template->render([
     'baseUrl' => BASE_URL,
-    'articleId' => $article['articleId'],
-    'title' => $article['title'],
-    'content' => $article['content']
+    'articleId' => $ArticleModel->getArticleId(),
+    'title' => $ArticleModel->getTitle(),
+    'content' => $ArticleModel->getContent()
 ]));
 
 // // Or (option 1 in config):

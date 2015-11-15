@@ -43,14 +43,13 @@ class ArticleContentComponent implements CompositeStrategy
         // Fetch the content rows.
         $items_content = $this->getCotents(array(
             "article_id" 	=>	$settings->article_id
-     ))->getItems();
+        ));
 
         // Re-structure the content key(code) and value.
-        foreach($items_content as $index => $item)
-        {
+        foreach($items_content as $index => $item) {
+
             // Always make the first item as 'content'.
-            if($index === 0)
-            {
+            if($index === 0) {
                 $content['content'] = $item['value'];
             }
 
@@ -92,11 +91,8 @@ class ArticleContentComponent implements CompositeStrategy
             ON b.category_id = a.category_id
         ";
 
-        $this->items = $this->PdoAdapter->fetchRows($sql, array(
+        return $this->PdoAdapter->fetchRows($sql, array(
             $setting->article_id
-     ));
-
-        // Return $this object for chaining.
-        return $this;
+        ));
     }
 }
