@@ -38,6 +38,10 @@ return [
                 'auto_reload' => true,
             ],
         ],
+
+        // To see the whole error logging text.
+        // @ref: http://help.slimframework.com/discussions/problems/11471-slim-v3-errors
+        'displayErrorDetails' => true
     ],
 
     // Or:

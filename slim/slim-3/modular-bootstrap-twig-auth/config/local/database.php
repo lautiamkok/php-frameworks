@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'dsn' => 'mysql:dbname=barium;host=localhost',
     'username' => 'root',
-    'password' => 'tklau',
+    'password' => 'o@bit837'
 );
