@@ -1,7 +1,7 @@
 <?php
 
 use Slim\Views\Twig;
-use Barium\PageNotFound\View\NotFoundHandler;
+use Barium\PageNotFound\NotFoundHandler;
 
 // DIC configuration
 $container = $app->getContainer();
@@ -26,9 +26,5 @@ $container['view'] = function ($container) {
 };
 
 $container['notFoundHandler'] = function ($container) {
-
-    return new NotFoundHandler($container->get('view'), $container->get('settings'), function ($request, $response) use ($container) {
-        return $container['response']
-            ->withStatus(404);
-    });
+    return new NotFoundHandler($container);
 };

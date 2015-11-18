@@ -43,7 +43,7 @@ class ArticleGateway implements GatewayStrategy
         ];
 
         // Process arrays and convert the result to object.
-        $settings = $this->arrayToObject($this->arrayMergeValues($defaults, $options));
+        $settings = $this->arrayMergeValues($defaults, $options);
 
         // Prepare the SQL.
         $sql = "
@@ -78,20 +78,19 @@ class ArticleGateway implements GatewayStrategy
         ";
 
         // Store the data in the local variable.
-        $item = $this->PdoAdapter->fetchRow($sql, array(
-            $settings->article_id,
-            $settings->article_id,
-            strtolower(str_replace(array("-", "_"), " ", $settings->url)),
-            $settings->type,
-            $settings->type,
-            $settings->hide
-        ));
+        $item = $this->PdoAdapter->fetchRow($sql, [
+            $settings['article_id'],
+            $settings['article_id'],
+            strtolower(str_replace(array("-", "_"), " ", $settings['url'])),
+            $settings['type'],
+            $settings['type'],
+            $settings['hide']
+        ]);
 
         // When the article is not found.
-        if($item === false){
-
+        if($item === false) {
             // Throw the error page.
-            throw new \Barium\Exception\PageNotFoundException('Not found!', $this->PdoAdapter);
+            throw new \Barium\Exception\PageNotFoundException('Not found!');
         }
 
         // Return the entire object for Method chaining.
