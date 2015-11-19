@@ -58,7 +58,19 @@ $PdoAdapter->connect();
 
 // Prepare Article model.
 $ArticleModel = new ArticleModel();
-$ArticleMapper = new ArticleMapper(new ArticleGateway($PdoAdapter));
+$ArticleGateway = new ArticleGateway($PdoAdapter);
+
+$result = $ArticleGateway->getRow([
+    "url"   =>  $args['url']
+]);
+
+if ($result === false) {
+    $container = $this->getContainer();
+    return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
+    // return new \Barium\Exception\PageNotFoundException('Not found!');
+}
+
+$ArticleMapper = new ArticleMapper($ArticleGateway);
 
 // Prepare components.
 $ArticleContentComponent = new ArticleContentComponent($PdoAdapter);

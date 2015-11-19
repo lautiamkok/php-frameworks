@@ -22,6 +22,7 @@ class NotFoundHandler extends NotFound
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response)
     {
         parent::__invoke($request, $response);
+        $container = $this->container;
         return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
     }
 }

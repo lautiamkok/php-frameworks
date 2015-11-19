@@ -4,7 +4,7 @@
 use Barium\Adapter\PdoAdapter;
 
 // Get the core & local database configurations.
-$settings = $this->container->get('settings');
+$settings = $container->get('settings');
 $databaseCore = require $settings['database']['core'];
 $databaseLocal = require $settings['database']['local'];
 
@@ -20,7 +20,7 @@ $PdoAdapter->connect();
 // Get the page not found content from the db.
 
 // Get the view from the container which is Twig.
-$twig = $this->container->get('view');
+$twig = $container->get('view');
 
 // From that get the Twig Loader instance (file loader in this case).
 $loader = $twig->getLoader();
