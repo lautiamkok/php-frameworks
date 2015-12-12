@@ -87,11 +87,11 @@ class ArticleGateway implements GatewayStrategy
             $settings['hide']
         ]);
 
-        // // When the article is not found.
-        // if($item === false) {
-        //     // Throw the error page.
-        //     throw new \Barium\Exception\PageNotFoundException('Not found!');
-        // }
+        // When the article is not found.
+        if($item === false) {
+            // Throw the error page.
+            throw new \Exception('Not found!');
+        }
 
         // Return the entire object for Method chaining.
         return $item;
