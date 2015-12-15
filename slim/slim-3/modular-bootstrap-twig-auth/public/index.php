@@ -1,5 +1,4 @@
 <?php
-
 // Import classes.
 use Slim\App as Slim;
 // use Slim\Views\Twig;

@@ -10,8 +10,8 @@
 // });
 
 // Get the core & local modules configurations.
-$modulesCore = require $app->getContainer()->get('settings')['modules']['core'];
-$modulesLocal = require $app->getContainer()->get('settings')['modules']['local'];
+$modulesCore = require $settings['settings']['modules']['core'];
+$modulesLocal = require $settings['settings']['modules']['local'];
 
 // Merge the configurations.
 $modules = array_merge($modulesCore, $modulesLocal);
