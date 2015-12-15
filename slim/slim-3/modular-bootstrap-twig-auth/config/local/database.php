@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'dsn' => 'mysql:dbname=cms_master;host=localhost',
+    'dsn' => 'mysql:dbname=barium;host=localhost',
     'username' => 'root',
     'password' => 'tklau'
 );

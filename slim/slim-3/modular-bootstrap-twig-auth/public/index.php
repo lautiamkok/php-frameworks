@@ -3,7 +3,6 @@
 // Import classes.
 use Slim\App as Slim;
 // use Slim\Views\Twig;
-use Barium\RouteFetcher;
 
 // Include application bootstrap.
 chdir(dirname(__DIR__));
@@ -49,11 +48,11 @@ $app = new Slim($settings);
 // Set up dependencies.
 require 'config/dependencies.php';
 
-// Get an instance of RouteFetcher.
-$RouteFetcher = new RouteFetcher($app);
+// Register middleware.
+require 'config/middleware.php';
 
-// Fetch the routes.
-$RouteFetcher->fetch();
+// Register routes.
+require 'config/routes.php';
 
 // Run the application!
 $app->run();
