@@ -136,6 +136,6 @@ try {
 
 } catch(\Exception $e) {
     // echo 'Message: ' .$e->getMessage();
-    $container = $this->getContainer();
+    $container = $this;
     return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
 }
