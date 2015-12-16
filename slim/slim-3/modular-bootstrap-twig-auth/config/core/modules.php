@@ -1,80 +1,81 @@
 <?php
+// Modules.
 
-return array(
-    // 'PageNotFound' => array(
+return [
+    // 'PageNotFound' => [
     //     'name' => 'PageNotFound',
-    //     'directories' => array(
+    //     'directories' => [
     //         'route'  => 'core/PageNotFound/',
     //         'result'  => 'core/PageNotFound/',
     //         'source'  => 'core/PageNotFound/',
     //         'theme'  => 'default/',
     //         'template'  => 'PageNotFound/'
-    //     ),
-    // ),
+    //     ],
+    // ],
 
-    'Home' => array(
+    'Home' => [
         'name' => 'Home',
-        'directories' => array(
+        'directories' => [
             'route'  => 'core/Home/',
             'result'  => 'core/Home/',
             'source'  => 'core/Home/',
             'theme'  => 'default/',
             'template'  => 'Home/'
-        ),
-    ),
+        ],
+    ],
 
-    'Article' => array(
+    'Article' => [
         'name' => 'Article',
-        'directories' => array(
+        'directories' => [
             'route'  => 'core/Article/',
             'result'  => 'core/Article/',
             'source'  => 'core/Article/',
             'theme'  => 'default/',
             'template'  => 'Article/'
-        ),
-    ),
+        ],
+    ],
 
-    'Login' => array(
+    'Login' => [
         'name' => 'Login',
-        'directories' => array(
+        'directories' => [
             'route'  => 'core/Login/',
             'result'  => 'core/Login/',
             'source'  => 'core/Login/',
             'theme'  => 'default/',
             'template'  => 'Login/'
-        ),
-    ),
+        ],
+    ],
 
-    'Admin' => array(
+    'Admin' => [
         'name' => 'Admin\Article',
-        'directories' => array(
+        'directories' => [
             'route'  => 'core/Admin/',
             'result'  => 'core/Admin/',
             'source'  => 'core/Admin/',
             'theme'  => 'default/',
             'template'  => 'Admin/'
-        ),
-    ),
+        ],
+    ],
 
-    'Admin\Article' => array(
+    'Admin\Article' => [
         'name' => 'Admin\Article',
-        'directories' => array(
+        'directories' => [
             'route'  => 'core/Admin/Article/',
             'result'  => 'core/Admin/Article/',
             'source'  => 'core/Admin/Article/',
             'theme'  => 'default/',
             'template'  => 'Admin/Article/'
-        ),
-    ),
+        ],
+    ],
 
-    'Admin\Book' => array(
+    'Admin\Book' => [
         'name' => 'Admin\Book',
-        'directories' => array(
+        'directories' => [
             'route'  => 'core/Admin/Book/',
             'result'  => 'core/Admin/Book/',
             'source'  => 'core/Admin/Book/',
             'theme'  => 'default/',
             'template'  => 'Admin/Book/'
-        ),
-    ),
-);
+        ],
+    ],
+];

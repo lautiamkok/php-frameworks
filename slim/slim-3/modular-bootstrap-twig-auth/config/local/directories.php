@@ -1,5 +1,6 @@
 <?php
+// Directories.
 
-return array(
+return [
     //
-);
+];

@@ -1,7 +1,8 @@
 <?php
+// Database.
 
-return array(
+return [
     'dsn' => 'mysql:dbname=YOUR DB NAME;host=YOUR HOST ADDRESS',
     'username' => 'YOUR USERNAME HERE',
     'password' => 'YOUR PASSWORD HERE',
-);
+];

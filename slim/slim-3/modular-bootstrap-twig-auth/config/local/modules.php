@@ -1,14 +1,15 @@
 <?php
+// Modules.
 
-return array(
-    'Book' => array(
+return [
+    'Book' => [
         'name' => 'Book',
-        'directories' => array(
+        'directories' => [
             'route'  => 'local/Book/',
             'result'  => 'local/Book/',
             'source'  => 'local/Book/',
             'theme'  => 'default/',
             'template'  => 'Book/'
-        ),
-    ),
-);
+        ],
+    ],
+];

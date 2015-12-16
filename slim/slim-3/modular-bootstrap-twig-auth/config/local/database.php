@@ -1,7 +1,8 @@
 <?php
+// Database.
 
-return array(
+return [
     'dsn' => 'mysql:dbname=barium;host=localhost',
     'username' => 'root',
     'password' => 'tklau'
-);
+];
