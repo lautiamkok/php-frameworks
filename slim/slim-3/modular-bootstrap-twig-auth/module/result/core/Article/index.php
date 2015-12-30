@@ -72,7 +72,7 @@ try {
     ]);
 
     // Prepare view and pass the model into it.
-    // No longer in use, to be replaced by Slim & Twig.
+    // No longer in use, replaced by Slim & Twig.
     // $ArticleView = new ArticleView($ArticleModel);
     // echo $ArticleView->render();
 
