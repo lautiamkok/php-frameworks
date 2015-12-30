@@ -74,7 +74,7 @@ try {
     // Prepare view and pass the model into it.
     // No longer in use, to be replaced by Slim & Twig.
     // $ArticleView = new ArticleView($ArticleModel);
-    //echo $ArticleView->render();
+    // echo $ArticleView->render();
 
     // Get format in the query string.
     $allGetVars = $request->getQueryParams();
