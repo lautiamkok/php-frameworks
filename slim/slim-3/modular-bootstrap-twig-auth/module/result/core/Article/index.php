@@ -1,5 +1,4 @@
 <?php
-
 // Adapter.
 use Barium\Adapter\PdoAdapter;
 
@@ -24,16 +23,6 @@ use Barium\Article\Component\ArticleTemplateComponent;
 
 // View.
 use Barium\Article\View\ArticleView;
-
-// // Get the container that stored in Slim\App.
-// $container = $this->getContainer();
-
-// // Get the application settings.
-// $settings = $container->get('settings');
-
-// // Get the core & local database configurations.
-// $databaseCore = require $settings['database']['core'];
-// $databaseLocal = require $settings['database']['local'];
 
 // Trigger exception in a "try" block
 try {
@@ -66,11 +55,6 @@ try {
         "url"   =>  $args['url']
     ]);
 
-    // if ($result === false) {
-    //     $container = $this->getContainer();
-    //     return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
-    // }
-
     $ArticleMapper = new ArticleMapper($ArticleGateway);
 
     // Prepare components.
@@ -88,11 +72,9 @@ try {
     ]);
 
     // Prepare view and pass the model into it.
-    $ArticleView = new ArticleView($ArticleModel);
+    // No longer in use, to be replaced by Slim & Twig.
+    // $ArticleView = new ArticleView($ArticleModel);
     //echo $ArticleView->render();
-
-    // Get the array format of the data.
-    // $article = $ArticleModel->toArray();
 
     // Get format in the query string.
     $allGetVars = $request->getQueryParams();

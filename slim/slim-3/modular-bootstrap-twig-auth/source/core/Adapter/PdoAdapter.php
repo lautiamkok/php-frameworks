@@ -1,11 +1,11 @@
 <?php
-/* 
+/*
  * Handle PDO connection, preparing SQL, fetching and executing data.
  */
 
-/* 
- * NOTE: PDO always quotes params that aren't null, even when they're integers. 
- * It means that when passing an array of params to execute for a PDO statement, 
+/*
+ * NOTE: PDO always quotes params that aren't null, even when they're integers.
+ * It means that when passing an array of params to execute for a PDO statement,
  * all values are treated as PDO::PARAM_STR.
  *
  */
@@ -33,24 +33,24 @@ class PdoAdapter
 
         /*
         @ original/ deprecated: 07.06.2012
-        try 
+        try
         {
-            // MySQL with PDO_MYSQL  
+            // MySQL with PDO_MYSQL
             // To deal with special characters and Chinese character, add charset=UTF-8 in $dsn and array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8").
             // @source: http://stackoverflow.com/questions/10209777/php-pdo-with-special-characters
             $this->PDO = new PDO($dsn, $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-            $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+            $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //$this->PDO = new PDO($dsn, $username, $password);
             //$this->PDO->setAttribute(PDO::ATTR_EMULATE_PREPARES, 1);
         }
-        catch (PDOException $error) 
+        catch (PDOException $error)
         {
             // call the getError function
             $this->getError($error);
         }
         */
     }
-    
+
     /*
      * Make the pdo connection.
      * @return object $PDO
@@ -59,29 +59,29 @@ class PdoAdapter
     {
         try
         {
-            // MySQL with PDO_MYSQL  
+            // MySQL with PDO_MYSQL
             // To deal with special characters and Chinese character, add charset=UTF-8 in $dsn and array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8").
             // @source: http://stackoverflow.com/questions/10209777/php-pdo-with-special-characters
             $this->PDO = new PDO($this->dsn, $this->username, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-            $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-            
+            $this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
             // Unset props.
             unset($this->dsn);
             unset($this->username);
             unset($this->password);
 
-        } 
-        catch (PDOException $error) 
+        }
+        catch (PDOException $error)
         {
             // Call the getError function
             $this->getError($error);
         }
     }
-    
+
     /*
      * Return the pdo object for custom use.
      * @return object $PDO
-     * @usage: 
+     * @usage:
      * $pdo = $PdoAdapter->fetchPdo();
 
         $stmt = $pdo->prepare('
@@ -121,8 +121,8 @@ class PdoAdapter
             // Return the result
             return $stmt->rowCount();
 
-        } 
-        catch (PDOException $error) 
+        }
+        catch (PDOException $error)
         {
             // Call the getError function
             $this->getError($error);
@@ -165,27 +165,27 @@ class PdoAdapter
             // Return the result
             return $stmt->fetch();
 
-        } 
-        catch (PDOException $error) 
+        }
+        catch (PDOException $error)
         {
             // Call the getError function.
             $this->getError($error);
         }
 
         /*
-        or, 
+        or,
 
         catch (Exception $error)
         {
             // Echo the error or Re-throw it to catch it higher up where you have more
             // information on where it occurred in your program.
-            // e.g echo 'Error: ' . $error->getMessage(); 
+            // e.g echo 'Error: ' . $error->getMessage();
 
             throw new Exception(
                 __METHOD__ . 'Exception Raised for sql: ' . var_export($sql, true) .
                 ' Params: ' . var_export($params, true) .
-                ' Error_Info: ' . var_export($this->errorInfo(), true), 
-                0, 
+                ' Error_Info: ' . var_export($this->errorInfo(), true),
+                0,
                 $error);
         }
         */
@@ -227,15 +227,15 @@ class PdoAdapter
             // Execute the query
             $stmt->execute();
             */
-            
+
             // Execute the query
             $stmt->execute($params);
 
             // Return the result
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        } 
-        catch (PDOException $error) 
+        }
+        catch (PDOException $error)
         {
             // Call the getError function
             $this->getError($error);
@@ -263,12 +263,12 @@ class PdoAdapter
 
             // Return the result
             return $stmt->fetchObject();
-            
+
             // Or:
             //return $stmt->fetch(PDO::FETCH_OBJ);
 
-        } 
-        catch (PDOException $error) 
+        }
+        catch (PDOException $error)
         {
             // Call the getError function
             $this->getError($error);
@@ -288,7 +288,7 @@ class PdoAdapter
             $stmt = $this->PDO->prepare($query);
             $params = is_array($params) ? $params : array($params);
             $stmt->execute($params);
-            
+
             if($stmt->rowCount()>0)
             {
                 return true;
@@ -298,14 +298,14 @@ class PdoAdapter
                 return '0 rows affected';
             }
 
-        } 
-        catch (PDOException $error) 
+        }
+        catch (PDOException $error)
         {
             // Call the getError function
             $this->getError($error);
         }
     }
-    
+
     /*
      * Get the last insert id.
      * @return number
@@ -354,14 +354,14 @@ class PdoAdapter
         // Set the handler to NULL closes the connection propperly
         $this->PDO = null;
     }
-    
+
     /*
-     * Connect() gets called when the object is called as a function. 
+     * Connect() gets called when the object is called as a function.
      * instead of $pdo->connect();
-     * do this, 
+     * do this,
      * $pdo();
      */
-    public function __invoke() 
+    public function __invoke()
     {
         $this->connect();
     }
