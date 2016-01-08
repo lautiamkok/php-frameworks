@@ -1,6 +1,6 @@
 <?php
-// Abstract Application Controller.
-namespace Barium\ApplicationController;
+// Abstract Page Controller.
+namespace Barium\PageController;
 
 // PSR 7 standard.
 use Slim\Http\Request;
@@ -9,7 +9,7 @@ use Slim\Http\Response;
 // Interop Container standard.
 use Interop\Container\ContainerInterface;
 
-abstract class AbstractApplicationController
+abstract class AbstractPageController
 {
     public function __construct(ContainerInterface $container)
     {

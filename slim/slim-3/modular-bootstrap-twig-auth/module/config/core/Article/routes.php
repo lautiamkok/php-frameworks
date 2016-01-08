@@ -15,7 +15,7 @@ $app->get('/articles/{url}', function (Request $request, Response $response, arr
     // return require_once APPLICATION_ROOT . 'module/result/core/Article/index.php';
 
     // Or:
-    // Get the result via the application controller.
-    $controller = new \Barium\Article\ApplicationController\ArticleApplicationController($this);
+    // Get the result via the page controller.
+    $controller = new \Barium\Article\PageController\ArticlePageController($this);
     $controller($request, $response, $args);
 });

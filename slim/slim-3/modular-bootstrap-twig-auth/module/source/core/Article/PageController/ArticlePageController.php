@@ -1,12 +1,12 @@
 <?php
-namespace Barium\Article\ApplicationController;
+namespace Barium\Article\PageController;
 
 // PSR 7 standard.
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-// Application Controller.
-use Barium\ApplicationController\AbstractApplicationController;
+// Page Controller.
+use Barium\PageController\AbstractPageController;
 
 // Adapter.
 use Barium\Adapter\PdoAdapter;
@@ -33,7 +33,7 @@ use Barium\Article\Component\ArticleTemplateComponent;
 // View.
 use Barium\Article\View\ArticleView;
 
-class ArticleApplicationController extends AbstractApplicationController
+class ArticlePageController extends AbstractPageController
 {
     public function __invoke(Request $request, Response $response, array $args)
     {
