@@ -8,20 +8,25 @@ use Barium\Strategy\MapperStrategy;
 use Barium\Strategy\CompositeStrategy;
 use Barium\Strategy\ComposableStrategy;
 
+use Barium\Strategy\GatewayStrategy;
+use Barium\Strategy\ModelStrategy;
+
 class ArticleMapper implements MapperStrategy, CompositeStrategy, ComposableStrategy
 {
     /*
      * Set props.
      */
     protected $gateway;
+    protected $model;
     protected $components = [];
 
     /*
      * Construct dependency.
      */
-    public function __construct(\Barium\Strategy\GatewayStrategy $GatewayStrategy)
+    public function __construct(GatewayStrategy $GatewayStrategy, ModelStrategy $ModelStrategy)
     {
         $this->gateway = $GatewayStrategy;
+        $this->model = $ModelStrategy;
     }
 
     /*
@@ -59,17 +64,32 @@ class ArticleMapper implements MapperStrategy, CompositeStrategy, ComposableStra
         }
     }
 
+    public function getOne($options = [])
+    {
+        $result = $this->gateway->getOne($options);
+
+        // When the article is not found.
+        if($result === false) {
+            // Throw the error page.
+            throw new \Exception('Not found!');
+        }
+
+        $row = array_merge($result, $this->compose($result));
+        // $row = $result->current();
+
+        return $this->mapObject($row);
+    }
+
     /*
      *  Map the data to model.
      */
-    public function populate(\Barium\Strategy\ModelStrategy $ModelStrategy, $options = [])
+    public function mapObject(array $row)
     {
-        $row = $this->gateway->getRow($options);
-        $item = array_merge($row, $this->compose($row));
+        $this->model->setArticleId($row['article_id']) ;
+        $this->model->setTitle($row['title']);
+        $this->model->setContent($row['content']);
+        $this->model->setTemplate($row['template']['path']);
 
-        $ModelStrategy->setArticleId($item['article_id']) ;
-        $ModelStrategy->setTitle($item['title']);
-        $ModelStrategy->setContent($item['content']);
-        $ModelStrategy->setTemplate($item['template']['path']);
+        return $this->model;
     }
 }

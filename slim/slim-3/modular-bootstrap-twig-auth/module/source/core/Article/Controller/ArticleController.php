@@ -5,17 +5,13 @@ use Barium\Controller\AbstractController;
 
 class ArticleController extends AbstractController
 {
-    public function fetchRow($options = [])
+    public function getArticle($options = [])
     {
-        // $this->ServiceStrategy->fetchRow($options);
-        $this->MapperStrategy->populate($this->ModelStrategy, $options);
-        return $this->ModelStrategy;
+        $this->MapperStrategy->getOne($options);
     }
 
     public function fetchTheme($options = [])
     {
-        // $this->ServiceStrategy->fetchTheme($options);
-        $this->MapperStrategy->populate($this->ModelStrategy, $options);
-        return $this->ModelStrategy;
+        $this->MapperStrategy->getTheme($options);
     }
 }

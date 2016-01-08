@@ -2,24 +2,12 @@
 namespace Barium\Controller;
 
 use Barium\Strategy\ControllerStrategy;
+use Barium\Strategy\MapperStrategy;
 
 abstract class AbstractController implements ControllerStrategy
 {
-    // public function setService(\Barium\Strategy\ServiceStrategy $ServiceStrategy)
-    // {
-    //     $this->ServiceStrategy = $ServiceStrategy;
-    //     return $this;
-    // }
-
-    public function setMapper(\Barium\Strategy\MapperStrategy $MapperStrategy)
+    public function __construct(MapperStrategy $MapperStrategy)
     {
         $this->MapperStrategy = $MapperStrategy;
-        return $this;
-    }
-
-    public function setModel(\Barium\Strategy\ModelStrategy $ModelStrategy)
-    {
-        $this->ModelStrategy = $ModelStrategy;
-        return $this;
     }
 }

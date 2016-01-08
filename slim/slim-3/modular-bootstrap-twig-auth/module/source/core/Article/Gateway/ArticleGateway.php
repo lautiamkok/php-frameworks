@@ -9,6 +9,8 @@ use Barium\Helper\ArrayHelpers;
 use Barium\Helper\ObjectHelpers;
 use Barium\Helper\ItemHelpers;
 
+use Barium\Adapter\PdoAdapter;
+
 class ArticleGateway implements GatewayStrategy
 {
     use ArrayHelpers;
@@ -23,16 +25,15 @@ class ArticleGateway implements GatewayStrategy
     /*
      * Construct dependency.
      */
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
+    public function __construct(PdoAdapter $PdoAdapter)
     {
-        // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
     }
 
     /*
      *  Fetch row.
      */
-    public function getRow($options = [])
+    public function getOne($options = [])
     {
         // Set vars.
         $defaults = [
@@ -86,12 +87,6 @@ class ArticleGateway implements GatewayStrategy
             $settings['type'],
             $settings['hide']
         ]);
-
-        // When the article is not found.
-        if($item === false) {
-            // Throw the error page.
-            throw new \Exception('Not found!');
-        }
 
         // Return the entire object for Method chaining.
         return $item;

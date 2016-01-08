@@ -34,15 +34,15 @@ class ArticleContentComponent implements CompositeStrategy
 
         // Set vars.
         $defaults = [
-            "article_id" 	=>	null
+            "article_id" => null
         ];
 
-        // Process arrays and convert the result to object.
-        $settings = $this->arrayToObject($this->arrayMergeValues($defaults, $options));
+        // Process arrays.
+        $settings = $this->arrayMergeValues($defaults, $options);
 
         // Fetch the content rows.
         $items_content = $this->getCotents(array(
-            "article_id" 	=>	$settings->article_id
+            "article_id" => $settings['article_id']
         ));
 
         // Re-structure the content key(code) and value.
@@ -64,11 +64,11 @@ class ArticleContentComponent implements CompositeStrategy
     {
         // Set vars.
         $defaults = [
-            "article_id"	=>	null
+            "article_id" => null
         ];
 
         // Process arrays and convert the result to object.
-        $setting = $this->arrayToObject($this->arrayMergeValues($defaults, $options));
+        $setting = $this->arrayMergeValues($defaults, $options);
 
         $sql= "
             SELECT*
@@ -92,7 +92,7 @@ class ArticleContentComponent implements CompositeStrategy
         ";
 
         return $this->PdoAdapter->fetchRows($sql, array(
-            $setting->article_id
+            $setting['article_id']
         ));
     }
 }

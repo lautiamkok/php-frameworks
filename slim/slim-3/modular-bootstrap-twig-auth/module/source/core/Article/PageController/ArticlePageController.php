@@ -50,16 +50,13 @@ class ArticlePageController extends AbstractPageController
             // It is important that the controller and the view
             // share the model.
 
-            // Article.
-            $ArticleController = new ArticleController();
-
             // Make connection.
             $PdoAdapter->connect();
 
             // Prepare Article model.
             $ArticleModel = new ArticleModel();
             $ArticleGateway = new ArticleGateway($PdoAdapter);
-            $ArticleMapper = new ArticleMapper($ArticleGateway);
+            $ArticleMapper = new ArticleMapper($ArticleGateway, $ArticleModel);
 
             // Prepare components.
             $ArticleContentComponent = new ArticleContentComponent($PdoAdapter);
@@ -69,9 +66,11 @@ class ArticlePageController extends AbstractPageController
             $ArticleMapper->addComponent($ArticleContentComponent);
             $ArticleMapper->addComponent($ArticleTemplateComponent);
 
+            // Controller.
+            $ArticleController = new ArticleController($ArticleMapper);
+
             // Control the article.
-            $ArticleController->setMapper($ArticleMapper)->setModel($ArticleModel);
-            $ArticleController->fetchRow([
+            $ArticleController->getArticle([
                 "url"   =>  $args['url']
             ]);
 
@@ -121,9 +120,9 @@ class ArticlePageController extends AbstractPageController
             // ));
 
         } catch(\Exception $e) {
-            // echo 'Message: ' .$e->getMessage();
-            $container = $this;
-            return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
+            echo 'Message: ' .$e->getMessage();
+            // $container = $this;
+            // return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
         }
     }
 }
