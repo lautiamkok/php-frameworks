@@ -17,9 +17,6 @@ use Barium\Article\Mapper\ArticleMapper;
 // Gateway.
 use Barium\Article\Gateway\ArticleGateway;
 
-// Service.
-use Barium\Article\Service\ArticleService;
-
 // Controller.
 use Barium\Article\Controller\ArticleController;
 
@@ -54,7 +51,6 @@ class ArticlePageController extends AbstractPageController
             // share the model.
 
             // Article.
-            $ArticleService = new ArticleService();
             $ArticleController = new ArticleController();
 
             // Make connection.
@@ -63,7 +59,6 @@ class ArticlePageController extends AbstractPageController
             // Prepare Article model.
             $ArticleModel = new ArticleModel();
             $ArticleGateway = new ArticleGateway($PdoAdapter);
-
             $ArticleMapper = new ArticleMapper($ArticleGateway);
 
             // Prepare components.
@@ -75,8 +70,8 @@ class ArticlePageController extends AbstractPageController
             $ArticleMapper->addComponent($ArticleTemplateComponent);
 
             // Control the article.
-            $ArticleService->setMapper($ArticleMapper)->setModel($ArticleModel);
-            $ArticleController->setService($ArticleService)->fetchRow([
+            $ArticleController->setMapper($ArticleMapper)->setModel($ArticleModel);
+            $ArticleController->fetchRow([
                 "url"   =>  $args['url']
             ]);
 
