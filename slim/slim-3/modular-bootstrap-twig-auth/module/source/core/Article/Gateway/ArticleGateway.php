@@ -1,7 +1,4 @@
 <?php
-/*
- * Handle article request and its associates.
-*/
 namespace Barium\Article\Gateway;
 
 use Barium\Strategy\GatewayStrategy;
@@ -17,21 +14,25 @@ class ArticleGateway implements GatewayStrategy
     use ObjectHelpers;
     use ItemHelpers;
 
-    /*
+    /**
      * Set props.
+     * @var [type]
      */
     protected $PdoAdapter;
 
-    /*
+    /**
      * Construct dependency.
+     * @param PdoAdapter $PdoAdapter [description]
      */
     public function __construct(PdoAdapter $PdoAdapter)
     {
         $this->PdoAdapter = $PdoAdapter;
     }
 
-    /*
-     *  Fetch row.
+    /**
+     * Fetch row.
+     * @param  array  $options [description]
+     * @return [type]          [description]
      */
     public function getOne($options = [])
     {

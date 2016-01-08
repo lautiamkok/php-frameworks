@@ -32,6 +32,13 @@ use Barium\Article\View\ArticleView;
 
 class ArticlePageController extends AbstractPageController
 {
+    /**
+     * [__invoke description]
+     * @param  Request  $request  [description]
+     * @param  Response $response [description]
+     * @param  array    $args     [description]
+     * @return [type]             [description]
+     */
     public function __invoke(Request $request, Response $response, array $args)
     {
        // Trigger exception in a "try" block
@@ -46,19 +53,21 @@ class ArticlePageController extends AbstractPageController
             // Instance of PdoAdapter.
             $PdoAdapter = new PdoAdapter($databaseConfig['dsn'], $databaseConfig['username'], $databaseConfig['password']);
 
+            // Make connection.
+            $PdoAdapter->connect();
+
             // Initiate the triad.
             // It is important that the controller and the view
             // share the model.
 
-            // Make connection.
-            $PdoAdapter->connect();
-
-            // Prepare Article model.
+            // Model.
             $ArticleModel = new ArticleModel();
+
+            // Gateway & Mapper.
             $ArticleGateway = new ArticleGateway($PdoAdapter);
             $ArticleMapper = new ArticleMapper($ArticleGateway, $ArticleModel);
 
-            // Prepare components.
+            // Components.
             $ArticleContentComponent = new ArticleContentComponent($PdoAdapter);
             $ArticleTemplateComponent = new ArticleTemplateComponent($PdoAdapter);
 

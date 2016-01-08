@@ -1,7 +1,4 @@
 <?php
-/*
- * Handle article request and its associates.
-*/
 namespace Barium\Article\Mapper;
 
 use Barium\Strategy\MapperStrategy;
@@ -13,15 +10,18 @@ use Barium\Strategy\ModelStrategy;
 
 class ArticleMapper implements MapperStrategy, CompositeStrategy, ComposableStrategy
 {
-    /*
+    /**
      * Set props.
+     * @var [type]
      */
     protected $gateway;
     protected $model;
     protected $components = [];
 
-    /*
+    /**
      * Construct dependency.
+     * @param GatewayStrategy $GatewayStrategy [description]
+     * @param ModelStrategy   $ModelStrategy   [description]
      */
     public function __construct(GatewayStrategy $GatewayStrategy, ModelStrategy $ModelStrategy)
     {
@@ -29,8 +29,10 @@ class ArticleMapper implements MapperStrategy, CompositeStrategy, ComposableStra
         $this->model = $ModelStrategy;
     }
 
-    /*
-     *  Compose the components.
+    /**
+     * Compose the components.
+     * @param  array  $options [description]
+     * @return [type]          [description]
      */
     public function compose($options = [])
     {
@@ -44,18 +46,21 @@ class ArticleMapper implements MapperStrategy, CompositeStrategy, ComposableStra
         return call_user_func_array('array_merge', $items);
     }
 
-    /*
-     *  Add components.
+    /**
+     * Add components.
+     * @param CompositeStrategy $CompositeStrategy [description]
      */
-    public function addComponent(\Barium\Strategy\CompositeStrategy $CompositeStrategy)
+    public function addComponent(CompositeStrategy $CompositeStrategy)
     {
         array_push($this->components, $CompositeStrategy);
     }
 
-    /*
-     *  Remove components.
+    /**
+     * Remove components.
+     * @param  CompositeStrategy $CompositeStrategy [description]
+     * @return [type]                               [description]
      */
-    public function removeComponent(\Barium\Strategy\CompositeStrategy $CompositeStrategy)
+    public function removeComponent(CompositeStrategy $CompositeStrategy)
     {
         foreach($this->components as $componentKey => $componentValue) {
             if ($componentValue === $compositeStrategy) {
@@ -64,13 +69,17 @@ class ArticleMapper implements MapperStrategy, CompositeStrategy, ComposableStra
         }
     }
 
+    /**
+     * [getOne description]
+     * @param  array  $options [description]
+     * @return [type]          [description]
+     */
     public function getOne($options = [])
     {
         $result = $this->gateway->getOne($options);
 
-        // When the article is not found.
-        if($result === false) {
-            // Throw the error page.
+        // Throw the error exception when no article is found.
+        if ($result === false) {
             throw new \Exception('Not found!');
         }
 
@@ -80,8 +89,10 @@ class ArticleMapper implements MapperStrategy, CompositeStrategy, ComposableStra
         return $this->mapObject($row);
     }
 
-    /*
-     *  Map the data to model.
+    /**
+     * Map the data to model.
+     * @param  array  $row [description]
+     * @return [type]      [description]
      */
     public function mapObject(array $row)
     {

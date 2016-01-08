@@ -1,7 +1,4 @@
 <?php
-/*
- * Handle the component
- */
 namespace Barium\Article\Component;
 
 use Barium\Strategy\CompositeStrategy;
