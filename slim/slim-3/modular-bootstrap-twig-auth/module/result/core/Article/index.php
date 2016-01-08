@@ -51,10 +51,6 @@ try {
     $ArticleModel = new ArticleModel();
     $ArticleGateway = new ArticleGateway($PdoAdapter);
 
-    $result = $ArticleGateway->getRow([
-        "url"   =>  $args['url']
-    ]);
-
     $ArticleMapper = new ArticleMapper($ArticleGateway);
 
     // Prepare components.
