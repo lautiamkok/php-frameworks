@@ -2,13 +2,16 @@
 namespace Barium\Article\Gateway;
 
 use Barium\Strategy\GatewayStrategy;
+use Barium\Strategy\CompositeStrategy;
+use Barium\Strategy\ComposableStrategy;
+
 use Barium\Helper\ArrayHelpers;
 use Barium\Helper\ObjectHelpers;
 use Barium\Helper\ItemHelpers;
 
 use Barium\Adapter\PdoAdapter;
 
-class ArticleGateway implements GatewayStrategy
+class ArticleGateway implements GatewayStrategy, CompositeStrategy, ComposableStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
@@ -19,6 +22,7 @@ class ArticleGateway implements GatewayStrategy
      * @var [type]
      */
     protected $PdoAdapter;
+    protected $components = [];
 
     /**
      * Construct dependency.
@@ -27,6 +31,46 @@ class ArticleGateway implements GatewayStrategy
     public function __construct(PdoAdapter $PdoAdapter)
     {
         $this->PdoAdapter = $PdoAdapter;
+    }
+
+    /**
+     * Compose the components.
+     * @param  array  $options [description]
+     * @return [type]          [description]
+     */
+    public function compose($options = [])
+    {
+        $items = [];
+
+        foreach ($this->components as $component) {
+            $items[] = $component->compose($options);
+        }
+
+        // Flatten the array.
+        return call_user_func_array('array_merge', $items);
+    }
+
+    /**
+     * Add components.
+     * @param CompositeStrategy $CompositeStrategy [description]
+     */
+    public function addComponent(CompositeStrategy $CompositeStrategy)
+    {
+        array_push($this->components, $CompositeStrategy);
+    }
+
+    /**
+     * Remove components.
+     * @param  CompositeStrategy $CompositeStrategy [description]
+     * @return [type]                               [description]
+     */
+    public function removeComponent(CompositeStrategy $CompositeStrategy)
+    {
+        foreach($this->components as $componentKey => $componentValue) {
+            if ($componentValue === $compositeStrategy) {
+                unset($this->components[$componentKey]);
+            }
+        }
     }
 
     /**
@@ -89,7 +133,18 @@ class ArticleGateway implements GatewayStrategy
             $settings['hide']
         ]);
 
-        // Return the entire object for Method chaining.
+        // Make sure there is a positive result.
+        if ($item !== false) {
+            // Get the components - if any added.
+            $components = $this->compose([
+                'article_id' => $item['article_id']
+            ]);
+
+            // Return the entire object for Method chaining.
+            return array_merge($item, $components);
+        }
+
+        // Return the result.
         return $item;
     }
 }

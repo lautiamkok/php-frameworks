@@ -6,6 +6,8 @@ use Barium\Helper\ArrayHelpers;
 use Barium\Helper\ObjectHelpers;
 use Barium\Helper\ItemHelpers;
 
+use Barium\Adapter\PdoAdapter;
+
 class ArticleContentComponent implements CompositeStrategy
 {
     use ArrayHelpers;
@@ -15,9 +17,8 @@ class ArticleContentComponent implements CompositeStrategy
     /*
      * Construct dependency.
      */
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
+    public function __construct(PdoAdapter $PdoAdapter)
     {
-        // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
     }
 
@@ -43,10 +44,9 @@ class ArticleContentComponent implements CompositeStrategy
         ));
 
         // Re-structure the content key(code) and value.
-        foreach($items_content as $index => $item) {
-
+        foreach ($items_content as $index => $item) {
             // Always make the first item as 'content'.
-            if($index === 0) {
+            if ($index === 0) {
                 $content['content'] = $item['value'];
             }
 
@@ -74,7 +74,7 @@ class ArticleContentComponent implements CompositeStrategy
                 SELECT *
                 FROM category AS a
                 WHERE a.type = 'content'
-         ) a
+            ) a
             LEFT JOIN
             (
                 SELECT c.*
@@ -84,7 +84,7 @@ class ArticleContentComponent implements CompositeStrategy
                 ON x.content_id = c.content_id
 
                 WHERE x.article_id = ?
-         ) b
+            ) b
             ON b.category_id = a.category_id
         ";
 

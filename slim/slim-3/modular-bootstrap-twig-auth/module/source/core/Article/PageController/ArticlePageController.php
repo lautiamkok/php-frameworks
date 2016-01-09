@@ -72,15 +72,15 @@ class ArticlePageController extends AbstractPageController
             $ArticleTemplateComponent = new ArticleTemplateComponent($PdoAdapter);
 
             // Inject components.
-            $ArticleMapper->addComponent($ArticleContentComponent);
-            $ArticleMapper->addComponent($ArticleTemplateComponent);
+            $ArticleGateway->addComponent($ArticleContentComponent);
+            $ArticleGateway->addComponent($ArticleTemplateComponent);
 
             // Controller.
             $ArticleController = new ArticleController($ArticleMapper);
 
             // Control the article.
             $ArticleController->getArticle([
-                "url"   =>  $args['url']
+                "url" => $args['url']
             ]);
 
             // Prepare view and pass the model into it.
