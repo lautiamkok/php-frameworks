@@ -13,6 +13,18 @@ return [
     //     ],
     // ],
 
+    //  Must load Admin route first so it won't be shadowed by Article's.
+    'Admin' => [
+        'name' => 'Admin',
+        'directories' => [
+            'route'  => 'core/Admin/',
+            'result'  => 'core/Admin/',
+            'source'  => 'core/Admin/',
+            'theme'  => 'default/',
+            'template'  => 'Admin/'
+        ],
+    ],
+
     'Home' => [
         'name' => 'Home',
         'directories' => [
@@ -35,25 +47,14 @@ return [
         ],
     ],
 
-    'Login' => [
-        'name' => 'Login',
+    'Admin\Login' => [
+        'name' => 'Admin\Login',
         'directories' => [
-            'route'  => 'core/Login/',
-            'result'  => 'core/Login/',
-            'source'  => 'core/Login/',
+            'route'  => 'core/Admin/Login/',
+            'result'  => 'core/Admin/Login/',
+            'source'  => 'core/Admin/Login/',
             'theme'  => 'default/',
-            'template'  => 'Login/'
-        ],
-    ],
-
-    'Admin' => [
-        'name' => 'Admin\Article',
-        'directories' => [
-            'route'  => 'core/Admin/',
-            'result'  => 'core/Admin/',
-            'source'  => 'core/Admin/',
-            'theme'  => 'default/',
-            'template'  => 'Admin/'
+            'template'  => 'Admin/Login/'
         ],
     ],
 

@@ -5,11 +5,13 @@ return [
     // Application configuration.
     'settings' => [
         // The home page can be set to any module,
-        // for example:'local/Home/index.php','core/Article/index.php'
-        // Otherwise it will fall back to the default message: 'Hello World!'
-        // when no result is provided.
+        // for example:
+        //      'YourCustomNamespace\Home\PageController\HomePageController'
+        //      'Barium\Home\PageController\HomePageController'
+        // Otherwise it will fall back to the default message: 'Fallback Hello World!'
+        // when no class is provided.
         'home_page' => [
-            'result' => 'core/Home/index.php'
+            'class' => 'Barium\Home\PageController\HomePageController'
         ],
 
         'database' => [
