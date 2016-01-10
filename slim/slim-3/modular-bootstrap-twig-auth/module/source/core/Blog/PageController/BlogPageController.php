@@ -93,6 +93,23 @@ class BlogPageController extends AbstractPageController
 
             print_r($BlogModel);
 
+            // $model = $BlogMapper->getBlog([
+            //     "url" => 'blog'
+            // ]);
+
+            // $params = [
+            //     "parent_id" => $model->getBlogId(),
+            //     "type" => "post",
+            //     "start_row" => 0,
+            //     "limit" => 6
+            // ];
+
+            // $model->setArticles(
+            //     $BlogArticleMapper->getBlogArticle($params)
+            // );
+
+            // print_r($model);
+
             // // Get format in the query string.
             // $allGetVars = $request->getQueryParams();
             // $format = isset($allGetVars['format']) ? $allGetVars['format'] : null;

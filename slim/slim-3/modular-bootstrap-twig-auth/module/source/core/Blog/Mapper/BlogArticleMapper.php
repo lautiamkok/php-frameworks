@@ -16,14 +16,17 @@ class BlogArticleMapper implements MapperStrategy
     protected $model;
 
     /**
-     * Construct dependency.
-     * @param GatewayStrategy $GatewayStrategy [description]
-     * @param ModelStrategy   $ModelStrategy   [description]
+     * [__construct description]
+     * @param GatewayStrategy $gateway [description]
+     * @param ModelStrategy   $model   [description]
      */
-    public function __construct(GatewayStrategy $GatewayStrategy, ModelStrategy $ModelStrategy)
+    public function __construct(
+        GatewayStrategy $gateway,
+        ModelStrategy $model
+    )
     {
-        $this->gateway = $GatewayStrategy;
-        $this->model = $ModelStrategy;
+        $this->gateway = $gateway;
+        $this->model = $model;
     }
 
     /**
@@ -40,9 +43,14 @@ class BlogArticleMapper implements MapperStrategy
             throw new \Exception('Not found!');
         }
 
-        return $this->mapObject($row);
+        return $this->mapObject($this->model, $row);
     }
 
+    /**
+     * [getBlogArticle description]
+     * @param  array  $options [description]
+     * @return [type]          [description]
+     */
     public function getBlogArticle($options = [])
     {
         $rows = $this->gateway->getRows($options);
@@ -50,7 +58,9 @@ class BlogArticleMapper implements MapperStrategy
         $entries = [];
 
         foreach ($rows as $row) {
-            $entries[] = $this->mapObject($row);
+            $class = get_class($this->model);
+            $model = new $class;
+            $entries[] = $this->mapObject($model, $row);
         }
 
         return $entries;
@@ -61,10 +71,8 @@ class BlogArticleMapper implements MapperStrategy
      * @param  array  $row [description]
      * @return [type]      [description]
      */
-    public function mapObject(array $row)
+    public function mapObject(ModelStrategy $model, array $row)
     {
-        $class = get_class($this->model);
-        $model = new $class;
         $model->setArticleId($row['article_id']) ;
         $model->setTitle($row['title']);
         $model->setDescription($row['description']);

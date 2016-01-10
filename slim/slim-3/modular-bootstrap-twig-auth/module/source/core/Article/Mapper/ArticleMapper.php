@@ -16,17 +16,17 @@ class ArticleMapper implements MapperStrategy
     protected $model;
 
     /**
-     * Construct dependency.
-     * @param GatewayStrategy $GatewayStrategy [description]
-     * @param ModelStrategy   $ModelStrategy   [description]
+     * [__construct description]
+     * @param GatewayStrategy $gateway [description]
+     * @param ModelStrategy   $model   [description]
      */
     public function __construct(
-        GatewayStrategy $GatewayStrategy,
-        ModelStrategy $ModelStrategy
+        GatewayStrategy $gateway,
+        ModelStrategy $model
     )
     {
-        $this->gateway = $GatewayStrategy;
-        $this->model = $ModelStrategy;
+        $this->gateway = $gateway;
+        $this->model = $model;
     }
 
     /**
@@ -43,7 +43,7 @@ class ArticleMapper implements MapperStrategy
             throw new \Exception('Not found!');
         }
 
-        return $this->mapObject($row);
+        return $this->mapObject($this->model, $row);
     }
 
     /**
@@ -58,7 +58,9 @@ class ArticleMapper implements MapperStrategy
         $entries = [];
 
         foreach ($rows as $row) {
-            $entries[] = $this->mapObject($row);
+            $class = get_class($this->model);
+            $model = new $class;
+            $entries[] = $this->mapObject($model, $row);
         }
 
         return $entries;
@@ -69,14 +71,14 @@ class ArticleMapper implements MapperStrategy
      * @param  array  $row [description]
      * @return [type]      [description]
      */
-    public function mapObject(array $row)
+    public function mapObject(ModelStrategy $model, array $row)
     {
-        $this->model->setArticleId($row['article_id']) ;
-        $this->model->setTitle($row['title']);
-        $this->model->setDescription($row['description']);
-        $this->model->setContent(isset($row['content']) ? $row['content'] : null);
-        $this->model->setTemplate(isset($row['template']) ? $row['template']['path'] : null);
+        $model->setArticleId($row['article_id']) ;
+        $model->setTitle($row['title']);
+        $model->setDescription($row['description']);
+        $model->setContent(isset($row['content']) ? $row['content'] : null);
+        $model->setTemplate(isset($row['template']) ? $row['template']['path'] : null);
 
-        return $this->model;
+        return $model;
     }
 }

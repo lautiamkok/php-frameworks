@@ -18,7 +18,7 @@ class BlogController
      * [__construct description]
      * @param ModelStrategy  $model    [description]
      * @param MapperStrategy $mapper   [description]
-     * @param MapperStrategy $Articles [description]
+     * @param MapperStrategy $articles [description]
      */
     public function __construct(
         ModelStrategy $model,

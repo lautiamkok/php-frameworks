@@ -1,7 +1,9 @@
 <?php
 namespace Barium\Strategy;
 
+use Barium\Strategy\ModelStrategy;
+
 interface MapperStrategy
 {
-    public function mapObject(array $row);
+    public function mapObject(ModelStrategy $model, array $row);
 }

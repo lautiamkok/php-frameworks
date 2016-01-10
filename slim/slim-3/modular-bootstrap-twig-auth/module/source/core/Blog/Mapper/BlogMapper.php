@@ -16,17 +16,17 @@ class BlogMapper implements MapperStrategy
     protected $model;
 
     /**
-     * Construct dependency.
-     * @param GatewayStrategy $GatewayStrategy [description]
-     * @param ModelStrategy   $ModelStrategy   [description]
+     * [__construct description]
+     * @param GatewayStrategy $gateway [description]
+     * @param ModelStrategy   $model   [description]
      */
     public function __construct(
-        GatewayStrategy $GatewayStrategy,
-        ModelStrategy $ModelStrategy
+        GatewayStrategy $gateway,
+        ModelStrategy $model
     )
     {
-        $this->gateway = $GatewayStrategy;
-        $this->model = $ModelStrategy;
+        $this->gateway = $gateway;
+        $this->model = $model;
     }
 
     /**
@@ -43,7 +43,7 @@ class BlogMapper implements MapperStrategy
             throw new \Exception('Not found!');
         }
 
-        return $this->mapObject($row);
+        return $this->mapObject($this->model, $row);
     }
 
     /**
@@ -51,14 +51,14 @@ class BlogMapper implements MapperStrategy
      * @param  array  $row [description]
      * @return [type]      [description]
      */
-    public function mapObject(array $row)
+    public function mapObject(ModelStrategy $model, array $row)
     {
-        $this->model->setBlogId($row['article_id']) ;
-        $this->model->setTitle($row['title']);
-        $this->model->setContent($row['content']);
-        $this->model->setTemplate($row['template']['path']);
-        $this->model->setArticles(isset($row['articles']) ? $row['articles'] : []);
+        $model->setBlogId($row['article_id']) ;
+        $model->setTitle($row['title']);
+        $model->setContent($row['content']);
+        $model->setTemplate($row['template']['path']);
+        $model->setArticles(isset($row['articles']) ? $row['articles'] : []);
 
-        return $this->model;
+        return $model;
     }
 }
