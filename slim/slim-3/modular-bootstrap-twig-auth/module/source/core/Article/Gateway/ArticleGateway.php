@@ -5,11 +5,11 @@ use Barium\Strategy\GatewayStrategy;
 use Barium\Strategy\CompositeStrategy;
 use Barium\Strategy\ComposableStrategy;
 
+use Barium\Adapter\PdoAdapter;
+
 use Barium\Helper\ArrayHelpers;
 use Barium\Helper\ObjectHelpers;
 use Barium\Helper\ItemHelpers;
-
-use Barium\Adapter\PdoAdapter;
 
 class ArticleGateway implements GatewayStrategy, CompositeStrategy, ComposableStrategy
 {
@@ -46,8 +46,12 @@ class ArticleGateway implements GatewayStrategy, CompositeStrategy, ComposableSt
             $items[] = $component->compose($options);
         }
 
-        // Flatten the array.
-        return call_user_func_array('array_merge', $items);
+        if (count($items) > 0) {
+            // Flatten the array.
+            return call_user_func_array('array_merge', $items);
+        }
+
+        return $items;
     }
 
     /**

@@ -1,11 +1,11 @@
 <?php
-namespace Barium\Article\Model;
+namespace Barium\Blog\Model;
 
 use Barium\Strategy\ModelStrategy;
 use Barium\Helper\ArrayHelpers;
 use Barium\Helper\ObjectHelpers;
 
-class ArticleModel implements ModelStrategy
+class BlogArticleModel implements ModelStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
@@ -15,6 +15,7 @@ class ArticleModel implements ModelStrategy
     protected $description;
     protected $content;
     protected $template;
+    protected $createdOn;
 
     public function toArray()
     {
@@ -48,6 +49,11 @@ class ArticleModel implements ModelStrategy
         $this->template = $template;
     }
 
+    public function setCreatedOn($createdOn)
+    {
+        $this->createdOn = $createdOn;
+    }
+
     // Getters:
 
     public function getArticleId()
@@ -73,5 +79,10 @@ class ArticleModel implements ModelStrategy
     public function getTemplate()
     {
         return $this->template;
+    }
+
+    public function getCreatedOn()
+    {
+        $this->createdOn;
     }
 }

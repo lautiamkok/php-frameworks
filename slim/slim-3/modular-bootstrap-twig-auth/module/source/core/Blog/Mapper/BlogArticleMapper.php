@@ -1,12 +1,12 @@
 <?php
-namespace Barium\Article\Mapper;
+namespace Barium\Blog\Mapper;
 
 use Barium\Strategy\MapperStrategy;
 
 use Barium\Strategy\GatewayStrategy;
 use Barium\Strategy\ModelStrategy;
 
-class ArticleMapper implements MapperStrategy
+class BlogArticleMapper implements MapperStrategy
 {
     /**
      * Set props.
@@ -20,10 +20,7 @@ class ArticleMapper implements MapperStrategy
      * @param GatewayStrategy $GatewayStrategy [description]
      * @param ModelStrategy   $ModelStrategy   [description]
      */
-    public function __construct(
-        GatewayStrategy $GatewayStrategy,
-        ModelStrategy $ModelStrategy
-    )
+    public function __construct(GatewayStrategy $GatewayStrategy, ModelStrategy $ModelStrategy)
     {
         $this->gateway = $GatewayStrategy;
         $this->model = $ModelStrategy;
@@ -46,12 +43,7 @@ class ArticleMapper implements MapperStrategy
         return $this->mapObject($row);
     }
 
-    /**
-     * [getRows description]
-     * @param  array  $options [description]
-     * @return [type]          [description]
-     */
-    public function getRows($options = [])
+    public function getBlogArticle($options = [])
     {
         $rows = $this->gateway->getRows($options);
 
@@ -71,12 +63,15 @@ class ArticleMapper implements MapperStrategy
      */
     public function mapObject(array $row)
     {
-        $this->model->setArticleId($row['article_id']) ;
-        $this->model->setTitle($row['title']);
-        $this->model->setDescription($row['description']);
-        $this->model->setContent(isset($row['content']) ? $row['content'] : null);
-        $this->model->setTemplate(isset($row['template']) ? $row['template']['path'] : null);
+        $class = get_class($this->model);
+        $model = new $class;
+        $model->setArticleId($row['article_id']) ;
+        $model->setTitle($row['title']);
+        $model->setDescription($row['description']);
+        $model->setCreatedOn($row['created_on']);
+        $model->setContent(isset($row['content']) ? $row['content'] : null);
+        $model->setTemplate(isset($row['template']) ? $row['template']['path'] : null);
 
-        return $this->model;
+        return $model;
     }
 }

@@ -5,6 +5,8 @@
 namespace Barium\Article\Component;
 
 use Barium\Strategy\CompositeStrategy;
+use Barium\Adapter\PdoAdapter;
+
 use Barium\Helper\ArrayHelpers;
 use Barium\Helper\ObjectHelpers;
 use Barium\Helper\ItemHelpers;
@@ -15,17 +17,19 @@ class ArticleTemplateComponent implements CompositeStrategy
     use ObjectHelpers;
     use ItemHelpers;
 
-    /*
-     * Construct dependency.
+    /**
+     * [__construct description]
+     * @param PdoAdapter $PdoAdapter [description]
      */
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
+    public function __construct(PdoAdapter $PdoAdapter)
     {
-        // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
     }
 
-    /*
-     *  Implement the method in CompositeStrategy.
+    /**
+     * Implement the method in CompositeStrategy.
+     * @param  array  $options [description]
+     * @return [type]          [description]
      */
     public function compose($options = [])
     {
@@ -53,7 +57,7 @@ class ArticleTemplateComponent implements CompositeStrategy
     {
         // Set defaults.
         $defaults = [
-            "template_id"	=>	null
+            "template_id" => null
         ];
 
         // Process arrays and convert the result to object.

@@ -1,20 +1,20 @@
 <?php
-namespace Barium\Article\Model;
+namespace Barium\Blog\Model;
 
 use Barium\Strategy\ModelStrategy;
 use Barium\Helper\ArrayHelpers;
 use Barium\Helper\ObjectHelpers;
 
-class ArticleModel implements ModelStrategy
+class BlogModel implements ModelStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
 
-    protected $articleId;
+    protected $blogId;
     protected $title;
-    protected $description;
     protected $content;
     protected $template;
+    protected $articles = [];
 
     public function toArray()
     {
@@ -23,19 +23,14 @@ class ArticleModel implements ModelStrategy
 
     // Setters:
 
-    public function setArticleId($articleId)
+    public function setBlogId($blogId)
     {
-        $this->articleId = $articleId;
+        $this->blogId = $blogId;
     }
 
     public function setTitle($title)
     {
         $this->title = $title;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
     }
 
     public function setContent($content)
@@ -48,21 +43,21 @@ class ArticleModel implements ModelStrategy
         $this->template = $template;
     }
 
+    public function setArticles($articles)
+    {
+        $this->articles = $articles;
+    }
+
     // Getters:
 
-    public function getArticleId()
+    public function getBlogId()
     {
-        return $this->articleId;
+        return $this->blogId;
     }
 
     public function getTitle()
     {
         return $this->title;
-    }
-
-    public function getDescription()
-    {
-        return $this->description;
     }
 
     public function getContent()
@@ -73,5 +68,10 @@ class ArticleModel implements ModelStrategy
     public function getTemplate()
     {
         return $this->template;
+    }
+
+    public function getArticles()
+    {
+        return $this->articles;
     }
 }
