@@ -7,20 +7,28 @@ use Barium\Strategy\ModelStrategy;
 class BlogController
 {
     /**
+     * [$model description]
+     * @var [type]
+     */
+    protected $model;
+    protected $mapper;
+    protected $articles;
+
+    /**
      * [__construct description]
-     * @param ModelStrategy  $Model    [description]
-     * @param MapperStrategy $Mapper   [description]
+     * @param ModelStrategy  $model    [description]
+     * @param MapperStrategy $mapper   [description]
      * @param MapperStrategy $Articles [description]
      */
     public function __construct(
-        ModelStrategy $Model,
-        MapperStrategy $Mapper,
-        MapperStrategy $Articles
+        ModelStrategy $model,
+        MapperStrategy $mapper,
+        MapperStrategy $articles
     )
     {
-        $this->Model = $Model;
-        $this->Mapper = $Mapper;
-        $this->Articles = $Articles;
+        $this->model = $model;
+        $this->mapper = $mapper;
+        $this->articles = $articles;
     }
 
     /**
@@ -30,16 +38,16 @@ class BlogController
      */
     public function getBlog($options = [])
     {
-        $this->Mapper->getBlog([
+        $this->mapper->getBlog([
             "url" => $options["url"]
         ]);
 
         $params = array_merge([
-            "parent_id" => $this->Model->getBlogId()
+            "parent_id" => $this->model->getBlogId()
         ], $options["articles"]);
 
-        $this->Model->setArticles(
-            $this->Articles->getBlogArticle($params)
+        $this->model->setArticles(
+            $this->articles->getBlogArticle($params)
         );
     }
 }
