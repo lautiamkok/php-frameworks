@@ -50,10 +50,6 @@ class ArticleController extends AbstractController
             // Make connection.
             $PdoAdapter->connect();
 
-            // Initiate the triad.
-            // It is important that the controller and the view
-            // share the model.
-
             // Gateway & Mapper.
             $ArticleGateway = new ArticleGateway($PdoAdapter);
             $ArticleMapper = new ArticleMapper($ArticleGateway);
@@ -73,11 +69,6 @@ class ArticleController extends AbstractController
             $ArticleModel = $ArticleService->getArticle([
                 "url" => $args['url']
             ]);
-
-            // Prepare view and pass the model into it.
-            // No longer in use, replaced by Slim & Twig.
-            // $ArticleView = new ArticleView($ArticleModel);
-            // echo $ArticleView->render();
 
             // Get format in the query string.
             $allGetVars = $request->getQueryParams();
