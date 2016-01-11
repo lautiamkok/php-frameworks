@@ -2,20 +2,64 @@
 namespace Barium\Blog\Model;
 
 use Barium\Strategy\ModelStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
 
 class BlogArticleModel implements ModelStrategy
 {
-    use ArrayHelpers;
-    use ObjectHelpers;
-
+    /**
+     * [$articleId description]
+     * @var [type]
+     */
     protected $articleId;
     protected $title;
     protected $description;
     protected $content;
     protected $template;
     protected $createdOn;
+
+    /**
+     * [__construct description]
+     * @param array $params [description]
+     */
+    public function __construct(array $params = [])
+    {
+        $this->setOptions($params);
+    }
+
+    /**
+     * [setOptions description]
+     * @param array $params [description]
+     */
+    public function setOptions(array $params)
+    {
+        foreach ($params as $key => $value) {
+            switch ($key) {
+                case 'article_id':
+                    $this->setArticleId($value);
+                    break;
+                case 'title':
+                    $this->setTitle($value);
+                    break;
+                case 'description':
+                    $this->setDescription($value);
+                    break;
+                case 'content':
+                    $this->setContent($value);
+                    break;
+                case 'articles':
+                    $this->setArticles($value);
+                    break;
+                case 'creator':
+                    $this->setCreator($value);
+                    break;
+                case 'created_on':
+                    $this->setCreatedOn($value);
+                    break;
+                case 'updated_on':
+                    $this->setUpdatedOn($value);
+                    break;
+            }
+        }
+    }
 
     public function toArray()
     {
@@ -27,31 +71,50 @@ class BlogArticleModel implements ModelStrategy
     public function setArticleId($articleId)
     {
         $this->articleId = $articleId;
+
+        return $this;
     }
 
     public function setTitle($title)
     {
         $this->title = $title;
+
+        return $this;
     }
 
     public function setDescription($description)
     {
         $this->description = $description;
+
+        return $this;
     }
 
     public function setContent($content)
     {
         $this->content = $content;
+
+        return $this;
     }
 
     public function setTemplate($template)
     {
         $this->template = $template;
+
+        return $this;
     }
 
     public function setCreatedOn($createdOn)
     {
         $this->createdOn = $createdOn;
+
+        return $this;
+    }
+
+    public function setUpdatedOn($updatedOn)
+    {
+        $this->updatedOn = $updatedOn;
+
+        return $this;
     }
 
     // Getters:
@@ -83,6 +146,11 @@ class BlogArticleModel implements ModelStrategy
 
     public function getCreatedOn()
     {
-        $this->createdOn;
+        return $this->createdOn;
+    }
+
+    public function getUpdatedOn()
+    {
+        return $this->updatedOn;
     }
 }

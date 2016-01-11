@@ -3,7 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-use Barium\Article\PageController\ArticlePageController;
+use Barium\Article\Controller\ArticleController;
 
 // Get article by url.
 $app->get('/{url:[a-zA-Z0-9\-]+}', function (Request $request, Response $response, array $args) {
@@ -11,7 +11,7 @@ $app->get('/{url:[a-zA-Z0-9\-]+}', function (Request $request, Response $respons
     // return require_once APPLICATION_ROOT . 'module/result/core/Article/index.php';
 
     // Or:
-    // Get the result via the page controller.
-    $controller = new ArticlePageController($this);
+    // Get the result via the controller.
+    $controller = new ArticleController($this);
     $controller($request, $response, $args);
 });

@@ -1,14 +1,14 @@
 <?php
-namespace YourCustomNamespace\Home\PageController;
+namespace YourCustomNamespace\Home\Controller;
 
 // PSR 7 standard.
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-// Page Controller.
-use Barium\PageController\AbstractPageController;
+// Controller.
+use Barium\Controller\AbstractController;
 
-class HomePageController extends AbstractPageController
+class HomeController extends AbstractController
 {
     /**
      * [__invoke description]

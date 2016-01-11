@@ -1,13 +1,20 @@
 <?php
+// Abstract Controller.
 namespace Barium\Controller;
 
-use Barium\Strategy\ControllerStrategy;
-use Barium\Strategy\MapperStrategy;
+// PSR 7 standard.
+use Slim\Http\Request;
+use Slim\Http\Response;
 
-abstract class AbstractController implements ControllerStrategy
+// Interop Container standard.
+use Interop\Container\ContainerInterface;
+
+abstract class AbstractController
 {
-    public function __construct(MapperStrategy $MapperStrategy)
+    public function __construct(ContainerInterface $container)
     {
-        $this->MapperStrategy = $MapperStrategy;
+        $this->container = $container;
     }
+
+    abstract public function __invoke(Request $request, Response $response, array $args);
 }

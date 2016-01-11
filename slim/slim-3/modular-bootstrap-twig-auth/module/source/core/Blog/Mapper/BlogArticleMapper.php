@@ -2,9 +2,9 @@
 namespace Barium\Blog\Mapper;
 
 use Barium\Strategy\MapperStrategy;
-
 use Barium\Strategy\GatewayStrategy;
-use Barium\Strategy\ModelStrategy;
+
+use Barium\Blog\Model\BlogArticleModel;
 
 class BlogArticleMapper implements MapperStrategy
 {
@@ -13,20 +13,14 @@ class BlogArticleMapper implements MapperStrategy
      * @var [type]
      */
     protected $gateway;
-    protected $model;
 
     /**
      * [__construct description]
      * @param GatewayStrategy $gateway [description]
-     * @param ModelStrategy   $model   [description]
      */
-    public function __construct(
-        GatewayStrategy $gateway,
-        ModelStrategy $model
-    )
+    public function __construct(GatewayStrategy $gateway)
     {
         $this->gateway = $gateway;
-        $this->model = $model;
     }
 
     /**
@@ -43,7 +37,7 @@ class BlogArticleMapper implements MapperStrategy
             throw new \Exception('Not found!');
         }
 
-        return $this->mapObject($this->model, $row);
+        return $this->mapObject(row);
     }
 
     /**
@@ -58,9 +52,7 @@ class BlogArticleMapper implements MapperStrategy
         $entries = [];
 
         foreach ($rows as $row) {
-            $class = get_class($this->model);
-            $model = new $class;
-            $entries[] = $this->mapObject($model, $row);
+            $entries[] = $this->mapObject($row);
         }
 
         return $entries;
@@ -71,14 +63,15 @@ class BlogArticleMapper implements MapperStrategy
      * @param  array  $row [description]
      * @return [type]      [description]
      */
-    public function mapObject(ModelStrategy $model, array $row)
+    public function mapObject(array $row)
     {
-        $model->setArticleId($row['article_id']) ;
-        $model->setTitle($row['title']);
-        $model->setDescription($row['description']);
-        $model->setCreatedOn($row['created_on']);
-        $model->setContent(isset($row['content']) ? $row['content'] : null);
-        $model->setTemplate(isset($row['template']) ? $row['template']['path'] : null);
+        $model = new BlogArticleModel($row);
+        // $model->setArticleId($row['article_id']) ;
+        // $model->setTitle($row['title']);
+        // $model->setDescription($row['description']);
+        // $model->setCreatedOn($row['created_on']);
+        // $model->setContent(isset($row['content']) ? $row['content'] : null);
+        // $model->setTemplate(isset($row['template']) ? $row['template']['path'] : null);
 
         return $model;
     }

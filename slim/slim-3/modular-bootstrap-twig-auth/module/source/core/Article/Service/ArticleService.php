@@ -2,18 +2,45 @@
 namespace Barium\Article\Service;
 
 use Barium\Service\AbstractService;
+use Barium\Strategy\MapperStrategy;
 
-class ArticleService extends AbstractService
+class ArticleService
 {
-    public function fetchRow($options = [])
+    /**
+     * [$model description]
+     * @var [type]
+     */
+    protected $mapper;
+
+    /**
+     * [__construct description]
+     * @param MapperStrategy $mapper   [description]
+     * @param MapperStrategy $articles [description]
+     */
+    public function __construct(MapperStrategy $mapper)
     {
-        $this->MapperStrategy->populate($this->ModelStrategy, $options);
-        return $this->ModelStrategy;
+        $this->mapper = $mapper;
     }
 
+    /**
+     * '[getArticle description]'
+     * @param  array  $options [description]
+     * @return [type]          [description]
+     */
+    public function getArticle($options = [])
+    {
+        $model = $this->mapper->getOne($options);
+
+        return $model;
+    }
+
+    /**
+     * [fetchTheme description]
+     * @param  array  $options [description]
+     * @return [type]          [description]
+     */
     public function fetchTheme($options = [])
     {
-        $this->MapperStrategy->populate($this->ModelStrategy, $options);
-        return $this->ModelStrategy;
+        $this->MapperStrategy->getTheme($options);
     }
 }

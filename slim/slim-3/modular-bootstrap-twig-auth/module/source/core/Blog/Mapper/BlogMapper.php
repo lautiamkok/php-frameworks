@@ -2,9 +2,9 @@
 namespace Barium\Blog\Mapper;
 
 use Barium\Strategy\MapperStrategy;
-
 use Barium\Strategy\GatewayStrategy;
-use Barium\Strategy\ModelStrategy;
+
+use Barium\Blog\Model\BlogModel;
 
 class BlogMapper implements MapperStrategy
 {
@@ -13,20 +13,14 @@ class BlogMapper implements MapperStrategy
      * @var [type]
      */
     protected $gateway;
-    protected $model;
 
     /**
      * [__construct description]
      * @param GatewayStrategy $gateway [description]
-     * @param ModelStrategy   $model   [description]
      */
-    public function __construct(
-        GatewayStrategy $gateway,
-        ModelStrategy $model
-    )
+    public function __construct(GatewayStrategy $gateway)
     {
         $this->gateway = $gateway;
-        $this->model = $model;
     }
 
     /**
@@ -43,7 +37,7 @@ class BlogMapper implements MapperStrategy
             throw new \Exception('Not found!');
         }
 
-        return $this->mapObject($this->model, $row);
+        return $this->mapObject($row);
     }
 
     /**
@@ -51,13 +45,14 @@ class BlogMapper implements MapperStrategy
      * @param  array  $row [description]
      * @return [type]      [description]
      */
-    public function mapObject(ModelStrategy $model, array $row)
+    public function mapObject(array $row)
     {
-        $model->setBlogId($row['article_id']) ;
-        $model->setTitle($row['title']);
-        $model->setContent($row['content']);
-        $model->setTemplate($row['template']['path']);
-        $model->setArticles(isset($row['articles']) ? $row['articles'] : []);
+        $model = new BlogModel($row);
+        // $model->setBlogId($row['article_id']) ;
+        // $model->setTitle($row['title']);
+        // $model->setContent($row['content']);
+        // $model->setTemplate($row['template']['path']);
+        // $model->setArticles(isset($row['articles']) ? $row['articles'] : []);
 
         return $model;
     }

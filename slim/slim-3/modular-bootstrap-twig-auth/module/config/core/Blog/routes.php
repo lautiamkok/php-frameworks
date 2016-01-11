@@ -3,11 +3,11 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-use Barium\Blog\PageController\BlogPageController;
+use Barium\Blog\Controller\BlogController;
 
 // Blog home page.
 $app->get('/blog', function (Request $request, Response $response, array $args) {
-    // Get the result via the page controller.
-    $controller = new BlogPageController($this);
+    // Get the result via the controller.
+    $controller = new BlogController($this);
     $controller($request, $response, $args);
 });

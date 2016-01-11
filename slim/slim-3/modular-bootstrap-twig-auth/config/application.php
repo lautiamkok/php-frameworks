@@ -11,7 +11,7 @@ return [
         // Otherwise it will fall back to the default message: 'Fallback Hello World!'
         // when no class is provided.
         'home_page' => [
-            'class' => 'Barium\Home\PageController\HomePageController'
+            'class' => 'Barium\Home\Controller\HomeController'
         ],
 
         'database' => [

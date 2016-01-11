@@ -1,53 +1,126 @@
 <?php
 namespace Barium\Blog\Controller;
 
-use Barium\Strategy\MapperStrategy;
-use Barium\Strategy\ModelStrategy;
+// PSR 7 standard.
+use Slim\Http\Request;
+use Slim\Http\Response;
 
-class BlogController
+// Controller.
+use Barium\Controller\AbstractController;
+
+// Service.
+use Barium\Blog\Service\BlogService;
+
+// Adapter.
+use Barium\Adapter\PdoAdapter;
+
+// Mapper.
+use Barium\Blog\Mapper\BlogMapper;
+use Barium\Blog\Mapper\BlogArticleMapper;
+
+// Gateway.
+use Barium\Blog\Gateway\BlogGateway;
+use Barium\Blog\Gateway\BlogArticleGateway;
+
+// Component.
+use Barium\Article\Component\ArticleContentComponent;
+use Barium\Article\Component\ArticleTemplateComponent;
+
+class BlogController extends AbstractController
 {
     /**
-     * [$model description]
-     * @var [type]
+     * [__invoke description]
+     * @param  Request  $request  [description]
+     * @param  Response $response [description]
+     * @param  array    $args     [description]
+     * @return [type]             [description]
      */
-    protected $model;
-    protected $mapper;
-    protected $articles;
-
-    /**
-     * [__construct description]
-     * @param ModelStrategy  $model    [description]
-     * @param MapperStrategy $mapper   [description]
-     * @param MapperStrategy $articles [description]
-     */
-    public function __construct(
-        ModelStrategy $model,
-        MapperStrategy $mapper,
-        MapperStrategy $articles
-    )
+    public function __invoke(Request $request, Response $response, array $args)
     {
-        $this->model = $model;
-        $this->mapper = $mapper;
-        $this->articles = $articles;
-    }
+       // Trigger exception in a "try" block
+        try {
+            // Get the core & local database configurations.
+            $databaseCore = require $this->container->settings['database']['core'];
+            $databaseLocal = require $this->container->settings['database']['local'];
 
-    /**
-     * [getBlog description]
-     * @param  array  $options [description]
-     * @return [type]          [description]
-     */
-    public function getBlog($options = [])
-    {
-        $this->mapper->getBlog([
-            "url" => $options["url"]
-        ]);
+            // Merge the configurations.
+            $databaseConfig = array_merge($databaseCore, $databaseLocal);
 
-        $params = array_merge([
-            "parent_id" => $this->model->getBlogId()
-        ], $options["articles"]);
+            // Instance of PdoAdapter.
+            $PdoAdapter = new PdoAdapter($databaseConfig['dsn'], $databaseConfig['username'], $databaseConfig['password']);
 
-        $this->model->setArticles(
-            $this->articles->getBlogArticle($params)
-        );
+            // Make connection.
+            $PdoAdapter->connect();
+
+            // Gateway & Mapper.
+            $BlogGateway = new BlogGateway($PdoAdapter);
+            $BlogMapper = new BlogMapper($BlogGateway);
+            $BlogArticleGateway = new BlogArticleGateway($PdoAdapter);
+            $BlogArticleMapper = new BlogArticleMapper($BlogArticleGateway);
+
+            // Components.
+            $BlogContentComponent = new ArticleContentComponent($PdoAdapter);
+            $BlogTemplateComponent = new ArticleTemplateComponent($PdoAdapter);
+
+            // Inject components.
+            $BlogGateway->addComponent($BlogContentComponent);
+            $BlogGateway->addComponent($BlogTemplateComponent);
+
+            // Service.
+            $BlogService = new BlogService($BlogMapper, $BlogArticleMapper);
+
+            // Get the blog.
+            $BlogModel = $BlogService->getBlog([
+                "url" => 'blog',
+                "articles" => [
+                    "type" => "post",
+                    "start_row" => 0,
+                    "limit" => 6
+                ]
+            ]);
+
+            print_r($BlogModel);
+
+            // $model->setArticles(
+            //     $BlogArticleMapper->getBlogArticle($params)
+            // );
+
+            // print_r($model);
+
+            // // Get format in the query string.
+            // $allGetVars = $request->getQueryParams();
+            // $format = isset($allGetVars['format']) ? $allGetVars['format'] : null;
+
+            // // Encode the data to json - if the json is requested.
+            // if ($format === 'json') {
+            //     return $response->getBody()->write(json_encode($Blog));
+            // }
+
+            // // Get an instance of the Twig Environment.
+            // $twig = $this->container->view;
+
+            // // From that get the Twig Loader instance (file loader in this case).
+            // $loader = $twig->getLoader();
+
+            // // Add the module template and additional paths to the existing.
+            // $loader->addPath(APPLICATION_ROOT . 'public/theme/default/');
+            // $loader->addPath(APPLICATION_ROOT . 'public/theme/default/Blog/');
+
+            // // Load the template through the Twig service in the DIC.
+            // $template = $twig->loadTemplate('index.twig');
+
+            // // Render the template using a simple content variable.
+            // return $response->write($template->render([
+            //     'baseUrl' => BASE_URL,
+            //     'blogId' => $BlogModel->getBlogId(),
+            //     'title' => $BlogModel->getTitle(),
+            //     'content' => $BlogModel->getContent()
+            // ]));
+
+        } catch(\Exception $e) {
+            echo 'Message: ' .$e->getMessage();
+            // $container = $this;
+            // return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
+        }
     }
 }
