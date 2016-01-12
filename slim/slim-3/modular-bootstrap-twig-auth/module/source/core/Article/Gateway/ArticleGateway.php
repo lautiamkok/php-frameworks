@@ -128,7 +128,7 @@ class ArticleGateway implements GatewayStrategy, CompositeStrategy, ComposableSt
         ";
 
         // Store the data in the local variable.
-        $item = $this->PdoAdapter->fetchRow($sql, [
+        $item = $this->PdoAdapter->fetchRows($sql, [
             $settings['article_id'],
             $settings['article_id'],
             strtolower(str_replace(array("-", "_"), " ", $settings['url'])),
@@ -137,16 +137,16 @@ class ArticleGateway implements GatewayStrategy, CompositeStrategy, ComposableSt
             $settings['hide']
         ]);
 
-        // Make sure there is a positive result.
-        if ($item !== false) {
-            // Get the components - if any added.
-            $components = $this->compose([
-                'article_id' => $item['article_id']
-            ]);
+        // // Make sure there is a positive result.
+        // if ($item !== false) {
+        //     // Get the components - if any added.
+        //     $components = $this->compose([
+        //         'article_id' => $item['article_id']
+        //     ]);
 
-            // Return the entire object for Method chaining.
-            return array_merge($item, $components);
-        }
+        //     // Return the entire object for Method chaining.
+        //     return array_merge($item, $components);
+        // }
 
         // Return the result.
         return $item;

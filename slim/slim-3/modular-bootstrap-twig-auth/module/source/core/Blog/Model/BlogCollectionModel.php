@@ -3,7 +3,7 @@ namespace Barium\Blog\Model;
 
 use Barium\Strategy\ModelStrategy;
 
-class BlogArticleModel implements ModelStrategy
+class BlogCollectionModel implements ModelStrategy
 {
     /**
      * [$articleId description]

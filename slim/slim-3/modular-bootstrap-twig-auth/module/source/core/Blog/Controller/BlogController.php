@@ -16,11 +16,11 @@ use Barium\Adapter\PdoAdapter;
 
 // Mapper.
 use Barium\Blog\Mapper\BlogMapper;
-use Barium\Blog\Mapper\BlogArticleMapper;
+use Barium\Blog\Mapper\BlogCollectionMapper;
 
 // Gateway.
 use Barium\Blog\Gateway\BlogGateway;
-use Barium\Blog\Gateway\BlogArticleGateway;
+use Barium\Blog\Gateway\BlogCollectionGateway;
 
 // Component.
 use Barium\Article\Component\ArticleContentComponent;
@@ -55,8 +55,8 @@ class BlogController extends AbstractController
             // Gateway & Mapper.
             $BlogGateway = new BlogGateway($PdoAdapter);
             $BlogMapper = new BlogMapper($BlogGateway);
-            $BlogArticleGateway = new BlogArticleGateway($PdoAdapter);
-            $BlogArticleMapper = new BlogArticleMapper($BlogArticleGateway);
+            $BlogCollectionGateway = new BlogCollectionGateway($PdoAdapter);
+            $BlogCollectionMapper = new BlogCollectionMapper($BlogCollectionGateway);
 
             // Components.
             $BlogContentComponent = new ArticleContentComponent($PdoAdapter);
@@ -67,7 +67,7 @@ class BlogController extends AbstractController
             $BlogGateway->addComponent($BlogTemplateComponent);
 
             // Service.
-            $BlogService = new BlogService($BlogMapper, $BlogArticleMapper);
+            $BlogService = new BlogService($BlogMapper, $BlogCollectionMapper);
 
             // Get the blog.
             $BlogModel = $BlogService->getBlog([

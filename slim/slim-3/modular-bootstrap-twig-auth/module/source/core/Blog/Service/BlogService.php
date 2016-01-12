@@ -42,7 +42,7 @@ class BlogService
         ], $options["articles"]);
 
         $result = $model->setArticles(
-            $this->articles->getBlogArticle($params)
+            $this->articles->getBlogCollection($params)
         );
 
         return $result;

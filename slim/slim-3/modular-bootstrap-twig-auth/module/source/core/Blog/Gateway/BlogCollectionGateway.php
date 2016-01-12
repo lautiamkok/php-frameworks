@@ -11,7 +11,7 @@ use Barium\Helper\ArrayHelpers;
 use Barium\Helper\ObjectHelpers;
 use Barium\Helper\ItemHelpers;
 
-class BlogArticleGateway implements GatewayStrategy, CompositeStrategy, ComposableStrategy
+class BlogCollectionGateway implements GatewayStrategy, CompositeStrategy, ComposableStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;

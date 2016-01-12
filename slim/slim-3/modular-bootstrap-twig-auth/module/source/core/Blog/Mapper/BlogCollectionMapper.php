@@ -4,14 +4,14 @@ namespace Barium\Blog\Mapper;
 use Barium\Mapper\AbstractMapper;
 use Barium\Strategy\GatewayStrategy;
 
-class BlogMapper extends AbstractMapper
+class BlogCollectionMapper extends AbstractMapper
 {
     /**
      * Set props.
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Barium\Blog\Model\BlogModel';
+    protected $model = 'Barium\Blog\Model\BlogCollectionModel';
 
     /**
      * [__construct description]
@@ -23,19 +23,14 @@ class BlogMapper extends AbstractMapper
     }
 
     /**
-     * [getOne description]
+     * [getBlogArticle description]
      * @param  array  $options [description]
      * @return [type]          [description]
      */
-    public function getBlog($options = [])
+    public function getBlogCollection($options = [])
     {
-        $collection = $this->gateway->getBlog($options);
+        $rows = $this->gateway->getRows($options);
 
-        // Throw the error exception when no blog is found.
-        if ($collection === false) {
-            throw new \Exception('Not found!');
-        }
-
-        return $this->mapOne($collection);
+        return $this->mapCollection($rows);
     }
 }
