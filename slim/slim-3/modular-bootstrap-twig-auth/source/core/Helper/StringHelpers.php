@@ -1,8 +1,8 @@
 <?php
 
-namespace Barium\Util;
+namespace Barium\Helper;
 
-trait StringManager
+trait StringHelpers
 {
     /*
     * limit the lenght of the string
