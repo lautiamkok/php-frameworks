@@ -165,7 +165,7 @@ class BlogCollectionGateway implements GatewayStrategy, CompositeStrategy, Compo
         ";
 
         // Fetch rows.
-        $items = $this->PdoAdapter->fetchRows($sql, array(
+        $items = $this->PdoAdapter->fetchAll($sql, array(
             $setting->parent_id,
             $setting->parent_id,
             '1',

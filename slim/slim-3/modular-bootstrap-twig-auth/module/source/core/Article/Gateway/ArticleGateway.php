@@ -128,7 +128,7 @@ class ArticleGateway implements GatewayStrategy, CompositeStrategy, ComposableSt
         ";
 
         // Store the data in the local variable.
-        $item = $this->PdoAdapter->fetchRows($sql, [
+        $item = $this->PdoAdapter->fetchAll($sql, [
             $settings['article_id'],
             $settings['article_id'],
             strtolower(str_replace(array("-", "_"), " ", $settings['url'])),

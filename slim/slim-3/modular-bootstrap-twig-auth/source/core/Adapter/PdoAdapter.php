@@ -57,8 +57,7 @@ class PdoAdapter
      */
     public function connect()
     {
-        try
-        {
+        try {
             // MySQL with PDO_MYSQL
             // To deal with special characters and Chinese character, add charset=UTF-8 in $dsn and array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8").
             // @source: http://stackoverflow.com/questions/10209777/php-pdo-with-special-characters
@@ -70,9 +69,7 @@ class PdoAdapter
             unset($this->username);
             unset($this->password);
 
-        }
-        catch (PDOException $error)
-        {
+        } catch (PDOException $error) {
             // Call the getError function
             $this->getError($error);
         }
@@ -105,10 +102,9 @@ class PdoAdapter
      * @param array $params
      * @return number
      */
-    public function countRows($query, $params = [])
+    public function rowCount($query, $params = [])
     {
-        try
-        {
+        try {
             // Create a prepared statement
             $stmt = $this->PDO->prepare($query);
 
@@ -121,9 +117,7 @@ class PdoAdapter
             // Return the result
             return $stmt->rowCount();
 
-        }
-        catch (PDOException $error)
-        {
+        } catch (PDOException $error) {
             // Call the getError function
             $this->getError($error);
         }
@@ -135,10 +129,9 @@ class PdoAdapter
      * @param array $params
      * @return object/ array
      */
-    public function fetchRow($query, $params = [])
+    public function fetch($query, $params = [])
     {
-        try
-        {
+        try {
             // Prepare query.
             $stmt = $this->PDO->prepare($query);
 
@@ -165,9 +158,7 @@ class PdoAdapter
             // Return the result
             return $stmt->fetch();
 
-        }
-        catch (PDOException $error)
-        {
+        } catch (PDOException $error) {
             // Call the getError function.
             $this->getError($error);
         }
@@ -197,10 +188,9 @@ class PdoAdapter
      * @param array $params
      * @return object/ array
      */
-    public function fetchRows($query, $params = [])
+    public function fetchAll($query, $params = [])
     {
-        try
-        {
+        try {
             // Prepare query.
             $stmt = $this->PDO->prepare($query);
 
@@ -212,16 +202,12 @@ class PdoAdapter
             // wrap the bindParam function in a foreach that scan your parameters array
             // it's $key + 1 because arrays in PHP are zero-indexed, but bindParam wants the 1st parameter to be 1, not 0 (and so on).
             /*
-            foreach($params as $key => $param)
-            {
-              if(is_int($param))
-                    {
-                            $stmt->bindParam($key + 1, $param, PDO::PARAM_INT);
-                    }
-              else
-                    {
-                            $stmt->bindParam($key + 1, $param, PDO::PARAM_STR);
-                    }
+            foreach ($params as $key => $param) {
+                if (is_int($param)) {
+                    $stmt->bindParam($key + 1, $param, PDO::PARAM_INT);
+                } else {
+                    $stmt->bindParam($key + 1, $param, PDO::PARAM_STR);
+                }
             }
 
             // Execute the query
@@ -234,9 +220,7 @@ class PdoAdapter
             // Return the result
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        }
-        catch (PDOException $error)
-        {
+        } catch (PDOException $error) {
             // Call the getError function
             $this->getError($error);
         }
@@ -248,10 +232,9 @@ class PdoAdapter
      * @param array $params
      * @return object
      */
-    public function fetchRowObject($query, $params = [])
+    public function fetchObject($query, $params = [])
     {
-        try
-        {
+        try {
             // Prepare query.
             $stmt = $this->PDO->prepare($query);
 
@@ -267,9 +250,7 @@ class PdoAdapter
             // Or:
             //return $stmt->fetch(PDO::FETCH_OBJ);
 
-        }
-        catch (PDOException $error)
-        {
+        } catch (PDOException $error) {
             // Call the getError function
             $this->getError($error);
         }
@@ -283,24 +264,18 @@ class PdoAdapter
      */
     public function executeSQL($query, $params = [])
     {
-        try
-        {
+        try {
             $stmt = $this->PDO->prepare($query);
             $params = is_array($params) ? $params : array($params);
             $stmt->execute($params);
 
-            if($stmt->rowCount()>0)
-            {
+            if ($stmt->rowCount() >0 ) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return '0 rows affected';
             }
 
-        }
-        catch (PDOException $error)
-        {
+        } catch (PDOException $error) {
             // Call the getError function
             $this->getError($error);
         }
