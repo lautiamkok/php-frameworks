@@ -1,9 +1,11 @@
 <?php
 namespace Barium\Strategy;
 
+use Barium\Strategy\CompositeStrategy;
+
 interface ComposableStrategy
 {
-    function addComponent(\Barium\Strategy\CompositeStrategy $CompositeStrategy);
-    function removeComponent(\Barium\Strategy\CompositeStrategy $CompositeStrategy);
+    function addComponent(CompositeStrategy $component);
+    function removeComponent(CompositeStrategy $component);
 }
 

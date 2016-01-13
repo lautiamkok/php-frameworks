@@ -1,19 +1,19 @@
 <?php
-namespace Barium\Article\Model;
+namespace Barium\Article\Component\Template;
 
 use Barium\Strategy\ModelStrategy;
 
-class ArticleModel implements ModelStrategy
+class ArticleTemplateModel implements ModelStrategy
 {
     /**
      * [$articleId description]
      * @var [type]
      */
-    protected $articleId;
+    protected $templateId;
     protected $title;
     protected $description;
-    protected $content;
-    protected $template;
+    protected $path;
+    protected $code;
     protected $createdOn;
     protected $updatedOn;
 
@@ -34,23 +34,17 @@ class ArticleModel implements ModelStrategy
     {
         foreach ($params as $key => $value) {
             switch ($key) {
-                case 'article_id':
-                    $this->setArticleId($value);
+                case 'template_id':
+                    $this->setTemplateId($value);
                     break;
                 case 'title':
                     $this->setTitle($value);
                     break;
-                case 'content':
-                    $this->setContent($value);
+                case 'path':
+                    $this->setPath($value);
                     break;
-                case 'articles':
-                    $this->setArticles($value);
-                    break;
-                case 'template':
-                    $this->setTemplate($value);
-                    break;
-                case 'creator':
-                    $this->setCreator($value);
+                case 'code':
+                    $this->setCode($value);
                     break;
                 case 'created_on':
                     $this->setCreatedOn($value);
@@ -69,9 +63,9 @@ class ArticleModel implements ModelStrategy
 
     // Setters:
 
-    public function setArticleId($articleId)
+    public function setTemplateId($templateId)
     {
-        $this->articleId = $articleId;
+        $this->templateId = $templateId;
 
         return $this;
     }
@@ -83,23 +77,16 @@ class ArticleModel implements ModelStrategy
         return $this;
     }
 
-    public function setDescription($description)
+    public function setPath($path)
     {
-        $this->description = $description;
+        $this->path = $path;
 
         return $this;
     }
 
-    public function setContent($content)
+    public function setCode($code)
     {
-        $this->content = $content;
-
-        return $this;
-    }
-
-    public function setTemplate($template)
-    {
-        $this->template = $template;
+        $this->code = $code;
 
         return $this;
     }
@@ -120,9 +107,9 @@ class ArticleModel implements ModelStrategy
 
     // Getters:
 
-    public function getArticleId()
+    public function getTemplateId()
     {
-        return $this->articleId;
+        return $this->templateId;
     }
 
     public function getTitle()
@@ -130,19 +117,14 @@ class ArticleModel implements ModelStrategy
         return $this->title;
     }
 
-    public function getDescription()
+    public function getPath()
     {
-        return $this->description;
+        return $this->path;
     }
 
-    public function getContent()
+    public function getCode()
     {
-        return $this->content;
-    }
-
-    public function getTemplate()
-    {
-        return $this->template;
+        return $this->code;
     }
 
     public function getCreatedOn()
