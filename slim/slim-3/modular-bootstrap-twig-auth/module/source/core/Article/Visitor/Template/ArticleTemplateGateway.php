@@ -1,5 +1,5 @@
 <?php
-namespace Barium\Article\Component\Template;
+namespace Barium\Article\Visitor\Template;
 
 use Barium\Strategy\GatewayStrategy;
 

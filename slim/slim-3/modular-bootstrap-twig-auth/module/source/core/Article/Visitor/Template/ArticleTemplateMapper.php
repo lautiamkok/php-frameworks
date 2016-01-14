@@ -1,18 +1,19 @@
 <?php
-namespace Barium\Article\Component\Template;
+namespace Barium\Article\Visitor\Template;
 
 use Barium\Mapper\AbstractMapper;
 use Barium\Strategy\GatewayStrategy;
-use Barium\Strategy\CompositeStrategy;
+use Barium\Strategy\VisitableStrategy;
+use Barium\Strategy\VisitorStrategy;
 
-class ArticleTemplateMapper extends AbstractMapper implements CompositeStrategy
+class ArticleTemplateMapper extends AbstractMapper implements VisitorStrategy
 {
     /**
      * Set props.
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Barium\Article\Component\Template\ArticleTemplateModel';
+    protected $model = 'Barium\Article\Visitor\Template\ArticleTemplateModel';
 
     /**
      * [__construct description]
@@ -23,14 +24,9 @@ class ArticleTemplateMapper extends AbstractMapper implements CompositeStrategy
         $this->gateway = $gateway;
     }
 
-    /**
-     * [compose description]
-     * @param  array  $options [description]
-     * @return [type]          [description]
-     */
-    public function compose($options = [])
+    public function visit(VisitableStrategy $visitable)
     {
-        return $this->getOne($options);
+        $visitable->setTemplate($this->getOne($visitable));
     }
 
     /**
@@ -38,19 +34,17 @@ class ArticleTemplateMapper extends AbstractMapper implements CompositeStrategy
      * @param  array  $options [description]
      * @return [type]          [description]
      */
-    public function getOne($options = [])
+    public function getOne($visitable)
     {
-        $collection = $this->gateway->getOne($options);
-
-        $template = [];
+        $collection = $this->gateway->getOne([
+            'article_id' => $visitable->getArticleId()
+        ]);
 
         // Throw the error exception when no blog is found.
         if (!$collection) {
             throw new \Exception('Not template found!');
         }
 
-        $template['template'] = $this->mapOne($collection);
-
-        return $template;
+        return $this->mapOne($collection);
     }
 }

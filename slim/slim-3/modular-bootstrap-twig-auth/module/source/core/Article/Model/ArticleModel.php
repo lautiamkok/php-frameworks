@@ -2,8 +2,10 @@
 namespace Barium\Article\Model;
 
 use Barium\Strategy\ModelStrategy;
+use Barium\Strategy\VisitableStrategy;
+use Barium\Strategy\VisitorStrategy;
 
-class ArticleModel implements ModelStrategy
+class ArticleModel implements ModelStrategy, VisitableStrategy
 {
     /**
      * [$articleId description]
@@ -153,5 +155,10 @@ class ArticleModel implements ModelStrategy
     public function getUpdatedOn()
     {
         return $this->updatedOn;
+    }
+
+    public function accept(VisitorStrategy $visitor)
+    {
+        $visitor->visit($this);
     }
 }

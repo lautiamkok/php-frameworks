@@ -20,9 +20,9 @@ use Barium\Article\Mapper\ArticleMapper;
 // Gateway.
 use Barium\Article\Gateway\ArticleGateway;
 
-// Component.
-use Barium\Article\Component\Template\ArticleTemplateGateway;
-use Barium\Article\Component\Template\ArticleTemplateMapper;
+// Visitor.
+use Barium\Article\Visitor\Template\ArticleTemplateGateway;
+use Barium\Article\Visitor\Template\ArticleTemplateMapper;
 
 class ArticleController extends AbstractController
 {
@@ -57,16 +57,18 @@ class ArticleController extends AbstractController
             // Service.
             $ArticleService = new ArticleService($ArticleMapper);
 
-            // Components.
+            // Visitors.
             $ArticleTemplateMapper = new ArticleTemplateMapper(new ArticleTemplateGateway($PdoAdapter));
-
-            // Inject components.
-            $ArticleService->addComponent($ArticleTemplateMapper);
 
             // Get the article object.
             $ArticleModel = $ArticleService->getArticle([
                 "url" => $args['url']
             ]);
+
+            // Inject Visitors.
+            $ArticleModel->accept($ArticleTemplateMapper);
+
+            print_r($ArticleModel);
 
             // Get format in the query string.
             $allGetVars = $request->getQueryParams();
