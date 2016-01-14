@@ -29,6 +29,16 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
     }
 
     /**
+     * [accept description]
+     * @param  VisitorStrategy $visitor [description]
+     * @return [type]                   [description]
+     */
+    public function accept(VisitorStrategy $visitor)
+    {
+        $visitor->visit($this);
+    }
+
+    /**
      * [setOptions description]
      * @param array $params [description]
      */
@@ -64,6 +74,10 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
         }
     }
 
+    /**
+     * [toArray description]
+     * @return [type] [description]
+     */
     public function toArray()
     {
         return get_object_vars($this);
@@ -71,6 +85,10 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
 
     // Setters:
 
+    /**
+     * [setArticleId description]
+     * @param [type] $articleId [description]
+     */
     public function setArticleId($articleId)
     {
         $this->articleId = $articleId;
@@ -78,6 +96,10 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
         return $this;
     }
 
+    /**
+     * [setTitle description]
+     * @param [type] $title [description]
+     */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -85,6 +107,10 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
         return $this;
     }
 
+    /**
+     * [setDescription description]
+     * @param [type] $description [description]
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -92,6 +118,10 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
         return $this;
     }
 
+    /**
+     * [setContent description]
+     * @param [type] $content [description]
+     */
     public function setContent($content)
     {
         $this->content = $content;
@@ -99,6 +129,10 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
         return $this;
     }
 
+    /**
+     * [setTemplate description]
+     * @param [type] $template [description]
+     */
     public function setTemplate($template)
     {
         $this->template = $template;
@@ -106,6 +140,10 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
         return $this;
     }
 
+    /**
+     * [setCreatedOn description]
+     * @param [type] $createdOn [description]
+     */
     public function setCreatedOn($createdOn)
     {
         $this->createdOn = $createdOn;
@@ -113,6 +151,10 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
         return $this;
     }
 
+    /**
+     * [setUpdatedOn description]
+     * @param [type] $updatedOn [description]
+     */
     public function setUpdatedOn($updatedOn)
     {
         $this->updatedOn = $updatedOn;
@@ -122,43 +164,66 @@ class ArticleModel implements ModelStrategy, VisitableStrategy
 
     // Getters:
 
+    /**
+     * [getArticleId description]
+     * @return [type] [description]
+     */
     public function getArticleId()
     {
         return $this->articleId;
     }
 
+    /**
+     * [getTitle description]
+     * @return [type] [description]
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
+    /**
+     * [getDescription description]
+     * @return [type] [description]
+     */
     public function getDescription()
     {
         return $this->description;
     }
 
+    /**
+     * [getContent description]
+     * @return [type] [description]
+     */
     public function getContent()
     {
         return $this->content;
     }
 
+    /**
+     * [getTemplate description]
+     * @return [type] [description]
+     */
     public function getTemplate()
     {
         return $this->template;
     }
 
+    /**
+     * [getCreatedOn description]
+     * @return [type] [description]
+     */
     public function getCreatedOn()
     {
         return $this->createdOn;
     }
 
+    /**
+     * [getUpdatedOn description]
+     * @return [type] [description]
+     */
     public function getUpdatedOn()
     {
         return $this->updatedOn;
-    }
-
-    public function accept(VisitorStrategy $visitor)
-    {
-        $visitor->visit($this);
     }
 }

@@ -23,7 +23,7 @@ class ArticleTemplateGateway implements GatewayStrategy
     }
 
     /**
-     * Implement the method in CompositeStrategy.
+     * [getOne description]
      * @param  array  $options [description]
      * @return [type]          [description]
      */

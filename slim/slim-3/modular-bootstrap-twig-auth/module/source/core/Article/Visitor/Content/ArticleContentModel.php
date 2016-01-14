@@ -1,18 +1,18 @@
 <?php
-namespace Barium\Article\Visitor\Template;
+namespace Barium\Article\Visitor\Content;
 
 use Barium\Strategy\ModelStrategy;
 
-class ArticleTemplateModel implements ModelStrategy
+class ArticleContentModel implements ModelStrategy
 {
     /**
      * [$articleId description]
      * @var [type]
      */
-    protected $templateId;
-    protected $title;
+    protected $contentId;
+    protected $categoryId;
     protected $description;
-    protected $path;
+    protected $value;
     protected $code;
     protected $createdOn;
     protected $updatedOn;
@@ -34,14 +34,14 @@ class ArticleTemplateModel implements ModelStrategy
     {
         foreach ($params as $key => $value) {
             switch ($key) {
-                case 'template_id':
-                    $this->setTemplateId($value);
+                case 'content_id':
+                    $this->setContentId($value);
                     break;
-                case 'title':
-                    $this->setTitle($value);
+                case 'category_id':
+                    $this->setCategoryId($value);
                     break;
-                case 'path':
-                    $this->setPath($value);
+                case 'value':
+                    $this->setValue($value);
                     break;
                 case 'code':
                     $this->setCode($value);
@@ -68,34 +68,34 @@ class ArticleTemplateModel implements ModelStrategy
     // Setters:
 
     /**
-     * [setTemplateId description]
-     * @param [type] $templateId [description]
+     * [setContentId description]
+     * @param [type] $contentId [description]
      */
-    public function setTemplateId($templateId)
+    public function setContentId($contentId)
     {
-        $this->templateId = $templateId;
+        $this->contentId = $contentId;
 
         return $this;
     }
 
     /**
-     * [setTitle description]
-     * @param [type] $title [description]
+     * [setCategoryId description]
+     * @param [type] $categoryId [description]
      */
-    public function setTitle($title)
+    public function setCategoryId($categoryId)
     {
-        $this->title = $title;
+        $this->categoryId = $categoryId;
 
         return $this;
     }
 
     /**
-     * [setPath description]
-     * @param [type] $path [description]
+     * [setValue description]
+     * @param [type] $value [description]
      */
-    public function setPath($path)
+    public function setValue($value)
     {
-        $this->path = $path;
+        $this->value = $value;
 
         return $this;
     }
@@ -136,30 +136,30 @@ class ArticleTemplateModel implements ModelStrategy
     // Getters:
 
     /**
-     * [getTemplateId description]
+     * [getContentId description]
      * @return [type] [description]
      */
-    public function getTemplateId()
+    public function getContentId()
     {
-        return $this->templateId;
+        return $this->contentId;
     }
 
     /**
-     * [getTitle description]
+     * [getCategoryId description]
      * @return [type] [description]
      */
-    public function getTitle()
+    public function getCategoryId()
     {
-        return $this->title;
+        return $this->categoryId;
     }
 
     /**
-     * [getPath description]
+     * [getValue description]
      * @return [type] [description]
      */
-    public function getPath()
+    public function getValue()
     {
-        return $this->path;
+        return $this->value;
     }
 
     /**

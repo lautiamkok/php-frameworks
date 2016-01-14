@@ -24,6 +24,11 @@ class ArticleTemplateMapper extends AbstractMapper implements VisitorStrategy
         $this->gateway = $gateway;
     }
 
+    /**
+     * [visit description]
+     * @param  VisitableStrategy $visitable [description]
+     * @return [type]                       [description]
+     */
     public function visit(VisitableStrategy $visitable)
     {
         $visitable->setTemplate($this->getOne($visitable));
