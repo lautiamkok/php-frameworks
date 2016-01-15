@@ -2,29 +2,29 @@
 /*
  * Handle the component
  */
-namespace Barium\Article\Component;
+namespace Spectre\Article\Component;
 
-use Barium\Strategy\CompositeStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
+use Spectre\Strategy\CompositeStrategy;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
 
 class ArticleImagesComponent implements CompositeStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      * Construct dependency.
-     */	
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter, $options)
+     */
+    public function __construct(\Spectre\Adapter\PdoAdapter $PdoAdapter, $options)
     {
         // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
         $this->options = $options;
     }
-    
+
     /*
      *  Implement the method in CompositeStrategy.
      */
@@ -49,20 +49,20 @@ class ArticleImagesComponent implements CompositeStrategy
         // Return the result.
         return $images;
     }
-    
+
     public function getImages($options = [])
     {
         // Set vars.
         $defaults = array(
-            "article_id"        =>  null, 
-            "category_id"       =>  null, 
-            "randomise"         =>  false, 
-            "start_row"         =>  0, 
-            "limit"             =>  0, 
+            "article_id"        =>  null,
+            "category_id"       =>  null,
+            "randomise"         =>  false,
+            "start_row"         =>  0,
+            "limit"             =>  0,
             "category"          =>  [
-                "category_id"	=>  null, 
+                "category_id"	=>  null,
                 "code"          =>  null
-            ], 
+            ],
      );
 
         // Process arrays and convert the result to object.
@@ -78,7 +78,7 @@ class ArticleImagesComponent implements CompositeStrategy
 
             LEFT JOIN article_has_image x
             ON x.image_id = i.image_id
-            
+
             LEFT JOIN category c
             ON c.category_id = i.category_id
 
@@ -87,20 +87,20 @@ class ArticleImagesComponent implements CompositeStrategy
             AND i.hide != ?
 
             ORDER BY IF(?, rand(), i.sort+0) ASC -- randomise --
-            
+
             {$limit}
         ";
 
         // Execute the query.
         $this->items = $this->PdoAdapter->fetchRows($sql, array(
-            $settings->article_id, 
-            $settings->category_id, 
-            $settings->category->code, 
-            $settings->category->category_id, 
-            '1', 
+            $settings->article_id,
+            $settings->category_id,
+            $settings->category->code,
+            $settings->category->category_id,
+            '1',
             $settings->randomise
      ));
-        
+
         // Return $this object for chaining.
         return $this;
     }

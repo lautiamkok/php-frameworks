@@ -2,28 +2,28 @@
 /*
  * Handle the component
  */
-namespace Barium\Article\Component;
+namespace Spectre\Article\Component;
 
-use Barium\Strategy\CompositeStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
+use Spectre\Strategy\CompositeStrategy;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
 
 class ArticleScriptComponent implements CompositeStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      * Construct dependency.
-     */	
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
+     */
+    public function __construct(\Spectre\Adapter\PdoAdapter $PdoAdapter)
     {
         // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
     }
-    
+
     /*
      *  Implement the method in CompositeStrategy.
      */
@@ -48,7 +48,7 @@ class ArticleScriptComponent implements CompositeStrategy
         // Return the result.
         return $script;
     }
-    
+
     public function getScript($options = [])
     {
         // Set vars.

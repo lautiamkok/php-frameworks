@@ -1,14 +1,14 @@
-<?php 
-namespace Barium\Engineer;
+<?php
+namespace Spectre\Engineer;
 
-use Barium\Strategy\EngineerStrategy;
+use Spectre\Strategy\EngineerStrategy;
 
 abstract class AbstractEngineer implements EngineerStrategy
 {
     /*
      * Implement the method in the strategy.
      */
-    public function setModel(\Barium\Strategy\ModelStrategy $ModelStrategy) 
+    public function setModel(\Spectre\Strategy\ModelStrategy $ModelStrategy)
     {
         $this->model = $ModelStrategy;
 
@@ -18,7 +18,7 @@ abstract class AbstractEngineer implements EngineerStrategy
     /*
      * Implement the method in the strategy.
      */
-    public function setBuilder(\Barium\Strategy\BuilderStrategy $BuilderStrategy)
+    public function setBuilder(\Spectre\Strategy\BuilderStrategy $BuilderStrategy)
     {
         $this->builder = $BuilderStrategy;
 

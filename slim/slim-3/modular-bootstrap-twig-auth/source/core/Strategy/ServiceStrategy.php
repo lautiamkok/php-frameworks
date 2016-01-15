@@ -1,8 +1,8 @@
 <?php
-namespace Barium\Strategy;
+namespace Spectre\Strategy;
 
 interface ServiceStrategy
 {
-    public function setMapper(\Barium\Strategy\MapperStrategy $MapperStrategy);
-    public function setModel(\Barium\Strategy\ModelStrategy $ModelStrategy);
+    public function setMapper(\Spectre\Strategy\MapperStrategy $MapperStrategy);
+    public function setModel(\Spectre\Strategy\ModelStrategy $ModelStrategy);
 }

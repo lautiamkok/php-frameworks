@@ -3,7 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-use Barium\Blog\Controller\BlogController;
+use Spectre\Blog\Controller\BlogController;
 
 // Blog home page.
 $app->get('/blog', function (Request $request, Response $response, array $args) {

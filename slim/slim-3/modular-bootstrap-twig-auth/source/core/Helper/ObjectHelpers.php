@@ -2,7 +2,7 @@
 /*
  * Common methods.
  */
-namespace Barium\Helper;
+namespace Spectre\Helper;
 
 // droplet - a small drop of liquid
 // snippet - a small and often interesting piece of news, information, or conversation
@@ -35,10 +35,10 @@ trait ObjectHelpers
      * @param object $input
      */
     function dataToProperty($input)
-    {   
+    {
         // Convert the object to an array.
-        if(is_object($input)) 
-        { 
+        if(is_object($input))
+        {
             $input = $this->objectToArray($input);
         }
 
@@ -68,32 +68,32 @@ trait ObjectHelpers
         //return isset($object->$key) && $object->$key ? $object->$key : null;
 
         // Make sure the input is an array.
-        if(!is_array($input)) 
+        if(!is_array($input))
             $input = self::objectToArray($input);
 
         // Loop the search.
         foreach ($search as $key => $value)
-        { 
+        {
             // Check if the value is not an array then set it as a parent.
             if(!is_array($value)) $parent = $value;
             //var_dump($parent);
 
             if(is_array($value))
             {
-                // Make recursive if the value is an array. 			
+                // Make recursive if the value is an array.
                 $output = (isset($input[$parent]) && $input[$parent]) ? self::setObjectProperty($input[$parent], $value) : null;
                 /*
                 if(isset($input[$parent]) && $input[$parent])
                         $output = setObjectProperty($input[$parent], $value);
-                else 
+                else
                         $output = null;
                 */
-            } 
+            }
             else if(isset($input[$value]) && $input[$value])
             {
                 $output = $input[$value];
-            } 
-            else 
+            }
+            else
             {
                 $output = null;
             }
@@ -103,14 +103,14 @@ trait ObjectHelpers
         return self::arrayToObject($output);
 
     }
-    
+
     /*
      * converting stdclass objects to multidimensional arrays.
      * @source: http://stackoverflow.com/questions/10029883/how-to-convert-the-object-back-to-an-array
      * @param object $object
      * @return array $array
      */
-    public function objectToArray($object) 
+    public function objectToArray($object)
     {
         //return json_decode(json_encode($object), true);
 
@@ -136,20 +136,20 @@ trait ObjectHelpers
      */
     public function objectToString($object)
     {
-        if(!is_object($object)) 
+        if(!is_object($object))
         {
             return $object;
         }
 
         return implode(", ", self::objectToArray($object));
     }
-    
+
     /*
      * reset/clear an object's props.
      */
-    function resetObjectProperty() 
+    function resetObjectProperty()
     {
-        foreach ($this as &$value) 
+        foreach ($this as &$value)
         {
             $value = null;
         }
@@ -158,9 +158,9 @@ trait ObjectHelpers
     /*
      * Reset/clear an object.
      */
-    function resetObject() 
+    function resetObject()
     {
-        foreach ($this as $key => $value) 
+        foreach ($this as $key => $value)
         {
             unset($this->$key);
         }

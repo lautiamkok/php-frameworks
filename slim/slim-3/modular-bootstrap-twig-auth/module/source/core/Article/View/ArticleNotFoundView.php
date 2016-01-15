@@ -2,12 +2,12 @@
 /*
  * Handle the view of the page.
  *
-*/ 
-namespace Barium\Article\View;
+*/
+namespace Spectre\Article\View;
 
-//use Barium\Strategy\ViewStrategy;
-use Barium\Article\View\AbstractView;
-    
+//use Spectre\Strategy\ViewStrategy;
+use Spectre\Article\View\AbstractView;
+
 class ArticleNotFoundView extends AbstractView //implements ViewStrategy
 {
     /*
@@ -19,11 +19,11 @@ class ArticleNotFoundView extends AbstractView //implements ViewStrategy
     protected $ArticleModel;
     protected $language;
     public $exceptionMessage;
-    
+
     /*
      * Output.
      */
-    function render() 
+    function render()
     {
         // Render page and bind data to it.
         return $this->TemplateStrategy->render([

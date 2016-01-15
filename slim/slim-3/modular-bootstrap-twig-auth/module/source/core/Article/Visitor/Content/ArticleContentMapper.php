@@ -1,10 +1,10 @@
 <?php
-namespace Barium\Article\Visitor\Content;
+namespace Spectre\Article\Visitor\Content;
 
-use Barium\Mapper\AbstractMapper;
-use Barium\Strategy\GatewayStrategy;
-use Barium\Strategy\VisitableStrategy;
-use Barium\Strategy\VisitorStrategy;
+use Spectre\Mapper\AbstractMapper;
+use Spectre\Strategy\GatewayStrategy;
+use Spectre\Strategy\VisitableStrategy;
+use Spectre\Strategy\VisitorStrategy;
 
 class ArticleContentMapper extends AbstractMapper implements VisitorStrategy
 {
@@ -13,7 +13,7 @@ class ArticleContentMapper extends AbstractMapper implements VisitorStrategy
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Barium\Article\Visitor\Content\ArticleContentModel';
+    protected $model = 'Spectre\Article\Visitor\Content\ArticleContentModel';
 
     /**
      * [__construct description]

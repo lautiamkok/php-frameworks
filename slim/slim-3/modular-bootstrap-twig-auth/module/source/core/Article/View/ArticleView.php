@@ -3,10 +3,10 @@
  * Handle the view of the page.
  *
  */
-namespace Barium\Article\View;
+namespace Spectre\Article\View;
 
-use Barium\Article\View\AbstractView;
-use Barium\Article\Model\ArticleModel;
+use Spectre\Article\View\AbstractView;
+use Spectre\Article\Model\ArticleModel;
 
 class ArticleView extends AbstractView
 {

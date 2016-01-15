@@ -9,7 +9,7 @@
  * all values are treated as PDO::PARAM_STR.
  *
  */
-namespace Barium\Adapter;
+namespace Spectre\Adapter;
 
 use PDO;
 

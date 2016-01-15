@@ -3,7 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-use Barium\Admin\Middleware\AuthMiddleware;
+use Spectre\Admin\Middleware\AuthMiddleware;
 
 // Admin group
 $app->group('/admin', function () {

@@ -2,7 +2,7 @@
 /*
  * Validation helper.
 */
-namespace Barium\Helper;
+namespace Spectre\Helper;
 
 trait ValidationHelper
 {
@@ -17,11 +17,11 @@ trait ValidationHelper
     public function validateEmail($email)
     {
         // Check if the version of php is at least 5.2.0.
-        if(version_compare(PHP_VERSION, '5.2.0') >= 0) 
+        if(version_compare(PHP_VERSION, '5.2.0') >= 0)
         {
             // filters the variable with FILTER_VALIDATE_EMAIL
             return filter_var($email, FILTER_VALIDATE_EMAIL);
-            
+
         }
 
         // Fall back to preg_match and regex.
@@ -45,7 +45,7 @@ trait ValidationHelper
     public function validateUrl($url)
     {
         // check if the version of php is at least 5.2.0.
-        if(version_compare(PHP_VERSION, '5.2.0') >= 0) 
+        if(version_compare(PHP_VERSION, '5.2.0') >= 0)
         {
             $url = filter_var($url, FILTER_VALIDATE_URL);
         }
@@ -63,11 +63,11 @@ trait ValidationHelper
         if($url)
         {
             // Make sure it is only one http:// in the string.
-            if (strrpos($url, "http://") > 0) 
+            if (strrpos($url, "http://") > 0)
             {
                 return false;
             }
-            else 
+            else
             {
                 return true;
             }
@@ -86,7 +86,7 @@ trait ValidationHelper
     {
         // Set default.
         $defaults = array(
-            "allow_pattern"	=>	null, 
+            "allow_pattern"	=>	null,
             "allow_uppercase"	=>	false
      );
 
@@ -154,7 +154,7 @@ trait ValidationHelper
 
             // @reference: http://stackoverflow.com/questions/13182683/check-for-multiple-and-combination-patterns-with-php-preg-match
             if(preg_match('/[\\'.$items.'][\\'.$items.']+/', $string)) return true; //'/[\s-_][\s-_]+/'
-            //if(preg_match('/\s\s+/', $string)) return true; 
+            //if(preg_match('/\s\s+/', $string)) return true;
         }
         else
         {
@@ -208,7 +208,7 @@ trait ValidationHelper
 
         return false;
     }
-    
+
     /*
      * tidy html/ text.
      * @param string $string

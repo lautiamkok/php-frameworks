@@ -1,30 +1,33 @@
 <?php
-namespace Barium\Blog\Controller;
+namespace Spectre\Blog\Controller;
 
 // PSR 7 standard.
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 // Controller.
-use Barium\Controller\AbstractController;
+use Spectre\Controller\AbstractController;
 
 // Service.
-use Barium\Blog\Service\BlogService;
+use Spectre\Blog\Service\BlogService;
 
 // Adapter.
-use Barium\Adapter\PdoAdapter;
+use Spectre\Adapter\PdoAdapter;
 
 // Mapper.
-use Barium\Blog\Mapper\BlogMapper;
-use Barium\Blog\Mapper\BlogCollectionMapper;
+use Spectre\Blog\Mapper\BlogMapper;
+use Spectre\Blog\Mapper\BlogCollectionMapper;
 
 // Gateway.
-use Barium\Blog\Gateway\BlogGateway;
-use Barium\Blog\Gateway\BlogCollectionGateway;
+use Spectre\Blog\Gateway\BlogGateway;
+use Spectre\Blog\Gateway\BlogCollectionGateway;
 
-// Component.
-use Barium\Article\Component\ArticleContentComponent;
-use Barium\Article\Component\ArticleTemplateComponent;
+// Visitor.
+use Spectre\Article\Visitor\Template\ArticleTemplateGateway;
+use Spectre\Article\Visitor\Template\ArticleTemplateMapper;
+
+use Spectre\Article\Visitor\Content\ArticleContentGateway;
+use Spectre\Article\Visitor\Content\ArticleContentMapper;
 
 class BlogController extends AbstractController
 {
@@ -58,14 +61,6 @@ class BlogController extends AbstractController
             $BlogCollectionGateway = new BlogCollectionGateway($PdoAdapter);
             $BlogCollectionMapper = new BlogCollectionMapper($BlogCollectionGateway);
 
-            // Components.
-            $BlogContentComponent = new ArticleContentComponent($PdoAdapter);
-            $BlogTemplateComponent = new ArticleTemplateComponent($PdoAdapter);
-
-            // Inject components.
-            $BlogGateway->addComponent($BlogContentComponent);
-            $BlogGateway->addComponent($BlogTemplateComponent);
-
             // Service.
             $BlogService = new BlogService($BlogMapper, $BlogCollectionMapper);
 
@@ -78,6 +73,14 @@ class BlogController extends AbstractController
                     "limit" => 6
                 ]
             ]);
+
+            // // Visitors.
+            // $ArticleTemplateMapper = new ArticleTemplateMapper(new ArticleTemplateGateway($PdoAdapter));
+            // $ArticleContentMapper = new ArticleContentMapper(new ArticleContentGateway($PdoAdapter));
+
+            // // Inject Visitors.
+            // $BlogModel->accept($ArticleTemplateMapper);
+            // $BlogModel->accept($ArticleContentMapper);
 
             print_r($BlogModel);
 

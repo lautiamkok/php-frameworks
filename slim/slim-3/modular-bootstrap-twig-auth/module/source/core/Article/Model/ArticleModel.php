@@ -1,9 +1,9 @@
 <?php
-namespace Barium\Article\Model;
+namespace Spectre\Article\Model;
 
-use Barium\Strategy\ModelStrategy;
-use Barium\Strategy\VisitableStrategy;
-use Barium\Strategy\VisitorStrategy;
+use Spectre\Strategy\ModelStrategy;
+use Spectre\Strategy\VisitableStrategy;
+use Spectre\Strategy\VisitorStrategy;
 
 class ArticleModel implements ModelStrategy, VisitableStrategy
 {

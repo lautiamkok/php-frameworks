@@ -6,7 +6,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 // Controller.
-use Barium\Controller\AbstractController;
+use Spectre\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {

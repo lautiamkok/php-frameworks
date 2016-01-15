@@ -1,6 +1,6 @@
 <?php
 
-namespace Barium\Helper;
+namespace Spectre\Helper;
 
 trait StringHelpers
 {

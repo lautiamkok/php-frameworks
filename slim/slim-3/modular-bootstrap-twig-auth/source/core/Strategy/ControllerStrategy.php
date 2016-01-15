@@ -1,5 +1,5 @@
 <?php
-namespace Barium\Strategy;
+namespace Spectre\Strategy;
 
 interface ControllerStrategy
 {

@@ -2,28 +2,28 @@
 /*
  * Handle the component
  */
-namespace Barium\Article\Component;
+namespace Spectre\Article\Component;
 
-use Barium\Strategy\CompositeStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
+use Spectre\Strategy\CompositeStrategy;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
 
 class ArticleLanguageComponent implements CompositeStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      * Construct dependency.
-     */	
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
+     */
+    public function __construct(\Spectre\Adapter\PdoAdapter $PdoAdapter)
     {
         // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
     }
-    
+
     /*
      *  Implement the method in CompositeStrategy.
      */
@@ -34,7 +34,7 @@ class ArticleLanguageComponent implements CompositeStrategy
 
         // Set vars.
         $defaults = [
-            "code"          =>	null, 
+            "code"          =>	null,
             "article_id"	=>	null
         ];
 
@@ -46,29 +46,29 @@ class ArticleLanguageComponent implements CompositeStrategy
         {
             // Fetching the item that associates with the article.
             $language = $this->getLanguage(array(
-                "article_id"    =>  $settings->article_id, 
+                "article_id"    =>  $settings->article_id,
                 "code"          =>  $settings->code
          ))->getItem();
         }
-        
+
         // Return the result.
         return $language;
     }
-    
+
     public function getLanguage($options = [])
     {
         // Set vars.
         $defaults = [
-            "code"          =>	null, 
+            "code"          =>	null,
             "article_id"	=>	null
         ];
-        
+
         // Process arrays and convert the result to object.
         $setting = $this->arrayToObject($this->arrayMergeValues($defaults, $options));
-        
+
         // Set empty array.
         $content = [];
-        
+
         $sql_attribute = "
             SELECT
                 px.*
@@ -85,10 +85,10 @@ class ArticleLanguageComponent implements CompositeStrategy
          )
             WHERE p.article_id = ?
         ";
-        
+
         $sql_content = "
             SELECT*
-            FROM 
+            FROM
             (
                 SELECT *
                 FROM category AS a
@@ -97,7 +97,7 @@ class ArticleLanguageComponent implements CompositeStrategy
             LEFT JOIN
             (
                 SELECT
-                    bx.category_id, 
+                    bx.category_id,
                     cx.value
 
                 FROM article AS p
@@ -120,28 +120,28 @@ class ArticleLanguageComponent implements CompositeStrategy
          ) b
             ON b.category_id = a.category_id
         ";
-        
+
         $attribute = $this->PdoAdapter->fetchRow($sql_attribute, array(
-            $setting->code, 
+            $setting->code,
             $setting->article_id
      ));
-        
+
         $contents = $this->PdoAdapter->fetchRows($sql_content, array(
-            $setting->code, 
+            $setting->code,
             $setting->article_id
      ));
-        
+
         //var_dump($attribute);
-        
+
         // Re-structure the content key(code) and value.
         foreach($contents as $index => $item)
         {
             // Always make the first item as 'content'.
             if($index === 0) $content['content'] = $item['value'];
-            
+
             $content[$item['code']] = $item['value'];
         }
-        
+
         $this->item = array_merge($attribute, $content);
 
         // Return $this object for chaining.

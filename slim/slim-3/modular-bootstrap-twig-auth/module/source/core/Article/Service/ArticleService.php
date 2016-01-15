@@ -1,8 +1,8 @@
 <?php
-namespace Barium\Article\Service;
+namespace Spectre\Article\Service;
 
-use Barium\Service\AbstractService;
-use Barium\Strategy\MapperStrategy;
+use Spectre\Service\AbstractService;
+use Spectre\Strategy\MapperStrategy;
 
 class ArticleService
 {

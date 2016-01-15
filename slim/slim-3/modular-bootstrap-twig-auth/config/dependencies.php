@@ -1,7 +1,7 @@
 <?php
 
 use Slim\Views\Twig;
-use Barium\PageNotFound\NotFoundHandler;
+use Spectre\PageNotFound\NotFoundHandler;
 
 // DIC configuration
 $container = $app->getContainer();

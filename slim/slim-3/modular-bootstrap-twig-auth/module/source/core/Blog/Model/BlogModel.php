@@ -1,9 +1,11 @@
 <?php
-namespace Barium\Blog\Model;
+namespace Spectre\Blog\Model;
 
-use Barium\Strategy\ModelStrategy;
+use Spectre\Strategy\ModelStrategy;
+use Spectre\Strategy\VisitableStrategy;
+use Spectre\Strategy\VisitorStrategy;
 
-class BlogModel implements ModelStrategy
+class BlogModel implements ModelStrategy, VisitableStrategy
 {
     /**
      * [$blogId description]
@@ -24,6 +26,16 @@ class BlogModel implements ModelStrategy
     public function __construct(array $params = [])
     {
         $this->setOptions($params);
+    }
+
+    /**
+     * [accept description]
+     * @param  VisitorStrategy $visitor [description]
+     * @return [type]                   [description]
+     */
+    public function accept(VisitorStrategy $visitor)
+    {
+        $visitor->visit($this);
     }
 
     /**
@@ -70,6 +82,10 @@ class BlogModel implements ModelStrategy
 
     // Setters:
 
+    /**
+     * [setBlogId description]
+     * @param [type] $blogId [description]
+     */
     public function setBlogId($blogId)
     {
         $this->blogId = $blogId;
@@ -77,6 +93,10 @@ class BlogModel implements ModelStrategy
         return $this;
     }
 
+    /**
+     * [setTitle description]
+     * @param [type] $title [description]
+     */
     public function setTitle($title)
     {
         $this->title = $title;
@@ -84,6 +104,10 @@ class BlogModel implements ModelStrategy
         return $this;
     }
 
+    /**
+     * [setContent description]
+     * @param [type] $content [description]
+     */
     public function setContent($content)
     {
         $this->content = $content;
@@ -91,6 +115,10 @@ class BlogModel implements ModelStrategy
         return $this;
     }
 
+    /**
+     * [setTemplate description]
+     * @param [type] $template [description]
+     */
     public function setTemplate($template)
     {
         $this->template = $template;
@@ -98,6 +126,10 @@ class BlogModel implements ModelStrategy
         return $this;
     }
 
+    /**
+     * [setArticles description]
+     * @param [type] $articles [description]
+     */
     public function setArticles($articles)
     {
         $this->articles = $articles;
@@ -105,6 +137,10 @@ class BlogModel implements ModelStrategy
         return $this;
     }
 
+    /**
+     * [setCreatedOn description]
+     * @param [type] $createdOn [description]
+     */
     public function setCreatedOn($createdOn)
     {
         $this->createdOn = $createdOn;
@@ -112,6 +148,10 @@ class BlogModel implements ModelStrategy
         return $this;
     }
 
+    /**
+     * [setUpdatedOn description]
+     * @param [type] $updatedOn [description]
+     */
     public function setUpdatedOn($updatedOn)
     {
         $this->updatedOn = $updatedOn;
@@ -121,36 +161,64 @@ class BlogModel implements ModelStrategy
 
     // Getters:
 
+    /**
+     * [getBlogId description]
+     * @return [type] [description]
+     */
     public function getBlogId()
     {
         return $this->blogId;
     }
 
+    /**
+     * [getTitle description]
+     * @return [type] [description]
+     */
     public function getTitle()
     {
         return $this->title;
     }
 
+    /**
+     * [getContent description]
+     * @return [type] [description]
+     */
     public function getContent()
     {
         return $this->content;
     }
 
+    /**
+     * [getTemplate description]
+     * @return [type] [description]
+     */
     public function getTemplate()
     {
         return $this->template;
     }
 
+    /**
+     * [getArticles description]
+     * @return [type] [description]
+     */
     public function getArticles()
     {
         return $this->articles;
     }
 
+    /**
+     * [getCreatedOn description]
+     * @return [type] [description]
+     */
     public function getCreatedOn()
     {
         return $this->createdOn;
     }
 
+    /**
+     * [getUpdatedOn description]
+     * @return [type] [description]
+     */
     public function getUpdatedOn()
     {
         return $this->updatedOn;

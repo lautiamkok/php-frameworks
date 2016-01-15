@@ -2,19 +2,19 @@
 /*
  * Handle article request and its associates.
 */
-namespace Barium\Article\Mapper;
+namespace Spectre\Article\Mapper;
 
-use Barium\Strategy\MapperStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
+use Spectre\Strategy\MapperStrategy;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
 
 class ArticleThemeMapper implements MapperStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      * Set props.
      */
@@ -22,8 +22,8 @@ class ArticleThemeMapper implements MapperStrategy
 
     /*
      * Construct dependency.
-     */	
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
+     */
+    public function __construct(\Spectre\Adapter\PdoAdapter $PdoAdapter)
     {
         // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
@@ -48,7 +48,7 @@ class ArticleThemeMapper implements MapperStrategy
             FROM article AS p
 
             LEFT JOIN query AS q
-            ON q.type = 'page' 
+            ON q.type = 'page'
             AND q.id = p.article_id
             AND q.value IS NOT NULL
 
@@ -64,11 +64,11 @@ class ArticleThemeMapper implements MapperStrategy
         // Return the entire object for Method chaining.
         return $this;
     }
-    
+
     /*
      *  Map the data to model.
      */
-    public function populate(\Barium\Strategy\ModelStrategy $ModelStrategy, $options = [])
+    public function populate(\Spectre\Strategy\ModelStrategy $ModelStrategy, $options = [])
     {
         $ModelStrategy->item = $this->getRow($options)->getItem();
     }

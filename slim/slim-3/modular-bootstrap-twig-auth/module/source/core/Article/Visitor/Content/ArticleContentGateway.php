@@ -1,12 +1,12 @@
 <?php
-namespace Barium\Article\Visitor\Content;
+namespace Spectre\Article\Visitor\Content;
 
-use Barium\Strategy\GatewayStrategy;
+use Spectre\Strategy\GatewayStrategy;
 
-use Barium\Adapter\PdoAdapter;
+use Spectre\Adapter\PdoAdapter;
 
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
 
 class ArticleContentGateway implements GatewayStrategy
 {

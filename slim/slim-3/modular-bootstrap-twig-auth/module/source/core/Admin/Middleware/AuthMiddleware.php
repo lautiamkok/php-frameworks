@@ -1,5 +1,5 @@
 <?php
-namespace Barium\Admin\Middleware;
+namespace Spectre\Admin\Middleware;
 
 use Slim\Http\Request;
 use Slim\Http\Response;

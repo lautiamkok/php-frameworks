@@ -2,28 +2,28 @@
 /*
  * Handle the component
  */
-namespace Barium\Article\Component;
+namespace Spectre\Article\Component;
 
-use Barium\Strategy\CompositeStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
+use Spectre\Strategy\CompositeStrategy;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
 
 class ArticleAuthorComponent implements CompositeStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      * Construct dependency.
-     */	
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter)
+     */
+    public function __construct(\Spectre\Adapter\PdoAdapter $PdoAdapter)
     {
         // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
     }
-    
+
     /*
      *  Implement the method in CompositeStrategy.
      */
@@ -48,13 +48,13 @@ class ArticleAuthorComponent implements CompositeStrategy
         // Return the result.
         return $author;
     }
-    
-    private function getAuthor($options = []) 
+
+    private function getAuthor($options = [])
     {
         // Set defaults.
         $defaults = [
-            "created_by"    =>	null, 
-            "code"          =>	null, 
+            "created_by"    =>	null,
+            "code"          =>	null,
             "gravatar"      =>  []
         ];
 
@@ -74,9 +74,9 @@ class ArticleAuthorComponent implements CompositeStrategy
 
         // Execute the query.
         $this->item = $this->PdoAdapter->fetchRow($sql, array(
-            $settings->created_by, 
-            $settings->created_by, 
-            strtolower(str_replace(array("-", " "), "_", $settings->code)), 
+            $settings->created_by,
+            $settings->created_by,
+            strtolower(str_replace(array("-", " "), "_", $settings->code)),
             strtolower(str_replace(array("-", " "), "_", $settings->code))
      ));
 

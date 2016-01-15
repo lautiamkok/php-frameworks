@@ -1,31 +1,31 @@
 <?php
-namespace Barium\Article\Controller;
+namespace Spectre\Article\Controller;
 
 // PSR 7 standard.
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 // Controller.
-use Barium\Controller\AbstractController;
+use Spectre\Controller\AbstractController;
 
 // Service.
-use Barium\Article\Service\ArticleService;
+use Spectre\Article\Service\ArticleService;
 
 // Adapter.
-use Barium\Adapter\PdoAdapter;
+use Spectre\Adapter\PdoAdapter;
 
 // Mapper.
-use Barium\Article\Mapper\ArticleMapper;
+use Spectre\Article\Mapper\ArticleMapper;
 
 // Gateway.
-use Barium\Article\Gateway\ArticleGateway;
+use Spectre\Article\Gateway\ArticleGateway;
 
 // Visitor.
-use Barium\Article\Visitor\Template\ArticleTemplateGateway;
-use Barium\Article\Visitor\Template\ArticleTemplateMapper;
+use Spectre\Article\Visitor\Template\ArticleTemplateGateway;
+use Spectre\Article\Visitor\Template\ArticleTemplateMapper;
 
-use Barium\Article\Visitor\Content\ArticleContentGateway;
-use Barium\Article\Visitor\Content\ArticleContentMapper;
+use Spectre\Article\Visitor\Content\ArticleContentGateway;
+use Spectre\Article\Visitor\Content\ArticleContentMapper;
 
 class ArticleController extends AbstractController
 {

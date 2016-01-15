@@ -1,8 +1,8 @@
 <?php
-namespace Barium\Article\Mapper;
+namespace Spectre\Article\Mapper;
 
-use Barium\Mapper\AbstractMapper;
-use Barium\Strategy\GatewayStrategy;
+use Spectre\Mapper\AbstractMapper;
+use Spectre\Strategy\GatewayStrategy;
 
 class ArticleMapper extends AbstractMapper
 {
@@ -11,7 +11,7 @@ class ArticleMapper extends AbstractMapper
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Barium\Article\Model\ArticleModel';
+    protected $model = 'Spectre\Article\Model\ArticleModel';
 
     /**
      * [__construct description]

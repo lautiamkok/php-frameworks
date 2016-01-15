@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Strategy;
+namespace Spectre\Strategy;
 
 interface DelegatorStrategy
 {
-    function addDelegate(\Barium\Strategy\DelegateStrategy $DelegateStrategy);
+    function addDelegate(\Spectre\Strategy\DelegateStrategy $DelegateStrategy);
 }

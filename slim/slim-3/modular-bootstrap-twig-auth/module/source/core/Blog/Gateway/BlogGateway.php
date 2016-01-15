@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Blog\Gateway;
+namespace Spectre\Blog\Gateway;
 
-use Barium\Article\Gateway\ArticleGateway;
+use Spectre\Article\Gateway\ArticleGateway;
 
 class BlogGateway extends ArticleGateway
 {

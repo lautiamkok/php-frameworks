@@ -2,7 +2,7 @@
 // Database.
 
 return [
-    'dsn' => 'mysql:dbname=barium;host=localhost',
+    'dsn' => 'mysql:dbname=Spectre;host=localhost',
     'username' => 'root',
     'password' => 'tklau'
 ];

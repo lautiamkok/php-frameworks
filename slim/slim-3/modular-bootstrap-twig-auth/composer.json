@@ -6,7 +6,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Barium\\": [
+            "Spectre\\": [
                 "source/core/",
                 "module/source/core/",
                 "module/source/local/"

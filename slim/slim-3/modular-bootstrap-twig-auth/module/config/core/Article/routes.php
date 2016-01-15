@@ -3,7 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-use Barium\Article\Controller\ArticleController;
+use Spectre\Article\Controller\ArticleController;
 
 // Get article by url.
 $app->get('/{url:[a-zA-Z0-9\-]+}', function (Request $request, Response $response, array $args) {

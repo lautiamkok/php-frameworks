@@ -1,9 +1,9 @@
 <?php
-namespace Barium\Model;
+namespace Spectre\Model;
 
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
 
 /*
  * The class for creating a pagination.
@@ -13,7 +13,7 @@ class PagerModel
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    	
+
     /*
      * Set the property.
      */
@@ -35,13 +35,13 @@ class PagerModel
 
         // Convert array to object.
         $property = $this->arrayToObject($merged);
-        
+
         // Loop the attributes and add the suffix at the end of the string.
         foreach($attributes as $key => $value)
         {
             $output .= ' '.$key.'="'.$value.$property->suffix.'" ';
         }
-        
+
         // Return the joined data attributes as a string.
         // Strip extra white space - only a single white space is allowed
         return preg_replace('/\s\s+/', ' ', $output);
@@ -71,25 +71,25 @@ class PagerModel
 
         // Set defaults.
         $defaults = array(
-            "totalItems"                    =>  null, 
-            "maxPagePerSet"                 =>  null, 
-            "maxItemPerPage"                =>  null, 
-            "currentPage"                   =>  null, 
-            "buttonPath"                    =>  null, 
+            "totalItems"                    =>  null,
+            "maxPagePerSet"                 =>  null,
+            "maxItemPerPage"                =>  null,
+            "currentPage"                   =>  null,
+            "buttonPath"                    =>  null,
             "buttonTitleAttribute"      =>  array(
-                "firstPage"             =>  "First Page", 
-                "previousSet"           =>  "Previous Set", 
-                "pageNumber"            =>  "Page ", 
-                "pageNumber"            =>  "Page ", 
-                "nextSet"               =>  "Next Set", 
+                "firstPage"             =>  "First Page",
+                "previousSet"           =>  "Previous Set",
+                "pageNumber"            =>  "Page ",
+                "pageNumber"            =>  "Page ",
+                "nextSet"               =>  "Next Set",
                 "lastPage"              =>  "Last Page"
-         ), 
-            "buttonDataAttributes"          =>  [], 
-            "buttonDataAttributesSuffix"    =>  [], 
-            "firstPage"                     =>  true, 
-            "lastPage"                      =>  true, 
-            "classNames"                    =>  [], 
-            "separators"                    =>  [], 
+         ),
+            "buttonDataAttributes"          =>  [],
+            "buttonDataAttributesSuffix"    =>  [],
+            "firstPage"                     =>  true,
+            "lastPage"                      =>  true,
+            "classNames"                    =>  [],
+            "separators"                    =>  [],
      );
 
         // Call internal method to process the array.
@@ -113,13 +113,13 @@ class PagerModel
 
         // Set attribute.
         $attribute_data = null;
-        
+
         // A tester.
         if($this->objectHasProperty($property->buttonTitleAttribute) === true && @$options['buttonTitleAttribute'] !== false)
         {
              //print_r($property->buttonTitleAttribute->firstPage);
         }
-        
+
         // Count total pages
         $total_pages = ceil($property->totalItems/$property->maxItemPerPage);
 
@@ -147,8 +147,8 @@ class PagerModel
         // Part 1:
         // Create the back button to go back to the previous set.
         if($current_set > 1)
-        { 
-            if($property->firstPage) 
+        {
+            if($property->firstPage)
             {
                 // Set data attribute.
                 // Make sure 'buttonDataAttributesSuffix' has items in it.
@@ -159,20 +159,20 @@ class PagerModel
                          "suffix"   =>  'set='. ($firstset) .'&amp;page='. $firstpage
                   ));
                 }
-                
+
                 // Make title attribute to the button.
                 $attribute_title = $this->objectHasProperty($property->buttonTitleAttribute) === true && @$options['buttonTitleAttribute'] !== false ? ' title="'.$property->buttonTitleAttribute->firstPage.'"' : null;
-                
+
                 // Output the first part.
                 $output .= '<li><a href="'. $property->buttonPath .'set='. $firstset .'&amp;page='. $firstpage .'" class="'.$classname_button_first_page.'"'.$attribute_title.$attribute_data.'>'.$separator_previous.'First</a></li>
             '; // A new line or "\n".
             }
-            
+
             // the start page in the next set
             $firstcurrent_pageset = (($current_set * $property->maxPagePerSet) - $property->maxPagePerSet) + 1;
 
             $firstpage_previousset = $firstcurrent_pageset - $property->maxPagePerSet;
-            
+
             // Set data attribute.
             // Make sure 'buttonDataAttributesSuffix' has items in it.
             if($this->objectHasProperty($property->buttonDataAttributesSuffix) === true)
@@ -182,10 +182,10 @@ class PagerModel
                      "suffix"   =>  'set='. ($current_set-1) .'&amp;page='. ($firstpage_previousset)
               ));
             }
-            
+
             // Make title attribute to the button.
             $attribute_title = $this->objectHasProperty($property->buttonTitleAttribute) === true && @$options['buttonTitleAttribute'] !== false ? ' title="'.$property->buttonTitleAttribute->previousSet.'"' : null;
-                
+
             $output .= '<li><a href="'. $property->buttonPath .'set='. ($current_set-1) .'&amp;page='. ($firstpage_previousset) .'" class="'.$classname_button_previous_set.'"'.$attribute_title.$attribute_data.'>'.$separator_previous.'Previous Set'.$separator_middle.'</a></li>
             '; // A new line or "\n".
         }
@@ -221,9 +221,9 @@ class PagerModel
         //echo $lastcurrent_pageset;
         //echo $property->currentPage;
 
-        // Loop the pages	
+        // Loop the pages
         for($article_number = $firstcurrent_pageset ; $article_number <= $lastcurrent_pageset; $article_number ++)
-        { 
+        {
             // Check if array $property->separators is not empty and set it to null if it is at the last page current set.
             if($property->separators && $article_number == $lastcurrent_pageset) $separator_middle = null;
 
@@ -242,19 +242,19 @@ class PagerModel
                      "suffix"   =>  'set='. $current_set .'&amp;page='. $article_number
               ));
             }
-            
+
             // Make title attribute to the button.
             $attribute_title = $this->objectHasProperty($property->buttonTitleAttribute) === true && @$options['buttonTitleAttribute'] !== false ? ' title="'.$property->buttonTitleAttribute->pageNumber.' '.$article_number.'"' : null;
 
             // Store the loop.
             $output .= '<li><a href="'. $property->buttonPath .'set='. $current_set .'&amp;page='. $article_number .'"'. $class . $attribute_title . $attribute_data.'>'. $article_number .$separator_middle.'</a></li>
             '; // A new line or "\n".
-        } 
+        }
 
         // Part 3:
         // Create the next set button.
         if($total_sets > 1 && $current_set < $total_sets)
-        { 
+        {
             // Check if array $property->separators is not empty and get the value of $separator_middle back from it.
             //if($property->separators) $separator_middle = $property->separators[0];
 
@@ -269,14 +269,14 @@ class PagerModel
                      "suffix"   =>  'set='. ($current_set + 1) .'&amp;page='. $firstpage_nextset
               ));
             }
-            
+
             // Make title attribute to the button.
             $attribute_title = $this->objectHasProperty($property->buttonTitleAttribute) === true && @$options['buttonTitleAttribute'] !== false ? ' title="'.$property->buttonTitleAttribute->nextSet.'"' : null;
 
             $output .=  '<li><a href="'.$property->buttonPath.'set='.($current_set + 1).'&amp;page='.($firstpage_nextset).'" class="'.$classname_button_next_set.'"'.$attribute_title.$attribute_data.'>'.$separator_middle.'Next Set'.$separator_next.'</a></li>
             '; // A new line or "\n".
 
-            if($property->lastPage) 
+            if($property->lastPage)
             {
                 // Set data attribute.
                 // Make sure 'buttonDataAttributesSuffix' has items in it.
@@ -287,20 +287,20 @@ class PagerModel
                          "suffix"   =>  'set='. $lastset .'&amp;page='. $lastpage
                   ));
                 }
-                
+
                 // Make title attribute to the button.
                 $attribute_title = $this->objectHasProperty($property->buttonTitleAttribute) === true && @$options['buttonTitleAttribute'] !== false ? ' title="'.$property->buttonTitleAttribute->lastPage.'"' : null;
 
                 $output .=  '<li><a href="'.$property->buttonPath.'set='.$lastset.'&amp;page='.$lastpage.'" class="'.$classname_button_last_page.'"'.$attribute_title.$attribute_data.'>Last'.$separator_next.'</a></li>
-            '; // A new line or "\n".   
+            '; // A new line or "\n".
             }
 
         }
 
         // Closing the HTML.
-        $output .=  '</ul>';	
+        $output .=  '</ul>';
 
         // Output the HTML.
         return $output;
-    }	
+    }
 }

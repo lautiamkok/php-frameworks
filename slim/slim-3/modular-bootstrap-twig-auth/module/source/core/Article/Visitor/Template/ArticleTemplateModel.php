@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Article\Visitor\Template;
+namespace Spectre\Article\Visitor\Template;
 
-use Barium\Strategy\ModelStrategy;
+use Spectre\Strategy\ModelStrategy;
 
 class ArticleTemplateModel implements ModelStrategy
 {

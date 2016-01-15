@@ -2,10 +2,10 @@
 /*
  * Create concrete template - html.
  */
-namespace Barium\Article\Template;
+namespace Spectre\Article\Template;
 
-use Barium\Template\AbstractTemplate;
-use Barium\Util\StringManager;
+use Spectre\Template\AbstractTemplate;
+use Spectre\Util\StringManager;
 
 class JsonTemplate extends AbstractTemplate
 {
@@ -13,12 +13,12 @@ class JsonTemplate extends AbstractTemplate
     {
         // Set header.
         header('Content-Type: application/json');
-        
+
         // Inspect content type.
         //var_dump(headers_list());
-        
+
         $array = array('article' => $data);
-        
+
         return json_encode($array);
     }
 }

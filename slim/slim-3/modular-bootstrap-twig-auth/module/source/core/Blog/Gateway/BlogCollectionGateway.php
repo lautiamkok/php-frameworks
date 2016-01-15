@@ -1,15 +1,15 @@
 <?php
-namespace Barium\Blog\Gateway;
+namespace Spectre\Blog\Gateway;
 
-use Barium\Strategy\CompositeStrategy;
-use Barium\Strategy\GatewayStrategy;
-use Barium\Strategy\ComposableStrategy;
+use Spectre\Strategy\CompositeStrategy;
+use Spectre\Strategy\GatewayStrategy;
+use Spectre\Strategy\ComposableStrategy;
 
-use Barium\Adapter\PdoAdapter;
+use Spectre\Adapter\PdoAdapter;
 
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
 
 class BlogCollectionGateway implements GatewayStrategy, CompositeStrategy, ComposableStrategy
 {

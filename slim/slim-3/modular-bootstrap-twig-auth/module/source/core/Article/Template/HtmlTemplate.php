@@ -2,21 +2,21 @@
 /*
  * Create concrete template - html.
  */
-namespace Barium\Article\Template;
+namespace Spectre\Article\Template;
 
-//use Barium\Strategy\TemplateStrategy;
-use Barium\Template\AbstractTemplate;
-use Barium\Util\StringManager;
+//use Spectre\Strategy\TemplateStrategy;
+use Spectre\Template\AbstractTemplate;
+use Spectre\Util\StringManager;
 
 class HtmlTemplate extends AbstractTemplate // implements TemplateStrategy
 {
     use StringManager;
-    
+
     /*
      * Set props.
      */
     protected $data = [];
-    
+
     /*
      * Set html from the supplied data.
      * @param array $data
@@ -26,26 +26,26 @@ class HtmlTemplate extends AbstractTemplate // implements TemplateStrategy
     {
         // Store the data.
         $this->data = $data;
-        
+
         // Array to vars.
         if(count($this->data) > 0) {
-            
+
             // Loop the array to get the key and value.
             foreach($this->data as $key => $value){
-                
+
                 $$key = $value;
-            } 
+            }
         }
-        
+
         // Turn on output buffering.
         ob_start();
-        
+
         // Set header.
         header('Content-Type: text/html; charset=utf-8');
-        
+
         // Inspect content type.
         //var_dump(headers_list());
-        
+
         // Get the main template/ html document.
         include APPLICATION_ROOT . 'module/core/view/public/base/page/master/index.php';
 

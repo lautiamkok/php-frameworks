@@ -2,20 +2,20 @@
 /*
  * Handle the component
  */
-namespace Barium\Article\Component;
+namespace Spectre\Article\Component;
 
-use Barium\Strategy\CompositeStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
-use Barium\Article\Mapper\ArticleMapper;
+use Spectre\Strategy\CompositeStrategy;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
+use Spectre\Article\Mapper\ArticleMapper;
 
 class ArticleParentComponent extends ArticleMapper implements CompositeStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      *  Implement the method in CompositeStrategy.
      */
@@ -39,7 +39,7 @@ class ArticleParentComponent extends ArticleMapper implements CompositeStrategy
                 "article_id" 	=>	$settings->parent_id
             ])->removeNumbericKeys()->getItem();
         }
-        
+
         // Return the result.
         return $parent;
     }

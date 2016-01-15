@@ -1,12 +1,12 @@
 <?php
-namespace Barium\Home\Controller;
+namespace Spectre\Home\Controller;
 
 // PSR 7 standard.
 use Slim\Http\Request;
 use Slim\Http\Response;
 
 // Controller.
-use Barium\Controller\AbstractController;
+use Spectre\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {

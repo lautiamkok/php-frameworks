@@ -1,5 +1,5 @@
-<?php        
-namespace Barium\Strategy;
+<?php
+namespace Spectre\Strategy;
 
 interface CompositeStrategy
 {

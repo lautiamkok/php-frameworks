@@ -2,9 +2,9 @@
 /*
  * Common methods.
  */
-namespace Barium\Helper;
+namespace Spectre\Helper;
 
-use Barium\Model\MagicProp;
+use Spectre\Model\MagicProp;
 
 // droplet - a small drop of liquid
 // snippet - a small and often interesting piece of news, information, or conversation
@@ -43,18 +43,18 @@ trait ArrayHelpers
 
         /*
         // Loop the array.
-        foreach($input as $key => $value) 
-        { 
-                if (isset($value)) 
+        foreach($input as $key => $value)
+        {
+                if (isset($value))
                 {
-                        if (is_array($value)) 
+                        if (is_array($value))
                         {
-                                if (self::arrayKeyHasValue($value)) 
+                                if (self::arrayKeyHasValue($value))
                                 {
                                         return true;
                                 }
-                        } 
-                        elseif($value) 
+                        }
+                        elseif($value)
                         {
                                 return true;
                         }
@@ -214,7 +214,7 @@ trait ArrayHelpers
                 $array[$key] = self::jsonmixToArray($value);
             } else {
                 $array[$key] = $value;
-            }	
+            }
         }
 
         return $array;
@@ -262,15 +262,15 @@ trait ArrayHelpers
 
         return $object;
     }
-    
+
     /*
      * converting an array into string by joining the items with ','.
      * @param array $array
      * @return string
      */
-    public function arrayToString($array) 
+    public function arrayToString($array)
     {
-        if(!is_array($array)) 
+        if(!is_array($array))
         {
             return $array;
         }
@@ -288,19 +288,19 @@ trait ArrayHelpers
 
         //return json_decode(json_encode($object), true);
 
-        if(is_object($input)) 
+        if(is_object($input))
         {
             // Make sure all items in $options are in arrays.
             $input = self::objectToArray($input);
         }
-        
+
         if($input === false || $input === null)
         {
             return null;
         }
 
         $output = [];
-        
+
         foreach($input as $key => $value)
         {
             if(is_int($key))
@@ -310,7 +310,7 @@ trait ArrayHelpers
             elseif(is_array($value)){
                 $output[$key] = self::removeArrayNumbericKeys($value);
             }
-            else 
+            else
             {
                 $output[$key] = $value;
             }
@@ -325,18 +325,18 @@ trait ArrayHelpers
     * @param string $subkey
     * @return array $c
     *
-    * An example of a multi-dimentional array - 
+    * An example of a multi-dimentional array -
     * $songs =  array(
-    * 		'3' => array('artist'=>'The Smashing Pumpkins', 'songname'=>'Soma', 'date' =>1276646720), 
-    * 		'4' => array('artist'=>'The Decemberists', 'songname'=>'The Island', 'date' =>1276646724), 
-    * 		'1' => array('artist'=>'Fleetwood Mac', 'songname' =>'Second-hand News', 'date' =>1276646728), 
+    * 		'3' => array('artist'=>'The Smashing Pumpkins', 'songname'=>'Soma', 'date' =>1276646720),
+    * 		'4' => array('artist'=>'The Decemberists', 'songname'=>'The Island', 'date' =>1276646724),
+    * 		'1' => array('artist'=>'Fleetwood Mac', 'songname' =>'Second-hand News', 'date' =>1276646728),
     * 		'2' => array('artist'=>'Jack Johnson', 'songname' =>'Only the Ocean', 'date' =>1276646731)
     * 	);
-    * 	
-    * $songs = arsortArraySubValue($songs, 'date'); 
+    *
+    * $songs = arsortArraySubValue($songs, 'date');
     * print_r($songs);
-    *  
-    * The example of normal output of $songs multi-dimentional array - 
+    *
+    * The example of normal output of $songs multi-dimentional array -
     * 	Array
     * 	(
     * 		[3] => Array
@@ -345,30 +345,30 @@ trait ArrayHelpers
     * 				[songname] => Soma
     * 				[date] => 1276646720
     * 			)
-    * 
+    *
     * 		[4] => Array
     * 			(
     * 				[artist] => The Decemberists
     * 				[songname] => The Island
     * 				[date] => 1276646724
     * 			)
-    * 
+    *
     * 		[1] => Array
     * 			(
     * 				[artist] => Fleetwood Mac
     * 				[songname] => Second-hand News
     * 				[date] => 1276646728
     * 			)
-    * 
+    *
     * 		[2] => Array
     * 			(
     * 				[artist] => Jack Johnson
     * 				[songname] => Only the Ocean
     * 				[date] => 1276646731
     * 			)
-    * 
+    *
     * 	)
-    * 	
+    *
     * So, this function reverses the order above into the output below -
     *
     * 	Array
@@ -426,20 +426,20 @@ trait ArrayHelpers
         // Sort the array in reverse order and maintain index association.
         arsort($b);
         /*
-        result - 
+        result -
         Array (
-                [2] => 1276646731 
-                [1] => 1276646728 
-                [4] => 1276646724 
-                [3] => 1276646720 
-             ) 
+                [2] => 1276646731
+                [1] => 1276646728
+                [4] => 1276646724
+                [3] => 1276646720
+             )
         */
 
         // Loop the $b array and make another new array - $c.
         foreach($b as $key => $val) {
 
             //[3], [4], [1], [2] are the array keys - $key.
-            //put the keys in array $c and array $a. 
+            //put the keys in array $c and array $a.
             $c[$key] = $a[$key];
         }
 
@@ -467,20 +467,20 @@ trait ArrayHelpers
         // Sort the array in reverse order and maintain index association.
         arsort($b);
         /*
-        result - 
+        result -
         Array (
-                [2] => 1276646731 
-                [1] => 1276646728 
-                [4] => 1276646724 
-                [3] => 1276646720 
-             ) 
+                [2] => 1276646731
+                [1] => 1276646728
+                [4] => 1276646724
+                [3] => 1276646720
+             )
         */
 
         // Loop the $b array and make another new array - $c.
         foreach($b as $key => $val) {
 
             //[3], [4], [1], [2] are the array keys - $key.
-            //put the keys in array $c and array $a. 
+            //put the keys in array $c and array $a.
             $c[$key] = $a[$key];
         }
 

@@ -2,7 +2,7 @@
 /*
  * Common methods.
  */
-namespace Barium\Helper;
+namespace Spectre\Helper;
 
 // droplet - a small drop of liquid
 // snippet - a small and often interesting piece of news, information, or conversation
@@ -26,7 +26,7 @@ trait ItemHelpers
         }
         return $this->items;
     }
-    
+
     /*
      * Get the data of a row from $this.
      * @return object.
@@ -47,7 +47,7 @@ trait ItemHelpers
         }
         return $this->item;
     }
-    
+
     /*
      * Get total number from $this.
      * @return int.
@@ -56,11 +56,11 @@ trait ItemHelpers
     {
         return $this->total;
     }
-    
+
     /*
      * Convert data to object.
      */
-    function toBeObject($item) 
+    function toBeObject($item)
     {
         return $this->arrayToObject($item);
     }
@@ -68,7 +68,7 @@ trait ItemHelpers
     /*
      * Convert data to array.
      */
-    function toBeArray($item) 
+    function toBeArray($item)
     {
         return $this->objectToArray($item);
     }
@@ -76,21 +76,21 @@ trait ItemHelpers
     /*
      * Convert data to json.
      */
-    function toBeJson($item) 
+    function toBeJson($item)
     {
-        if(is_object($item) === true) 
+        if(is_object($item) === true)
         {
             $item = $this->objectToArray($item);
         }
 
-        if(is_array($item) === true) 
+        if(is_array($item) === true)
         {
             $item = json_encode($item);
         }
 
-        return $item; 
+        return $item;
     }
-    
+
     /*
      * Remove numberic keys from item or items.
      * @return $this object.
@@ -99,35 +99,35 @@ trait ItemHelpers
     {
         // Call the parent method to remove numberic keys/
         $this->item = $this->removeArrayNumbericKeys($this->item);
-        
+
         // If the object is not empty.
         if(isset($this->items) && $this->objectHasProperty($this->items) === true)
         {
             // Set empty array.
             $items = [];
-            
+
             // Loop the object.
             foreach ($this->items as $key => $item)
             {
                 // Remove numberic keys.
                 $items[$key] = $this->removeArrayNumbericKeys($item);
             }
-            
+
             // Convert to object and set it back to $this->items.
-            $this->items = $items; 
+            $this->items = $items;
         }
-        
+
         // Return $this for chaining.
         return $this;
     }
-    
+
     /*
      *  Reverse order.
      */
     function reverseItems()
     {
         $this->items = array_reverse($this->items, false) ;
-        
+
         // Return $this for chaining.
         return $this;
     }

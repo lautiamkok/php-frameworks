@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Blog\Model;
+namespace Spectre\Blog\Model;
 
-use Barium\Strategy\ModelStrategy;
+use Spectre\Strategy\ModelStrategy;
 
 class BlogCollectionModel implements ModelStrategy
 {

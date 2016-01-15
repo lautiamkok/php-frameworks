@@ -1,9 +1,9 @@
 <?php
-namespace Barium\Strategy;
+namespace Spectre\Strategy;
 
 interface ObservableStrategy
 {
-    function addObserver(\Barium\Strategy\ObserverStrategy $ObserverStrategy);
-    function removeObserver(\Barium\Strategy\ObserverStrategy $ObserverStrategy);
+    function addObserver(\Spectre\Strategy\ObserverStrategy $ObserverStrategy);
+    function removeObserver(\Spectre\Strategy\ObserverStrategy $ObserverStrategy);
     function notifyObserver($args);
 }

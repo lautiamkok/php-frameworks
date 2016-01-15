@@ -1,14 +1,14 @@
 <?php
-namespace Barium\Article\Gateway;
+namespace Spectre\Article\Gateway;
 
-use Barium\Strategy\GatewayStrategy;
-// use Barium\Strategy\CompositeStrategy;
-// use Barium\Strategy\ComposableStrategy;
+use Spectre\Strategy\GatewayStrategy;
+// use Spectre\Strategy\CompositeStrategy;
+// use Spectre\Strategy\ComposableStrategy;
 
-use Barium\Adapter\PdoAdapter;
+use Spectre\Adapter\PdoAdapter;
 
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
 
 class ArticleGateway implements GatewayStrategy //, CompositeStrategy, ComposableStrategy
 {

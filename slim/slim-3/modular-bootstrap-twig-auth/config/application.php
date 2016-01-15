@@ -7,11 +7,11 @@ return [
         // The home page can be set to any module,
         // for example:
         //      'YourCustomNamespace\Home\PageController\HomePageController'
-        //      'Barium\Home\PageController\HomePageController'
+        //      'Spectre\Home\PageController\HomePageController'
         // Otherwise it will fall back to the default message: 'Fallback Hello World!'
         // when no class is provided.
         'home_page' => [
-            'class' => 'Barium\Home\Controller\HomeController'
+            'class' => 'Spectre\Home\Controller\HomeController'
         ],
 
         'database' => [

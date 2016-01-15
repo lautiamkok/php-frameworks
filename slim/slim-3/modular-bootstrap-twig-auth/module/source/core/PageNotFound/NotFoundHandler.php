@@ -3,7 +3,7 @@
  * Handle the view of the page.
  *
  */
-namespace Barium\PageNotFound;
+namespace Spectre\PageNotFound;
 
 use Slim\Handlers\NotFound;
 use Psr\Http\Message\ServerRequestInterface;
@@ -26,7 +26,7 @@ class NotFoundHandler extends NotFound
         return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
     }
 }
-// namespace Barium\PageNotFound;
+// namespace Spectre\PageNotFound;
 
 // use Slim\Handlers\NotFound;
 // use Twig_Environment;
@@ -52,7 +52,7 @@ class NotFoundHandler extends NotFound
 // }
 
 // // Option 2:
-// namespace Barium\PageNotFound\View;
+// namespace Spectre\PageNotFound\View;
 
 // use Slim\Handlers\NotFound;
 // use Slim\Views\Twig;

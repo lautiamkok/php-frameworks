@@ -1,6 +1,6 @@
 <?php
 // Abstract Controller.
-namespace Barium\Controller;
+namespace Spectre\Controller;
 
 // PSR 7 standard.
 use Slim\Http\Request;

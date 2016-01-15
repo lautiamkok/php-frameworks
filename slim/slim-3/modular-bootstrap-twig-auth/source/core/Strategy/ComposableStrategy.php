@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Strategy;
+namespace Spectre\Strategy;
 
-use Barium\Strategy\CompositeStrategy;
+use Spectre\Strategy\CompositeStrategy;
 
 interface ComposableStrategy
 {

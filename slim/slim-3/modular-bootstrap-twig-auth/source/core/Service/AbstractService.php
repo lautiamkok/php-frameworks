@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Service;
+namespace Spectre\Service;
 
-use Barium\Strategy\ServiceStrategy;
+use Spectre\Strategy\ServiceStrategy;
 
 class AbstractService implements ServiceStrategy
 {

@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Strategy;
+namespace Spectre\Strategy;
 
 interface ObserverStrategy
 {
-    function onChanged(\Barium\Strategy\ObservableStrategy $ObservableStrategy, $args);
+    function onChanged(\Spectre\Strategy\ObservableStrategy $ObservableStrategy, $args);
 }

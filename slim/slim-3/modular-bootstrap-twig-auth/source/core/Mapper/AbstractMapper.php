@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Mapper;
+namespace Spectre\Mapper;
 
-use Barium\Strategy\MapperStrategy;
+use Spectre\Strategy\MapperStrategy;
 
 abstract class AbstractMapper implements MapperStrategy
 {

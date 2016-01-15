@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Strategy;
+namespace Spectre\Strategy;
 
-use Barium\Strategy\VisitableStrategy;
+use Spectre\Strategy\VisitableStrategy;
 
 interface VisitorStrategy
 {

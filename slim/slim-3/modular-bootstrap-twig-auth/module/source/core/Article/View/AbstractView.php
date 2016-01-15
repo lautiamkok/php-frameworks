@@ -3,9 +3,9 @@
  * Handle the view of the page.
  *
  */
-namespace Barium\Article\View;
+namespace Spectre\Article\View;
 
-use Barium\Strategy\ViewStrategy;
+use Spectre\Strategy\ViewStrategy;
 
 abstract class AbstractView implements ViewStrategy
 {

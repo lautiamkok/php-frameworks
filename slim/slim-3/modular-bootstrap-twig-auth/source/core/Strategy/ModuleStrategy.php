@@ -1,9 +1,5 @@
-<?php        
-/*============================================================
-BASE
-============================================================*/
-
-namespace Barium\Strategy;
+<?php
+namespace Spectre\Strategy;
 
 interface ModuleStrategy
 {

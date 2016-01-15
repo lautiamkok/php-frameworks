@@ -2,29 +2,29 @@
 /*
  * Handle the component
  */
-namespace Barium\Article\Component;
+namespace Spectre\Article\Component;
 
-use Barium\Strategy\CompositeStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
-use Barium\Helper\ItemHelpers;
+use Spectre\Strategy\CompositeStrategy;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
+use Spectre\Helper\ItemHelpers;
 
 class ArticleImageComponent implements CompositeStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
     use ItemHelpers;
-    
+
     /*
      * Construct dependency.
-     */	
-    public function __construct(\Barium\Adapter\PdoAdapter $PdoAdapter, $options = [])
+     */
+    public function __construct(\Spectre\Adapter\PdoAdapter $PdoAdapter, $options = [])
     {
         // Set dependency.
         $this->PdoAdapter = $PdoAdapter;
         $this->options = $options;
     }
-    
+
     /*
      *  Implement the method in CompositeStrategy.
      */
@@ -49,17 +49,17 @@ class ArticleImageComponent implements CompositeStrategy
         // Return the result.
         return $image;
     }
-    
+
     public function getImage($options = [])
     {
         // Set vars.
         $defaults = [
-            "article_id"		=>  null, 
-            "category_id"		=>  null, 
-            "sort"              =>  1, 
-            "hide"              =>  0, 
+            "article_id"		=>  null,
+            "category_id"		=>  null,
+            "sort"              =>  1,
+            "hide"              =>  0,
             "category"			=>  [
-                "category_id"   =>  null, 
+                "category_id"   =>  null,
                 "code"          =>  null
             ]
         ];
@@ -73,7 +73,7 @@ class ArticleImageComponent implements CompositeStrategy
 
             LEFT JOIN article_has_image x
             ON x.image_id = i.image_id
-            
+
             LEFT JOIN category c
             ON c.category_id = i.category_id
 
@@ -85,14 +85,14 @@ class ArticleImageComponent implements CompositeStrategy
 
         // Execute the query.
         $this->item = $this->PdoAdapter->fetchRow($sql, [
-            $settings->article_id, 
-            $settings->category_id, 
-            $settings->category->code, 
-            $settings->category->category_id, 
-            '0', 
+            $settings->article_id,
+            $settings->category_id,
+            $settings->category->code,
+            $settings->category->category_id,
+            '0',
             $settings->sort
         ]);
-        
+
         // Return $this object for chaining.
         return $this;
     }

@@ -1,8 +1,8 @@
 <?php
 // Abstract template.
-namespace Barium\Template;
+namespace Spectre\Template;
 
-use Barium\Strategy\TemplateStrategy;
+use Spectre\Strategy\TemplateStrategy;
 
 abstract class AbstractTemplate implements TemplateStrategy
 {

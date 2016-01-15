@@ -1,7 +1,7 @@
 <?php
-namespace Barium\Blog\Service;
+namespace Spectre\Blog\Service;
 
-use Barium\Strategy\MapperStrategy;
+use Spectre\Strategy\MapperStrategy;
 
 class BlogService
 {

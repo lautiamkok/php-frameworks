@@ -1,23 +1,23 @@
 <?php
-namespace Barium\Article\Model;
+namespace Spectre\Article\Model;
 
-use Barium\Strategy\ModelStrategy;
-use Barium\Helper\ArrayHelpers;
-use Barium\Helper\ObjectHelpers;
+use Spectre\Strategy\ModelStrategy;
+use Spectre\Helper\ArrayHelpers;
+use Spectre\Helper\ObjectHelpers;
 
 class ArticleThemeModel implements ModelStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
-    
+
     public function respond()
     {
         $this->dataToProperty($this->item);
         unset($this->item);
     }
-    
+
     public function __invoke()
     {
         $this->respond();
-    }   
+    }
 }

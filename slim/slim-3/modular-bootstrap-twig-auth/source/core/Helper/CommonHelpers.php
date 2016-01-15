@@ -2,7 +2,7 @@
 /*
  * Common methods.
  */
-namespace Barium\Helper;
+namespace Spectre\Helper;
 
 // droplet - a small drop of liquid
 // snippet - a small and often interesting piece of news, information, or conversation
@@ -104,11 +104,11 @@ trait CommonHelpers
 
         // Set default.
         $defaults = array(
-            "email"		=>	null, 
-            "s"			=>	50, 
-            "d"			=>	"mm", 
-            "r"			=>	"g", 
-            "img"		=>	false, 
+            "email"		=>	null,
+            "s"			=>	50,
+            "d"			=>	"mm",
+            "r"			=>	"g",
+            "img"		=>	false,
             "atts"		=>	array(// any config item is allowed here when the key is an empty array..
          )
      );
@@ -137,31 +137,31 @@ trait CommonHelpers
     /*
      * Get the IP address.
      */
-    public function getIp() 
+    public function getIp()
     {
         $IP = '';
 
-        if (getenv('HTTP_CLIENT_IP')) 
+        if (getenv('HTTP_CLIENT_IP'))
         {
             $IP =getenv('HTTP_CLIENT_IP');
-        } 
-        elseif (getenv('HTTP_X_FORWARDED_FOR')) 
+        }
+        elseif (getenv('HTTP_X_FORWARDED_FOR'))
         {
             $IP =getenv('HTTP_X_FORWARDED_FOR');
-        } 
-        elseif (getenv('HTTP_X_FORWARDED')) 
+        }
+        elseif (getenv('HTTP_X_FORWARDED'))
         {
             $IP =getenv('HTTP_X_FORWARDED');
-        } 
-        elseif (getenv('HTTP_FORWARDED_FOR')) 
+        }
+        elseif (getenv('HTTP_FORWARDED_FOR'))
         {
             $IP =getenv('HTTP_FORWARDED_FOR');
-        } 
-        elseif (getenv('HTTP_FORWARDED')) 
+        }
+        elseif (getenv('HTTP_FORWARDED'))
         {
             $IP = getenv('HTTP_FORWARDED');
-        } 
-        else 
+        }
+        else
         {
             $IP = $_SERVER['REMOTE_ADDR'];
         }
@@ -172,17 +172,17 @@ trait CommonHelpers
     /*
      * Get the geo location from an IP address.
      */
-    public function getGeoLocation() 
+    public function getGeoLocation()
     {
         return file_get_contents('http://freegeoip.net/json/'.$this->getIp());
-        //$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json")); 
+        //$details = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"));
         //print_r($details); // -> "US"
     }
 
     /*
      * Get the geo location from an IP address.
      */
-    public function getComputerName() 
+    public function getComputerName()
     {
         return gethostbyaddr($this->getIp());
     }
@@ -190,12 +190,12 @@ trait CommonHelpers
     /*
      * Get the controller from a location and then instantiate the class.
      */
-    public function getController($request, $options = []) 
+    public function getController($request, $options = [])
     {
         // Set vars.
         $defaults = array(
-            "mode"          =>  "core", 
-            "path"          =>  "/controller/", 
+            "mode"          =>  "core",
+            "path"          =>  "/controller/",
             "database"      =>  false
      );
 
@@ -208,8 +208,8 @@ trait CommonHelpers
 
         //
         if($props->database === true) {
-            $PdoAdapter = new \Barium\Adapter\PdoAdapter(DSN, DB_USER, DB_PASS);
-            $PdoAdapter->connect(); 
+            $PdoAdapter = new \Spectre\Adapter\PdoAdapter(DSN, DB_USER, DB_PASS);
+            $PdoAdapter->connect();
         }
 
         // Replace any backslash to '/'.
@@ -223,25 +223,25 @@ trait CommonHelpers
         $className = end($array);
         //var_dump($className);
 
-        // When you declare a class more than once in a page, you get 'PHP Fatal error: Cannot redeclare class', 
+        // When you declare a class more than once in a page, you get 'PHP Fatal error: Cannot redeclare class',
         // You can fix it by either wrapping that class with an if statement, or you can put it into it's own file and include_once(), instead of include()
         if(class_exists($className) != true)
         {
-           // Include the class. 
+           // Include the class.
            include WEBSITE_DOCROOT . $props->mode.$props->path.$request.'.php';
         }
         else
         {
-            // Include the class. 
+            // Include the class.
             include_once WEBSITE_DOCROOT.$props->mode.$props->path.$request.'.php';
         }
 
         // Instantiate the class.
-        if($props->database === true) 
+        if($props->database === true)
         {
             return New $className($PdoAdapter);
-        } 
-        else 
+        }
+        else
         {
             return New $className();
         }
@@ -250,12 +250,12 @@ trait CommonHelpers
     /*
      * Get the model from a location and then instantiate the class.
      */
-    public function getModel($request, $options = []) 
+    public function getModel($request, $options = [])
     {
         // Set vars.
         $defaults = array(
-            "mode"          =>  "core", 
-            "path"          =>  "/model/", 
+            "mode"          =>  "core",
+            "path"          =>  "/model/",
             "database"    =>  false
      );
 
@@ -268,8 +268,8 @@ trait CommonHelpers
 
         //
         if($props->database === true) {
-            $PdoAdapter = new \Barium\Adapter\PdoAdapter(DSN, DB_USER, DB_PASS);
-            $PdoAdapter->connect(); 
+            $PdoAdapter = new \Spectre\Adapter\PdoAdapter(DSN, DB_USER, DB_PASS);
+            $PdoAdapter->connect();
         }
 
         // Replace any backslash to '/'.
@@ -283,25 +283,25 @@ trait CommonHelpers
         $className = end($array);
         //var_dump($className);
 
-        // When you declare a class more than once in a page, you get 'PHP Fatal error: Cannot redeclare class', 
+        // When you declare a class more than once in a page, you get 'PHP Fatal error: Cannot redeclare class',
         // You can fix it by either wrapping that class with an if statement, or you can put it into it's own file and include_once(), instead of include()
         if(class_exists($className) != true)
         {
-           // Include the class. 
+           // Include the class.
            include WEBSITE_DOCROOT . $props->mode.$props->path.$request.'.php';
         }
         else
         {
-            // Include the class. 
+            // Include the class.
             include_once WEBSITE_DOCROOT.$props->mode.$props->path.$request.'.php';
         }
 
         // Instantiate the class.
-        if($props->database === true) 
+        if($props->database === true)
         {
             return New $className($PdoAdapter);
-        } 
-        else 
+        }
+        else
         {
             return New $className();
         }
@@ -310,12 +310,12 @@ trait CommonHelpers
     /*
      * Get the helper from a location and then instantiate the class.
      */
-    public function getHelper($request, $options = []) 
+    public function getHelper($request, $options = [])
     {
         // Set vars.
         $defaults = array(
-            "mode"          =>  "core", 
-            "path"          =>  "/helper/", 
+            "mode"          =>  "core",
+            "path"          =>  "/helper/",
             "database"    =>  false
      );
 
@@ -328,8 +328,8 @@ trait CommonHelpers
 
         //
         if($props->database === true) {
-            $PdoAdapter = new \Barium\Adapter\PdoAdapter(DSN, DB_USER, DB_PASS);
-            $PdoAdapter->connect(); 
+            $PdoAdapter = new \Spectre\Adapter\PdoAdapter(DSN, DB_USER, DB_PASS);
+            $PdoAdapter->connect();
         }
 
         // Replace any backslash to '/'.
@@ -343,25 +343,25 @@ trait CommonHelpers
         $className = end($array);
         //var_dump($className);
 
-        // When you declare a class more than once in a page, you get 'PHP Fatal error: Cannot redeclare class', 
+        // When you declare a class more than once in a page, you get 'PHP Fatal error: Cannot redeclare class',
         // You can fix it by either wrapping that class with an if statement, or you can put it into it's own file and include_once(), instead of include()
         if(class_exists($className) != true)
         {
-           // Include the class. 
+           // Include the class.
            include WEBSITE_DOCROOT . $props->mode.$props->path.$request.'.php';
         }
         else
         {
-            // Include the class. 
+            // Include the class.
             include_once WEBSITE_DOCROOT.$props->mode.$props->path.$request.'.php';
         }
 
         // Instantiate the class.
-        if($props->database === true) 
+        if($props->database === true)
         {
             return New $className($PdoAdapter);
-        } 
-        else 
+        }
+        else
         {
             return New $className();
         }
