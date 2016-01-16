@@ -340,5 +340,29 @@ class PdoAdapter
     {
         $this->connect();
     }
+
+    /**
+     * [query description]
+     * @param  [type] $factory [description]
+     * @return [type]          [description]
+     */
+    public function query($factory)
+    {
+        // return new Query();
+
+        $factoryList = array(
+            'select' => '\Spectre\Database\Query\AbstractFactory\SelectAbstractFactory',
+            'insert' => '\Spectre\Database\Query\AbstractFactory\InsertAbstractFactory',
+            'update' => '\Spectre\Database\Query\AbstractFactory\UpdateAbstractFactory',
+            'delete' => '\Spectre\Database\Query\AbstractFactory\DeleteAbstractFactory',
+        );
+
+        if (!array_key_exists($factory, $factoryList)) {
+            throw new \InvalidArgumentException("$factory is not valid type");
+        }
+        $factory = $factoryList[$factory];
+
+        return new $factory();
+    }
 }
 

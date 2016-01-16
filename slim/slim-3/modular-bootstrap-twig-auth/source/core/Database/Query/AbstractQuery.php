@@ -1,7 +1,9 @@
 <?php
-namespace Foo;
+namespace Spectre\Database\Query;
 
-class Query
+use Spectre\Strategy\QueryStrategy;
+
+abstract class AbstractQuery implements QueryStrategy
 {
     /**
      * [$query description]
@@ -17,7 +19,6 @@ class Query
      * @var array
      */
     protected $sets = [];
-
 
     /**
      * [getQuery description]
