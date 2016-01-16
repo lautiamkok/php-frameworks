@@ -11,7 +11,7 @@ class BlogCollectionMapper extends AbstractMapper
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Spectre\Blog\Model\BlogCollectionModel';
+    protected $model = 'Spectre\Blog\Model\BlogArticleModel';
 
     /**
      * [__construct description]

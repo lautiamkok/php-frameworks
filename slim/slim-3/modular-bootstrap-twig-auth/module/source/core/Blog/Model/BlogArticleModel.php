@@ -3,7 +3,7 @@ namespace Spectre\Blog\Model;
 
 use Spectre\Strategy\ModelStrategy;
 
-class BlogCollectionModel implements ModelStrategy
+class BlogArticleModel implements ModelStrategy
 {
     /**
      * [$articleId description]
