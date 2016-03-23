@@ -12,6 +12,7 @@ $app->get('/{url:[a-zA-Z0-9\-]+}', function (Request $request, Response $respons
 
     // Or:
     // Get the result via the controller.
+    // Don't forget to return the controller.
     $controller = new ArticleController($this);
-    $controller($request, $response, $args);
+    return $controller($request, $response, $args);
 });

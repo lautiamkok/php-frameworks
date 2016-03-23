@@ -1,17 +1,17 @@
 <?php
-namespace Spectre\Article\Mapper;
+namespace Spectre\NotFound\Mapper;
 
 use Spectre\Mapper\AbstractMapper;
 use Spectre\Strategy\GatewayStrategy;
 
-class ArticleMapper extends AbstractMapper
+class NotFoundMapper extends AbstractMapper
 {
     /**
      * Set props.
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Spectre\Article\Model\ArticleModel';
+    protected $model = 'Spectre\NotFound\Model\NotFoundModel';
 
     /**
      * [__construct description]

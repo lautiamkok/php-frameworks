@@ -116,7 +116,8 @@ class ArticleController extends AbstractController
             // ));
 
         } catch(\Exception $e) {
-            echo 'Message: ' .$e->getMessage();
+            $response->getBody()->write('message: ' . $e->getMessage());
+            return $response->withStatus(404);
             // $container = $this;
             // return require_once APPLICATION_ROOT . 'module/result/core/PageNotFound/index.php';
         }

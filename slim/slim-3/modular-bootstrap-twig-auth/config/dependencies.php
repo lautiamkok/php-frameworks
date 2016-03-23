@@ -1,14 +1,13 @@
 <?php
-
 use Slim\Views\Twig;
-use Spectre\PageNotFound\NotFoundHandler;
+use Spectre\NotFound\Controller\NotFoundController;
 
 // DIC configuration
 $container = $app->getContainer();
 
 // Twig
 $container['view'] = function ($container) {
-    // Option 1:
+    // // Option 1: Using Slim's View.
     // $settings = $container->get('settings');
     // $view = new Twig($settings['view']['template_path'], $settings['view']['twig']);
 
@@ -18,13 +17,14 @@ $container['view'] = function ($container) {
 
     // return $view;
 
-    // Option 2:
+    // Option 2: Using Twig directly.
     $settings = $container->get('settings');
 
     $loader = new Twig_Loader_Filesystem($settings['view']['template_path']);
     return new Twig_Environment($loader, array('cache'));
 };
 
+// Global 404 page.
 $container['notFoundHandler'] = function ($container) {
-    return new NotFoundHandler($container);
+    return new NotFoundController($container);
 };
