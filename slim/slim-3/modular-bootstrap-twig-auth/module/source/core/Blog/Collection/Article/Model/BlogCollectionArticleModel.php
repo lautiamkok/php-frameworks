@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\Blog\Model;
+namespace Spectre\Blog\Collection\Article\Model;
 
 use Spectre\Strategy\ModelStrategy;
 use Spectre\Strategy\VisitableStrategy;

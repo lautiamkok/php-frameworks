@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\Blog\Gateway;
+namespace Spectre\Blog\Collection\Gateway;
 
 use Spectre\Strategy\GatewayStrategy;
 use Spectre\Adapter\PdoAdapter;

@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\Blog\Visitor\Content;
+namespace Spectre\Blog\Collection\Article\Visitor\Content;
 
 use Spectre\Strategy\GatewayStrategy;
 

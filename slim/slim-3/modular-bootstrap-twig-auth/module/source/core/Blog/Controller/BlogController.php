@@ -16,15 +16,15 @@ use Spectre\Adapter\PdoAdapter;
 
 // Mapper.
 use Spectre\Blog\Mapper\BlogMapper;
-use Spectre\Blog\Mapper\BlogCollectionMapper;
+use Spectre\Blog\Collection\Mapper\BlogCollectionMapper;
 
 // Gateway.
 use Spectre\Blog\Gateway\BlogGateway;
-use Spectre\Blog\Gateway\BlogCollectionGateway;
+use Spectre\Blog\Collection\Gateway\BlogCollectionGateway;
 
 // Visitor.
-use Spectre\Blog\Visitor\Content\BlogCollectionArticleContentGateway;
-use Spectre\Blog\Visitor\Content\BlogCollectionArticleContentMapper;
+use Spectre\Blog\Collection\Article\Visitor\Content\BlogCollectionArticleContentGateway;
+use Spectre\Blog\Collection\Article\Visitor\Content\BlogCollectionArticleContentMapper;
 
 class BlogController extends AbstractController
 {

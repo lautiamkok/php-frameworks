@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\Blog\Visitor\Content;
+namespace Spectre\Blog\Collection\Article\Visitor\Content;
 
 use Spectre\Mapper\AbstractMapper;
 use Spectre\Strategy\GatewayStrategy;
@@ -13,7 +13,7 @@ class BlogCollectionArticleContentMapper extends AbstractMapper implements Visit
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Spectre\Blog\Visitor\Content\BlogCollectionArticleContentModel';
+    protected $model = 'Spectre\Blog\Collection\Article\Visitor\Content\BlogCollectionArticleContentModel';
 
     /**
      * [__construct description]
