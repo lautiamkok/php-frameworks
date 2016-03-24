@@ -33,7 +33,7 @@ class BlogService
      */
     public function getBlog($options = [])
     {
-        // Blog model.
+        // Get blog model.
         $blog = $this->blog->getBlog([
             "url" => $options["url"]
         ]);
@@ -42,10 +42,10 @@ class BlogService
             "parent_id" => $blog->getBlogId()
         ], $options["collection"]);
 
-        // Blog collection model.
+        // Get blog collection model.
         $collection = $this->collection->getBlogCollection($params);
 
-        // Blog model.
+        // Store blog model with its collection.
         $result = $blog->setCollection($collection);
 
         // Return the blog model.

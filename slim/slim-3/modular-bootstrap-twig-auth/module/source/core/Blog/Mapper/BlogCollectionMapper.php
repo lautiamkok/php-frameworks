@@ -3,6 +3,7 @@ namespace Spectre\Blog\Mapper;
 
 use Spectre\Mapper\AbstractMapper;
 use Spectre\Strategy\GatewayStrategy;
+use Spectre\Strategy\VisitorStrategy;
 
 class BlogCollectionMapper extends AbstractMapper
 {
@@ -11,6 +12,7 @@ class BlogCollectionMapper extends AbstractMapper
      * @var [type]
      */
     protected $gateway;
+    protected $visitors = [];
     protected $model = 'Spectre\Blog\Model\BlogCollectionArticleModel';
 
     /**
@@ -20,6 +22,16 @@ class BlogCollectionMapper extends AbstractMapper
     public function __construct(GatewayStrategy $gateway)
     {
         $this->gateway = $gateway;
+    }
+
+    /**
+     * [registerVisitor description]
+     * @param  VisitorStrategy $visitor [description]
+     * @return [type]                   [description]
+     */
+    public function registerVisitor(VisitorStrategy $visitor)
+    {
+        array_push($this->visitors, $visitor);
     }
 
     /**
@@ -39,9 +51,12 @@ class BlogCollectionMapper extends AbstractMapper
         $newCollection = [];
 
         // Loop the collection's article model to inject the visitor.
-        foreach ($collecton as $item) {
-            $item->accept($options["visitor"]);
-            $newCollection[] = $item;
+        foreach ($collecton as $collectonArticle) {
+            // Loop all added visitors.
+            foreach ($this->visitors as $visitor) {
+                $collectonArticle->accept($visitor);
+            }
+            $newCollection[] = $collectonArticle;
         }
 
         // Return the new result.

@@ -64,19 +64,21 @@ class BlogController extends AbstractController
             // Visitors.
             $BlogCollectionArticleContentMapper = new BlogCollectionArticleContentMapper(new BlogCollectionArticleContentGateway($PdoAdapter));
 
+            // Inject the visitors.
+            $BlogCollectionMapper->registerVisitor($BlogCollectionArticleContentMapper);
+
             // Get the blog.
-            // Inject the collection article's visitor into the param.
             $BlogModel = $BlogService->getBlog([
                 "url" => 'blog',
                 "collection" => [
                     "type" => "post",
                     "start_row" => 0,
-                    "limit" => 6,
-                    "visitor" => $BlogCollectionArticleContentMapper
+                    "limit" => 6
                 ]
             ]);
 
             print_r($BlogModel);
+
 
             // // Get format in the query string.
             // $allGetVars = $request->getQueryParams();
