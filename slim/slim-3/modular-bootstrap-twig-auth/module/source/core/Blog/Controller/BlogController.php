@@ -23,11 +23,8 @@ use Spectre\Blog\Gateway\BlogGateway;
 use Spectre\Blog\Gateway\BlogCollectionGateway;
 
 // Visitor.
-use Spectre\Article\Visitor\Template\ArticleTemplateGateway;
-use Spectre\Article\Visitor\Template\ArticleTemplateMapper;
-
-use Spectre\Article\Visitor\Content\ArticleContentGateway;
-use Spectre\Article\Visitor\Content\ArticleContentMapper;
+use Spectre\Blog\Visitor\Content\BlogCollectionArticleContentGateway;
+use Spectre\Blog\Visitor\Content\BlogCollectionArticleContentMapper;
 
 class BlogController extends AbstractController
 {
@@ -64,31 +61,22 @@ class BlogController extends AbstractController
             // Service.
             $BlogService = new BlogService($BlogMapper, $BlogCollectionMapper);
 
+            // Visitors.
+            $BlogCollectionArticleContentMapper = new BlogCollectionArticleContentMapper(new BlogCollectionArticleContentGateway($PdoAdapter));
+
             // Get the blog.
+            // Inject the collection article's visitor into the param.
             $BlogModel = $BlogService->getBlog([
                 "url" => 'blog',
-                "articles" => [
+                "collection" => [
                     "type" => "post",
                     "start_row" => 0,
-                    "limit" => 6
+                    "limit" => 6,
+                    "visitor" => $BlogCollectionArticleContentMapper
                 ]
             ]);
 
-            // // Visitors.
-            // $ArticleTemplateMapper = new ArticleTemplateMapper(new ArticleTemplateGateway($PdoAdapter));
-            // $ArticleContentMapper = new ArticleContentMapper(new ArticleContentGateway($PdoAdapter));
-
-            // // Inject Visitors.
-            // $BlogModel->accept($ArticleTemplateMapper);
-            // $BlogModel->accept($ArticleContentMapper);
-
             print_r($BlogModel);
-
-            // $model->setArticles(
-            //     $BlogArticleMapper->getBlogArticle($params)
-            // );
-
-            // print_r($model);
 
             // // Get format in the query string.
             // $allGetVars = $request->getQueryParams();

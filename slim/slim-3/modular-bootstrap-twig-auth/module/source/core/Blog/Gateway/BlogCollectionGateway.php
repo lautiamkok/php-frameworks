@@ -1,17 +1,14 @@
 <?php
 namespace Spectre\Blog\Gateway;
 
-use Spectre\Strategy\CompositeStrategy;
 use Spectre\Strategy\GatewayStrategy;
-use Spectre\Strategy\ComposableStrategy;
-
 use Spectre\Adapter\PdoAdapter;
 
 use Spectre\Helper\ArrayHelpers;
 use Spectre\Helper\ObjectHelpers;
 use Spectre\Helper\ItemHelpers;
 
-class BlogCollectionGateway implements GatewayStrategy, CompositeStrategy, ComposableStrategy
+class BlogCollectionGateway implements GatewayStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
@@ -31,50 +28,6 @@ class BlogCollectionGateway implements GatewayStrategy, CompositeStrategy, Compo
     public function __construct(PdoAdapter $PdoAdapter)
     {
         $this->PdoAdapter = $PdoAdapter;
-    }
-
-    /**
-     * Compose the components.
-     * @param  array  $options [description]
-     * @return [type]          [description]
-     */
-    public function compose($options = [])
-    {
-        $items = [];
-
-        foreach ($this->components as $component) {
-            $items[] = $component->compose($options);
-        }
-
-        if (count($items) > 0) {
-            // Flatten the array.
-            return call_user_func_array('array_merge', $items);
-        }
-
-        return $items;
-    }
-
-    /**
-     * Add components.
-     * @param CompositeStrategy $CompositeStrategy [description]
-     */
-    public function addComponent(CompositeStrategy $CompositeStrategy)
-    {
-        array_push($this->components, $CompositeStrategy);
-    }
-
-    /**
-     * Remove components.
-     * @param  CompositeStrategy $CompositeStrategy [description]
-     * @return [type]                               [description]
-     */
-    public function removeComponent(CompositeStrategy $CompositeStrategy)
-    {
-        foreach($this->components as $componentKey => $componentValue) {
-            if ($componentValue === $compositeStrategy) {
-                unset($this->components[$componentKey]);
-            }
-        }
     }
 
     /**

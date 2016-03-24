@@ -2,15 +2,12 @@
 namespace Spectre\Article\Gateway;
 
 use Spectre\Strategy\GatewayStrategy;
-// use Spectre\Strategy\CompositeStrategy;
-// use Spectre\Strategy\ComposableStrategy;
-
 use Spectre\Adapter\PdoAdapter;
 
 use Spectre\Helper\ArrayHelpers;
 use Spectre\Helper\ObjectHelpers;
 
-class ArticleGateway implements GatewayStrategy //, CompositeStrategy, ComposableStrategy
+class ArticleGateway implements GatewayStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;

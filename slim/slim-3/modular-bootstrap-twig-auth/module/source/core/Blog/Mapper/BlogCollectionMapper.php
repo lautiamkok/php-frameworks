@@ -11,7 +11,7 @@ class BlogCollectionMapper extends AbstractMapper
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Spectre\Blog\Model\BlogArticleModel';
+    protected $model = 'Spectre\Blog\Model\BlogCollectionArticleModel';
 
     /**
      * [__construct description]
@@ -23,14 +23,28 @@ class BlogCollectionMapper extends AbstractMapper
     }
 
     /**
-     * [getBlogArticle description]
+     * [getBlogCollection description]
      * @param  array  $options [description]
      * @return [type]          [description]
      */
     public function getBlogCollection($options = [])
     {
+        // Get all rows from the gateway.
         $rows = $this->gateway->getRows($options);
 
-        return $this->mapCollection($rows);
+        // Map all rows to collection model..
+        $collecton = $this->mapCollection($rows);
+
+        // Set a new empty array.
+        $newCollection = [];
+
+        // Loop the collection's article model to inject the visitor.
+        foreach ($collecton as $item) {
+            $item->accept($options["visitor"]);
+            $newCollection[] = $item;
+        }
+
+        // Return the new result.
+        return $newCollection;
     }
 }

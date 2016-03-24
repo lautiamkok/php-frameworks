@@ -2,8 +2,10 @@
 namespace Spectre\Blog\Model;
 
 use Spectre\Strategy\ModelStrategy;
+use Spectre\Strategy\VisitableStrategy;
+use Spectre\Strategy\VisitorStrategy;
 
-class BlogArticleModel implements ModelStrategy
+class BlogCollectionArticleModel implements ModelStrategy, VisitableStrategy
 {
     /**
      * [$articleId description]
@@ -23,6 +25,16 @@ class BlogArticleModel implements ModelStrategy
     public function __construct(array $params = [])
     {
         $this->setOptions($params);
+    }
+
+    /**
+     * [accept description]
+     * @param  VisitorStrategy $visitor [description]
+     * @return [type]                   [description]
+     */
+    public function accept(VisitorStrategy $visitor)
+    {
+        $visitor->visit($this);
     }
 
     /**

@@ -15,7 +15,7 @@ class BlogModel implements ModelStrategy, VisitableStrategy
     protected $title;
     protected $content;
     protected $template;
-    protected $articles = [];
+    protected $collection = [];
     protected $createdOn;
     protected $updatedOn;
 
@@ -55,7 +55,7 @@ class BlogModel implements ModelStrategy, VisitableStrategy
                 case 'content':
                     $this->setContent($value);
                     break;
-                case 'articles':
+                case 'collection':
                     $this->setArticles($value);
                     break;
                 case 'creator':
@@ -128,11 +128,11 @@ class BlogModel implements ModelStrategy, VisitableStrategy
 
     /**
      * [setArticles description]
-     * @param [type] $articles [description]
+     * @param [type] $collection [description]
      */
-    public function setArticles($articles)
+    public function setCollection($collection)
     {
-        $this->articles = $articles;
+        $this->collection = $collection;
 
         return $this;
     }
@@ -201,9 +201,9 @@ class BlogModel implements ModelStrategy, VisitableStrategy
      * [getArticles description]
      * @return [type] [description]
      */
-    public function getArticles()
+    public function getCollection()
     {
-        return $this->articles;
+        return $this->collection;
     }
 
     /**

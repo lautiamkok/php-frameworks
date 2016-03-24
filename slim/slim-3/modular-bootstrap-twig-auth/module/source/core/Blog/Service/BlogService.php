@@ -9,21 +9,21 @@ class BlogService
      * [$model description]
      * @var [type]
      */
-    protected $mapper;
-    protected $articles;
+    protected $blog;
+    protected $collection;
 
     /**
      * [__construct description]
-     * @param MapperStrategy $mapper   [description]
-     * @param MapperStrategy $articles [description]
+     * @param MapperStrategy $blog   [description]
+     * @param MapperStrategy $collection [description]
      */
     public function __construct(
-        MapperStrategy $mapper,
-        MapperStrategy $articles
+        MapperStrategy $blog,
+        MapperStrategy $collection
     )
     {
-        $this->mapper = $mapper;
-        $this->articles = $articles;
+        $this->blog = $blog;
+        $this->collection = $collection;
     }
 
     /**
@@ -33,18 +33,22 @@ class BlogService
      */
     public function getBlog($options = [])
     {
-        $model = $this->mapper->getBlog([
+        // Blog model.
+        $blog = $this->blog->getBlog([
             "url" => $options["url"]
         ]);
 
         $params = array_merge([
-            "parent_id" => $model->getBlogId()
-        ], $options["articles"]);
+            "parent_id" => $blog->getBlogId()
+        ], $options["collection"]);
 
-        $result = $model->setArticles(
-            $this->articles->getBlogCollection($params)
-        );
+        // Blog collection model.
+        $collection = $this->collection->getBlogCollection($params);
 
+        // Blog model.
+        $result = $blog->setCollection($collection);
+
+        // Return the blog model.
         return $result;
     }
 }
