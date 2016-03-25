@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\NotFound\Mapper;
+namespace Spectre\ClientError\NotFound\Mapper;
 
 use Spectre\Mapper\AbstractMapper;
 use Spectre\Strategy\GatewayStrategy;
@@ -11,7 +11,7 @@ class NotFoundMapper extends AbstractMapper
      * @var [type]
      */
     protected $gateway;
-    protected $model = 'Spectre\NotFound\Model\NotFoundModel';
+    protected $model = 'Spectre\ClientError\NotFound\Model\NotFoundModel';
 
     /**
      * [__construct description]

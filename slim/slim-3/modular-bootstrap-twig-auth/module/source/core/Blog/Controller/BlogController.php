@@ -61,10 +61,10 @@ class BlogController extends AbstractController
             // Service.
             $BlogService = new BlogService($BlogMapper, $BlogCollectionMapper);
 
-            // Visitors.
+            // Visitors/ Flyweights.
             $BlogCollectionArticleContentMapper = new BlogCollectionArticleContentMapper(new BlogCollectionArticleContentGateway($PdoAdapter));
 
-            // Inject the visitors.
+            // Inject the visitors/ flyweights.
             $BlogCollectionMapper->addFlyweight($BlogCollectionArticleContentMapper);
 
             // Get the blog.

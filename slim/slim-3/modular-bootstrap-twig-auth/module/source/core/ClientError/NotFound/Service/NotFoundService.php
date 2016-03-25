@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\NotFound\Service;
+namespace Spectre\ClientError\NotFound\Service;
 
 use Spectre\Service\AbstractService;
 use Spectre\Strategy\MapperStrategy;

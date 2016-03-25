@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\NotFound\Controller;
+namespace Spectre\ClientError\NotFound\Controller;
 
 // PSR 7 standard.
 use Slim\Http\Request;
@@ -9,16 +9,16 @@ use Slim\Http\Response;
 use Spectre\Controller\AbstractController;
 
 // Service.
-use Spectre\NotFound\Service\NotFoundService;
+use Spectre\ClientError\NotFound\Service\NotFoundService;
 
 // Adapter.
 use Spectre\Adapter\PdoAdapter;
 
 // Mapper.
-use Spectre\NotFound\Mapper\NotFoundMapper;
+use Spectre\ClientError\NotFound\Mapper\NotFoundMapper;
 
 // Gateway.
-use Spectre\NotFound\Gateway\NotFoundGateway;
+use Spectre\ClientError\NotFound\Gateway\NotFoundGateway;
 
 // Option 1:
 class NotFoundController
@@ -73,8 +73,27 @@ class NotFoundController
 
         print_r($NotFoundModel);
 
-        $container = $this->container;
-        $response->getBody()->write('Not found!');
+        // Get an instance of the Twig Environment.
+        $twig = $this->container->view;
+
+        // From that get the Twig Loader instance (file loader in this case).
+        $loader = $twig->getLoader();
+
+        // Add the module template and additional paths to the existing.
+        $loader->addPath(APPLICATION_ROOT . 'public/theme/default/');
+        $loader->addPath(APPLICATION_ROOT . 'public/theme/default/Article/');
+
+        // Load the template through the Twig service in the DIC.
+        $template = $twig->loadTemplate('index.twig');
+
+        // Render the template using a simple content variable.
+        $response->write($template->render([
+            'baseUrl' => BASE_URL,
+            'articleId' => '',
+            'title' => '404 Not Found',
+            'content' => 'Not Found'
+        ]));
+
         return $response->withStatus(404);
     }
 }

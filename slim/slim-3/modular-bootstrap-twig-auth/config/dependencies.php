@@ -1,6 +1,6 @@
 <?php
 use Slim\Views\Twig;
-use Spectre\NotFound\Controller\NotFoundController;
+use Spectre\ClientError\NotFound\Controller\NotFoundController;
 
 // DIC configuration
 $container = $app->getContainer();
@@ -24,7 +24,7 @@ $container['view'] = function ($container) {
     return new Twig_Environment($loader, array('cache'));
 };
 
-// Global 404 page.
+// Register 404 page when the request route is not found.
 $container['notFoundHandler'] = function ($container) {
     return new NotFoundController($container);
 };

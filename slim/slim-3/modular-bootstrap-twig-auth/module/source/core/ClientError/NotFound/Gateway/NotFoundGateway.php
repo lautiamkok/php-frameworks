@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\NotFound\Gateway;
+namespace Spectre\ClientError\NotFound\Gateway;
 
 use Spectre\Strategy\GatewayStrategy;
 use Spectre\Adapter\PdoAdapter;

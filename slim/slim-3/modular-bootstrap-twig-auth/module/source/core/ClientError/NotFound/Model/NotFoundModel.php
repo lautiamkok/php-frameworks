@@ -1,5 +1,5 @@
 <?php
-namespace Spectre\NotFound\Model;
+namespace Spectre\ClientError\NotFound\Model;
 
 use Spectre\Strategy\ModelStrategy;
 use Spectre\Strategy\VisitableStrategy;
