@@ -4,8 +4,10 @@ namespace Spectre\Blog\Collection\Mapper;
 use Spectre\Mapper\AbstractMapper;
 use Spectre\Strategy\GatewayStrategy;
 use Spectre\Strategy\VisitorStrategy;
+use Spectre\Strategy\FlyweightStrategy;
+use Spectre\Strategy\FlyweightFactoryStrategy;
 
-class BlogCollectionMapper extends AbstractMapper
+class BlogCollectionMapper extends AbstractMapper implements FlyweightFactoryStrategy
 {
     /**
      * Set props.
@@ -25,11 +27,10 @@ class BlogCollectionMapper extends AbstractMapper
     }
 
     /**
-     * [registerVisitor description]
-     * @param  VisitorStrategy $visitor [description]
-     * @return [type]                   [description]
+     * [addFlyweight description]
+     * @param FlyweightStrategy $visitor [description]
      */
-    public function registerVisitor(VisitorStrategy $visitor)
+    public function addFlyweight(FlyweightStrategy $visitor)
     {
         array_push($this->visitors, $visitor);
     }

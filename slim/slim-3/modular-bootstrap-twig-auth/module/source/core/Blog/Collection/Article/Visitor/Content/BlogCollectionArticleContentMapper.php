@@ -5,8 +5,9 @@ use Spectre\Mapper\AbstractMapper;
 use Spectre\Strategy\GatewayStrategy;
 use Spectre\Strategy\VisitableStrategy;
 use Spectre\Strategy\VisitorStrategy;
+use Spectre\Strategy\FlyweightStrategy;
 
-class BlogCollectionArticleContentMapper extends AbstractMapper implements VisitorStrategy
+class BlogCollectionArticleContentMapper extends AbstractMapper implements VisitorStrategy, FlyweightStrategy
 {
     /**
      * Set props.

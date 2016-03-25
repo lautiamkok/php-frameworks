@@ -65,7 +65,7 @@ class BlogController extends AbstractController
             $BlogCollectionArticleContentMapper = new BlogCollectionArticleContentMapper(new BlogCollectionArticleContentGateway($PdoAdapter));
 
             // Inject the visitors.
-            $BlogCollectionMapper->registerVisitor($BlogCollectionArticleContentMapper);
+            $BlogCollectionMapper->addFlyweight($BlogCollectionArticleContentMapper);
 
             // Get the blog.
             $BlogModel = $BlogService->getBlog([
