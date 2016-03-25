@@ -14,7 +14,7 @@ class BlogCollectionMapper extends AbstractMapper implements FlyweightFactoryStr
      * @var [type]
      */
     protected $gateway;
-    protected $visitors = [];
+    protected $flyweights = [];
     protected $model = 'Spectre\Blog\Collection\Article\Model\BlogCollectionArticleModel';
 
     /**
@@ -28,11 +28,11 @@ class BlogCollectionMapper extends AbstractMapper implements FlyweightFactoryStr
 
     /**
      * [addFlyweight description]
-     * @param FlyweightStrategy $visitor [description]
+     * @param FlyweightStrategy $flyweight [description]
      */
-    public function addFlyweight(FlyweightStrategy $visitor)
+    public function addFlyweight(FlyweightStrategy $flyweight)
     {
-        array_push($this->visitors, $visitor);
+        array_push($this->flyweights, $flyweight);
     }
 
     /**
@@ -53,8 +53,9 @@ class BlogCollectionMapper extends AbstractMapper implements FlyweightFactoryStr
 
         // Loop the collection's article model to inject the visitor.
         foreach ($collecton as $collectonArticle) {
-            // Loop all added visitors.
-            foreach ($this->visitors as $visitor) {
+            // Loop all added flyweights.
+            // Each flyweight itself also is a visitor to the article model.
+            foreach ($this->flyweights as $visitor) {
                 $collectonArticle->accept($visitor);
             }
             $newCollection[] = $collectonArticle;

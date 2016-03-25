@@ -79,7 +79,6 @@ class BlogController extends AbstractController
 
             print_r($BlogModel);
 
-
             // // Get format in the query string.
             // $allGetVars = $request->getQueryParams();
             // $format = isset($allGetVars['format']) ? $allGetVars['format'] : null;
