@@ -2,17 +2,6 @@
 // Modules.
 
 return [
-    // 'PageNotFound' => [
-    //     'name' => 'PageNotFound',
-    //     'directories' => [
-    //         'route'  => 'core/PageNotFound/',
-    //         'result'  => 'core/PageNotFound/',
-    //         'source'  => 'core/PageNotFound/',
-    //         'theme'  => 'default/',
-    //         'template'  => 'PageNotFound/'
-    //     ],
-    // ],
-
     //  Must load Admin route first so it won't be shadowed by Article's.
     'Admin' => [
         'name' => 'Admin',

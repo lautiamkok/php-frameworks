@@ -19,11 +19,7 @@ class HomeController extends AbstractController
      */
     public function __invoke(Request $request, Response $response, array $args)
     {
-       // Trigger exception in a "try" block
-        try {
-            return $response->getBody()->write('Default Hello World!');
-        } catch(\Exception $e) {
-            //
-        }
+        // to be developed.
+        return $response->getBody()->write('Default Hello World!');
     }
 }

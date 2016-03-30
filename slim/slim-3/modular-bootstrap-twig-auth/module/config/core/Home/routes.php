@@ -3,8 +3,9 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-// Hope page.
-$app->get('/', function (Request $request, Response $response, array $args) {
+// Home page.
+// With optional segments - http://www.slimframework.com/docs/objects/router.html#optional-segments
+$app->get('/[home]', function (Request $request, Response $response, array $args) {
     // Get the application settings.
     $settings = $this->get('settings');
 
