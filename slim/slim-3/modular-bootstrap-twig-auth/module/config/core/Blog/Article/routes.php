@@ -3,16 +3,23 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-// use Spectre\Blog\Article\Controller\BlogArticleController; // to be developed
+use Spectre\Blog\Article\Controller\BlogArticleController;
+use Spectre\ClientError\NotFound\Controller\NotFoundController;
 
 // API group
 $app->group('/blog', function () {
     // Get the login form.
     $this->get('/{url:[a-zA-Z0-9\-]+}', function (Request $request, Response $response, array $args) {
-        // // Get the result via the controller.
-        // $controller = new BlogArticleController($this); to be developed.
-        // $controller($request, $response, $args);
-
-        return $response->getBody()->write('Blog article page to be developed');
+        // Trigger exception in a "try" block
+        try {
+            // Get the result via the controller.
+            // Don't forget to return the controller.
+            $BlogArticleController = new BlogArticleController($this);
+            return $BlogArticleController($request, $response, $args);
+        } catch(\Exception $e) {
+            // Return 404 not found page.
+            $NotFoundController = new NotFoundController($this);
+            return $NotFoundController($request, $response);
+        }
     });
 });
