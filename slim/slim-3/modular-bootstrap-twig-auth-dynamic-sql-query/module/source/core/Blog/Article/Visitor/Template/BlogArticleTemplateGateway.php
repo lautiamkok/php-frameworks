@@ -40,7 +40,10 @@ class BlogArticleTemplateGateway implements GatewayStrategy
         // Prepare query.
         $query->select('t.*');
         $query->from('template AS t');
-        $query->leftJoin('article AS a', 'a.template_id = t.template_id');
+
+        $query->leftJoin('article', 'a');
+        $query->on('a.template_id', '=', 't.template_id');
+
         $query->where('a.article_id', '=', $settings['article_id']);
 
         // Fetching the row that associates with the article.

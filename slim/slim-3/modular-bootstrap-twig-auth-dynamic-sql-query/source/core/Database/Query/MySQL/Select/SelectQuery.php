@@ -15,10 +15,15 @@ class SelectQuery extends AbstractQuery
     /**
      * [select description]
      * @param  [type] $field [description]
+     * @param  [type] $as    [description]
      * @return [type]        [description]
      */
-    public function select($field)
+    public function select($field, $as = null)
     {
+        if ($as !== null) {
+            $field = $field . " AS {$as} ";
+        }
+
         array_push($this->selects, $field);
 
         if (count($this->selects) > 1) {
@@ -33,11 +38,16 @@ class SelectQuery extends AbstractQuery
     /**
      * [from description]
      * @param  [type] $table [description]
+     * @param  [type] $as    [description]
      * @return [type]        [description]
      */
-    public function from($table)
+    public function from($table, $as = null)
     {
-        $this->query .= " FROM {$table} ";
+        if ($as !== null) {
+            $this->query .= " FROM {$table} AS {$as} ";
+        } else {
+            $this->query .= " FROM {$table} ";
+        }
 
         return $this;
     }
@@ -79,28 +89,31 @@ class SelectQuery extends AbstractQuery
     /**
      * [leftJoin description]
      * @param  [type] $table [description]
-     * @param  [type] $on    [description]
+     * @param  [type] $as    [description]
      * @return [type]        [description]
      */
-    public function leftJoin($table, $on)
+    public function leftJoin($table, $as = null)
     {
-        $this->query .= " LEFT JOIN {$table} ON {$on} ";
+        if ($as !== null) {
+            $this->query .= " LEFT JOIN {$table} AS {$as} ";
+        } else {
+            $this->query .= " LEFT JOIN {$table} ";
+        }
 
         return $this;
     }
 
     /**
      * [nestLeftJoin description]
-     * @param  [type] $query [description]
-     * @param  [type] $as    [description]
-     * @param  [type] $on    [description]
-     * @return [type]        [description]
+     * @param  QueryStrategy $query [description]
+     * @param  [type]        $as    [description]
+     * @return [type]               [description]
      */
-    public function nestLeftJoin(QueryStrategy $query, $as, $on)
+    public function nestLeftJoin(QueryStrategy $query, $as)
     {
         $params = $query->getParams();
         $query = $query->getQuery();
-        $this->query .= " LEFT JOIN ({$query}) {$as} ON {$on} ";
+        $this->query .= " LEFT JOIN ({$query}) {$as} ";
 
         if (count($this->params) > 0) {
             $this->params = array_merge($this->params, $params);
@@ -161,6 +174,20 @@ class SelectQuery extends AbstractQuery
     }
 
     /**
+     * [on description]
+     * @param  [type] $column1  [description]
+     * @param  [type] $operator [description]
+     * @param  [type] $column2  [description]
+     * @return [type]           [description]
+     */
+    public function on($column1, $operator, $column2)
+    {
+        $this->query .= " ON {$column1} {$operator} {$column2} ";
+
+        return $this;
+    }
+
+    /**
      * [in description]
      * @param  [type] $list [description]
      * @return [type]       [description]
@@ -168,6 +195,22 @@ class SelectQuery extends AbstractQuery
     public function in($list)
     {
         $this->query .= " IN ({$list}) ";
+
+        return $this;
+    }
+
+    /**
+     * [joinAnd description]
+     * @note: 'and' is a php reserved keyword, so you can't use and as the function name.
+     * @ref: http://php.net/manual/en/reserved.keywords.php
+     * @param  [type] $column1  [description]
+     * @param  [type] $operator [description]
+     * @param  [type] $column2  [description]
+     * @return [type]           [description]
+     */
+    public function joinAnd($column1, $operator, $column2)
+    {
+        $this->query .= " AND {$column1} {$operator} {$column2} ";
 
         return $this;
     }

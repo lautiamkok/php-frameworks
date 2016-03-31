@@ -69,24 +69,6 @@ abstract class AbstractQuery implements QueryStrategy
     }
 
     /**
-     * [joinAnd description]
-     * @note: 'and' is a php reserved keyword, so you can't use and as the function name.
-     * @ref: http://php.net/manual/en/reserved.keywords.php
-     * @param  [type] $column   [description]
-     * @param  [type] $operator [description]
-     * @param  [type] $value    [description]
-     * @return [type]           [description]
-     */
-    public function joinAnd($column, $operator, $value)
-    {
-        array_push($this->params, $value);
-
-        $this->query .= " AND {$column} {$operator} ? ";
-
-        return $this;
-    }
-
-    /**
      * [whereWithKey description]
      * @param  [type] $column   [description]
      * @param  [type] $operator [description]

@@ -72,18 +72,32 @@ class BlogCollectionGateway implements GatewayStrategy
 
         // Prepare query.
         $query->select('p.*');
-        $query->select('p2.article_id AS parent_id');
-        $query->select('p2.url AS parent_url');
-        $query->select('EXTRACT(DAY FROM p.backdated_on) AS date');
-        $query->select('EXTRACT(MONTH FROM p.backdated_on) AS month');
-        $query->select('EXTRACT(YEAR FROM p.backdated_on) AS year');
-        $query->from('article AS p');
-        $query->leftJoin('article_has_category AS x2', 'x2.article_id = p.article_id');
-        $query->leftJoin('category AS c2', 'c2.category_id = x2.category_id');
-        $query->leftJoin('user AS u', 'u.user_id = p.created_by');
-        $query->leftJoin('article_has_tag AS x3', 'x3.article_id = p.article_id');
-        $query->leftJoin('tag AS t', 't.tag_id = x3.tag_id');
-        $query->leftJoin('article AS p2', 'p2.article_id = p.parent_id');
+        $query->select('p2.article_id', 'parent_id');
+        $query->select('p2.url', 'parent_url');
+        $query->select('EXTRACT(DAY FROM p.backdated_on)', 'date');
+        $query->select('EXTRACT(MONTH FROM p.backdated_on)', 'month');
+        $query->select('EXTRACT(YEAR FROM p.backdated_on)', 'year');
+
+        $query->from('article', 'p');
+
+        $query->leftJoin('article_has_category', 'x2');
+        $query->on('x2.article_id', '=', 'p.article_id');
+
+        $query->leftJoin('category', 'c2');
+        $query->on('c2.category_id', '=', 'x2.category_id');
+
+        $query->leftJoin('user', 'u');
+        $query->on('u.user_id', '=', 'p.created_by');
+
+        $query->leftJoin('article_has_tag', 'x3');
+        $query->on('x3.article_id', '=', 'p.article_id');
+
+        $query->leftJoin('tag', 't');
+        $query->on('t.tag_id', '=', 'x3.tag_id');
+
+        $query->leftJoin('article', 'p2');
+        $query->on('p2.article_id', '=', 'p.parent_id');
+
         $query->where('p.parent_id', '=', $settings['parent_id']);
         $query->where('p.article_id', '!=', $settings['parent_id']);
         $query->where('p.hide', '!=', '1');

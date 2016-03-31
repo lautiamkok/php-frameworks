@@ -39,7 +39,7 @@ class BlogCollectionArticleContentGateway implements GatewayStrategy
 
         // Prepare query.
         $query1->select('*');
-        $query1->from('category AS a');
+        $query1->from('category', 'a');
         $query1->where('a.type', '=', 'content');
 
         // Get the select query object.
@@ -47,8 +47,11 @@ class BlogCollectionArticleContentGateway implements GatewayStrategy
 
         // Prepare query.
         $query2->select('c.*');
-        $query2->from('content AS c');
-        $query2->leftJoin('article_has_content AS x', 'x.content_id = c.content_id');
+        $query2->from('content', 'c');
+
+        $query2->leftJoin('article_has_content', 'x');
+        $query2->on('x.content_id', '=', 'c.content_id');
+
         $query2->where('x.article_id', '=', $settings['article_id']);
 
         // Get the select query object.
@@ -57,7 +60,8 @@ class BlogCollectionArticleContentGateway implements GatewayStrategy
         // Prepare query.
         $query->select('b.*');
         $query->nestFrom($query1, 'a');
-        $query->nestLeftJoin($query2, 'b', 'b.category_id = a.category_id');
+        $query->nestLeftJoin($query2, 'b');
+        $query->on('b.category_id', '=', 'a.category_id');
 
         // Fetching the row that associates with the article.
         $result = $this->database->fetchAll($query);

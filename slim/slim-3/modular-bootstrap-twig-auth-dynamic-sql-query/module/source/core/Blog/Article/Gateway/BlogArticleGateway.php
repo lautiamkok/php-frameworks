@@ -50,16 +50,22 @@ class BlogArticleGateway implements GatewayStrategy
 
         // Prepare query.
         $query->select('p.*');
-        $query->select('p2.article_id AS parent_id');
-        $query->select('p2.url AS parent_url');
-        $query->select('p3.article_id AS parent_parent_id');
-        $query->select('p3.url AS parent_parent_url');
-        $query->select('p3.title AS parent_parent_title');
-        $query->from('article AS p');
-        $query->leftJoin('article AS p2', 'p2.article_id = p.parent_id');
+        $query->select('p2.article_id', 'parent_id');
+        $query->select('p2.url', 'parent_url');
+        $query->select('p3.article_id', 'parent_parent_id');
+        $query->select('p3.url', 'parent_parent_url');
+        $query->select('p3.title', 'parent_parent_title');
+
+        $query->from('article', 'p');
+
+        $query->leftJoin('article', 'p2');
+        $query->on('p2.article_id', '=', 'p.parent_id');
         $query->joinAnd('p.article_id', '<>','p2.article_id');
-        $query->leftJoin('article AS p3', 'p3.article_id = p2.parent_id');
+
+        $query->leftJoin('article', 'p3');
+        $query->on('p3.article_id', '=', 'p2.parent_id');
         $query->joinAnd('p2.article_id', '<>', 'p3.article_id');
+
         $query->where('p.url', '=', strtolower(str_replace(array("-", "_"), " ", $settings['url'])));
         $query->where('p.type', '=', $settings['type']);
         $query->where('p.hide', '=', $settings['hide']);
