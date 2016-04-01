@@ -59,12 +59,12 @@ class BlogArticleGateway implements GatewayStrategy
         $query->from('article', 'p');
 
         $query->leftJoin('article', 'p2');
-        $query->on('p2.article_id', '=', 'p.parent_id');
-        $query->joinAnd('p.article_id', '<>','p2.article_id');
+        $query->join('ON', 'p2.article_id', '=', 'p.parent_id');
+        $query->join('AND', 'p.article_id', '<>','p2.article_id');
 
         $query->leftJoin('article', 'p3');
-        $query->on('p3.article_id', '=', 'p2.parent_id');
-        $query->joinAnd('p2.article_id', '<>', 'p3.article_id');
+        $query->join('ON', 'p3.article_id', '=', 'p2.parent_id');
+        $query->join('AND', 'p2.article_id', '<>', 'p3.article_id');
 
         $query->where('p.url', '=', strtolower(str_replace(array("-", "_"), " ", $settings['url'])));
         $query->where('p.type', '=', $settings['type']);
@@ -72,6 +72,7 @@ class BlogArticleGateway implements GatewayStrategy
         $query->groupBy('p.article_id');
         $query->orderBy('p.backdated_on DESC');
 
+        // Inject the query object into the db to fetch rows.
         $result = $this->database->fetchAll($query);
 
         // Return the result.

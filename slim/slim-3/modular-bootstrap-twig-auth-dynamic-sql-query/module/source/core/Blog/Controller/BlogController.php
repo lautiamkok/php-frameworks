@@ -72,7 +72,16 @@ class BlogController extends AbstractController
             "collection" => [
                 "type" => "post",
                 "start_row" => 0,
-                "limit" => 6
+                "limit" => 6,
+                // "year" => 2015, // Year, numeric, four digits
+                // "month" => 8, // Month, numeric (0-12)
+                // "category" => 'local-news',
+                // "tag" => 'global-warming',
+                // "user" => 'root-admin',
+                // "randomise" => true,
+                // 'highlight_only' => true,
+                // 'order_by_title' => true,
+                // 'order_by_sort' => true,
             ]
         ]);
 

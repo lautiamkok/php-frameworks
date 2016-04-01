@@ -6,13 +6,11 @@ use Spectre\Strategy\DatabaseStrategy;
 
 use Spectre\Helper\ArrayHelpers;
 use Spectre\Helper\ObjectHelpers;
-use Spectre\Helper\ItemHelpers;
 
 class BlogCollectionGateway implements GatewayStrategy
 {
     use ArrayHelpers;
     use ObjectHelpers;
-    use ItemHelpers;
 
     /**
      * Set props.
@@ -32,40 +30,21 @@ class BlogCollectionGateway implements GatewayStrategy
 
     /**
      * [getRows description]
-     * @param  array  $options [description]
+     * @param  array  $params [description]
      * @return [type]          [description]
      */
-    public function getRows($options = [])
+    public function getRows(array $params = [])
     {
-        // Set vars.
+        // Set defaults.
         $defaults = [
-            "type"                      =>  null,
-            "parent_id"                 =>  null,
-            "start_row"                 =>  0,
-            "limit"                     =>  0,
-            "year"                      =>  null,
-            "month"                     =>  null,
-            "category"                  =>  [
-                "category_id"           =>  null,
-                "code"                  =>  null
-            ],
-            "user"                      =>  [
-                "user_id"               =>  null,
-                "code"                  =>  null
-            ],
-            "tag"                       =>  [
-                "tag_id"                =>  null,
-                "code"                  =>  null
-            ],
-            "randomise"                 =>  false,
-            "highlight_only"            =>  false,
-            "order_by_highlight"        =>  false,
-            "order_by_title"            =>  false,
-            "order_by_sort"             =>  false
+            "type" => null,
+            "parent_id" => null,
+            "start_row" => 0,
+            "limit" => 0
         ];
 
         // Call internal method to process the array.
-        $settings = $this->arrayMergeValues($defaults, $options);
+        $settings = $this->arrayMergeValues($defaults, $params);
 
         // Get the select query object.
         $query = $this->database->select();
@@ -102,10 +81,44 @@ class BlogCollectionGateway implements GatewayStrategy
         $query->where('p.article_id', '!=', $settings['parent_id']);
         $query->where('p.hide', '!=', '1');
         $query->where('p.type', '=', $settings['type']);
+
+        if (isset($params['category'])) {
+            $query->where('c2.code', '=', strtolower(str_replace(array("-"), "_", $params['category'])));
+        }
+
+        if (isset($params['tag'])) {
+            $query->where('t.code', '=', strtolower(str_replace(array("-"), "_", $params['tag'])));
+        }
+
+        if (isset($params['user'])) {
+            $query->where('u.code', '=', strtolower(str_replace(array("-"), "_", $params['user'])));
+        }
+
+        if (isset($params['month']) && isset($params['year'])) {
+            $query->where("DATE_FORMAT(p.backdated_on, '%Y %c')", '=', $params['year'] . ' ' . $params['month']);
+        } else if (isset($params['year'])) {
+            $query->where("DATE_FORMAT(p.backdated_on, '%Y')", '=', $params['year']);
+        }
+
+        if (isset($params['highlight_only'])) {
+            $query->where('p.highlight', '=', '1');
+        }
+
         $query->groupBy('p.article_id');
-        $query->orderBy('p.backdated_on DESC');
+
+        if (isset($params['randomise'])) {
+            $query->orderBy('rand()');
+        } else if (isset($params['order_by_title'])) {
+            $query->orderBy('p.title');
+        } else if (isset($params['order_by_sort'])) {
+            $query->orderBy('p.sort+10');
+        } else {
+            $query->orderBy('p.backdated_on DESC');
+        }
+
         $query->limit($settings['limit'], $settings['start_row']);
 
+        // Inject the query object into the db to fetch rows.
         $result = $this->database->fetchAll($query);
 
         // Return the result.

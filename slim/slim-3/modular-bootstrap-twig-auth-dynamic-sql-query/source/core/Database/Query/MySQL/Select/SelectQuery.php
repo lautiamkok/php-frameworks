@@ -132,7 +132,7 @@ class SelectQuery extends AbstractQuery
      */
     public function rightJoin($table, $on)
     {
-        $this->query .= " RIGHT JOIN {$table} ON {$table} ";
+        $this->query .= " RIGHT JOIN {$table} ON {$on} ";
 
         return $this;
     }
@@ -145,7 +145,7 @@ class SelectQuery extends AbstractQuery
      */
     public function fullJoin($table, $on)
     {
-        $this->query .= " FULL OUTER {$table} ON {$table} ";
+        $this->query .= " FULL OUTER {$table} ON {$on} ";
 
         return $this;
     }
@@ -174,6 +174,18 @@ class SelectQuery extends AbstractQuery
     }
 
     /**
+     * [in description]
+     * @param  [type] $list [description]
+     * @return [type]       [description]
+     */
+    public function in($list)
+    {
+        $this->query .= " IN ({$list}) ";
+
+        return $this;
+    }
+
+    /**
      * [on description]
      * @param  [type] $column1  [description]
      * @param  [type] $operator [description]
@@ -183,18 +195,6 @@ class SelectQuery extends AbstractQuery
     public function on($column1, $operator, $column2)
     {
         $this->query .= " ON {$column1} {$operator} {$column2} ";
-
-        return $this;
-    }
-
-    /**
-     * [in description]
-     * @param  [type] $list [description]
-     * @return [type]       [description]
-     */
-    public function in($list)
-    {
-        $this->query .= " IN ({$list}) ";
 
         return $this;
     }
@@ -211,6 +211,21 @@ class SelectQuery extends AbstractQuery
     public function joinAnd($column1, $operator, $column2)
     {
         $this->query .= " AND {$column1} {$operator} {$column2} ";
+
+        return $this;
+    }
+
+    /**
+     * An alternative for joinAnd and on methods by providing your own syntax: ON, AND.
+     * @param  [type] $syntax   [description]
+     * @param  [type] $column1  [description]
+     * @param  [type] $operator [description]
+     * @param  [type] $column2  [description]
+     * @return [type]           [description]
+     */
+    public function join($syntax, $column1, $operator, $column2)
+    {
+        $this->query .= " {$syntax} {$column1} {$operator} {$column2} ";
 
         return $this;
     }
